@@ -1,0 +1,2818 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f5efe7">
+<title>富國島六日親子包團 · 旅遊攻略</title>
+<style>
+  :root {
+    --bg: #f5efe7;
+    --panel: #fffdf9;
+    --panel-soft: #f8f3eb;
+    --line: #ddd2c3;
+    --ink: #1f2531;
+    --muted: #5c6574;
+    --accent: #b24c2f;
+    --accent-soft: #f7ddd3;
+    --accent2: #1f6f78;
+    --accent2-soft: #d9ecee;
+    --chip: #efe4d4;
+    --shadow: 0 12px 30px rgba(38,33,28,0.08);
+    --warn: #c0632a;
+    --warn-soft: #fbe4cf;
+    --ok: #3f7a52;
+    --ok-soft: #dceadf;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: radial-gradient(circle at top right,rgba(178,76,47,0.08),transparent 24%),
+                radial-gradient(circle at left 20%,rgba(31,111,120,0.08),transparent 22%),
+                var(--bg);
+    color: var(--ink);
+    font-family: "Segoe UI","Helvetica Neue",Arial,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+    line-height: 1.65;
+    padding: 16px 12px 90px;
+    font-size: 15px;
+  }
+  .container { max-width: 780px; margin: 0 auto; }
+
+  /* ===== Header ===== */
+  .report-header {
+    background: rgba(255,253,249,0.97); border: 1px solid var(--line);
+    border-radius: 18px; box-shadow: var(--shadow); padding: 20px 18px; margin-bottom: 16px;
+  }
+  .report-header .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .1em; color: var(--accent); margin-bottom: 6px; }
+  .report-header h1 { font-size: 21px; font-weight: 800; margin-bottom: 6px; line-height: 1.35; }
+  .report-header .meta { font-size: 13px; color: var(--muted); }
+  .hero-stats { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+  .stat { flex: 1 1 90px; background: var(--panel-soft); border: 1px solid var(--line); border-radius: 12px; padding: 9px 10px; }
+  .stat .k { font-size: 11px; color: var(--muted); font-weight: 600; }
+  .stat .v { font-size: 15px; font-weight: 800; color: var(--accent2); }
+
+  /* ===== Nav ===== */
+  .daynav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; gap: 6px; overflow-x: auto; padding: 10px 2px;
+    margin: 0 -12px 16px; padding-left: 12px; padding-right: 12px;
+    background: rgba(245,239,231,0.93); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line); scrollbar-width: none;
+  }
+  .daynav::-webkit-scrollbar { display: none; }
+  .daynav a {
+    flex: 0 0 auto; text-decoration: none; font-size: 13px; font-weight: 700;
+    padding: 7px 13px; border-radius: 999px; background: var(--panel);
+    border: 1px solid var(--line); color: var(--muted); white-space: nowrap;
+  }
+  .daynav a.hi { background: var(--accent2); border-color: var(--accent2); color: #fff; }
+
+  /* ===== Section title ===== */
+  .sec-title { font-size: 15px; font-weight: 800; margin: 22px 4px 10px; display: flex; align-items: center; gap: 8px; }
+  .sec-title::before { content:""; width: 4px; height: 16px; border-radius: 2px; background: var(--accent); }
+
+  /* ===== Cards ===== */
+  .card {
+    background: rgba(255,253,249,0.97); border: 1px solid var(--line);
+    border-radius: 18px; box-shadow: var(--shadow); margin-bottom: 14px; overflow: hidden;
+  }
+  summary.card-head {
+    padding: 15px 16px; display: block; cursor: pointer;
+    user-select: none; -webkit-user-select: none; list-style: none;
+  }
+  .ch-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+  summary.card-head::-webkit-details-marker { display: none; }
+  summary.card-head::marker { content: ""; }
+  summary.card-head:active { background: var(--panel-soft); }
+  .card-head .left { display: flex; gap: 8px; align-items: flex-start; min-width: 0; }
+  .card-title { font-size: 16px; font-weight: 800; line-height: 1.4; }
+  .card-sub { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+  .toggle-icon { font-size: 11px; color: var(--muted); transition: transform .2s; display: inline-block; margin-top: 5px; flex: 0 0 auto; }
+  details[open] > summary .toggle-icon { transform: rotate(90deg); }
+  .card-body { padding: 0 16px 16px; }
+
+  /* ===== Flight ===== */
+  .flight { border: 1px solid var(--line); border-radius: 14px; background: var(--panel-soft); padding: 14px; margin-bottom: 10px; }
+  .flight:last-child { margin-bottom: 0; }
+  .flight-top { display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; color: var(--muted); margin-bottom: 8px; }
+  .flight-no { font-weight: 800; color: var(--accent); font-size: 14px; }
+  .flight-row { display: flex; align-items: center; gap: 8px; }
+  .fpt { text-align: center; flex: 0 0 auto; min-width: 78px; }
+  .fpt .time { font-size: 24px; font-weight: 800; letter-spacing: -.5px; }
+  .fpt .code { font-size: 15px; font-weight: 800; color: var(--accent2); }
+  .fpt .name { font-size: 11px; color: var(--muted); }
+  .fline { flex: 1; text-align: center; }
+  .fline .dur { font-size: 11px; color: var(--muted); }
+  .fline .bar { height: 2px; background: var(--line); position: relative; margin: 5px 0; }
+  .fline .bar::after { content: "✈"; position: absolute; right: -2px; top: -9px; font-size: 12px; color: var(--accent2); }
+  .flight-foot { margin-top: 9px; font-size: 12px; color: var(--muted); display:flex; flex-wrap:wrap; gap:6px; }
+
+  /* ===== Timeline ===== */
+  .tl { list-style: none; margin: 4px 0 0; padding: 0; }
+  .tl li {
+    position: relative; padding: 0 0 14px 20px; border-left: 2px solid var(--accent2-soft);
+    font-size: 14px;
+  }
+  .tl li:last-child { border-left-color: transparent; padding-bottom: 0; }
+  .tl li::before {
+    content: ""; position: absolute; left: -6px; top: 6px; width: 10px; height: 10px;
+    border-radius: 50%; background: var(--accent2); border: 2px solid var(--panel);
+  }
+  .tl li.self::before { background: var(--warn); }
+  .tl .t-name { font-weight: 700; }
+  .tl .t-desc { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+
+  /* ===== Info blocks ===== */
+  .block { border: 1px solid var(--line); border-radius: 14px; background: var(--panel-soft); padding: 12px 14px; margin-top: 12px; }
+  .block h4 { font-size: 13px; font-weight: 800; color: var(--accent2); margin-bottom: 7px; display: flex; align-items: center; gap: 6px; }
+  .block.warnblock { background: #fdf3ec; border-color: #eccfb9; }
+  .block.warnblock h4 { color: var(--warn); }
+  .block p, .block li { font-size: 13px; }
+  .block ul { margin: 0; padding-left: 17px; }
+  .block li { margin-bottom: 4px; }
+  .block li:last-child { margin-bottom: 0; }
+
+  /* ===== Step list ===== */
+  .steps { display: flex; flex-direction: column; gap: 6px; }
+  .steps .step { background: var(--panel); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+                 border-radius: 10px; padding: 8px 10px; font-size: 12.5px; line-height: 1.55; }
+
+  .meal { display: grid; grid-template-columns: 46px 1fr; gap: 4px 8px; font-size: 13px; margin-top: 12px;
+          background: var(--panel-soft); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; }
+  .meal .m-k { font-weight: 700; color: var(--accent2); }
+
+  .hotel { display: flex; gap: 10px; align-items: flex-start; margin-top: 12px;
+           background: var(--accent2-soft); border: 1px solid #bcdadd; border-radius: 14px; padding: 12px 14px; }
+  .hotel .ico { font-size: 18px; line-height: 1.3; }
+  .hotel .h-name { font-weight: 800; font-size: 13.5px; }
+  .hotel .h-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  /* ===== Cost table ===== */
+  .cost { margin-top: 12px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .cost table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .cost th { background: var(--chip); font-weight: 700; text-align: left; padding: 8px 10px; font-size: 12px; color: var(--ink); }
+  .cost td { padding: 8px 10px; border-top: 1px solid var(--line); background: var(--panel); vertical-align: top; }
+  .cost td.num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .cost tr.total td { background: var(--accent-soft); font-weight: 800; color: var(--accent); }
+  .cost .vnd { color: var(--muted); font-size: 11.5px; display: block; }
+
+  .cost.wide { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .cost.wide table { min-width: 520px; }
+  .cost td, .cost th { vertical-align: top; }
+  /* 比較型表格：標題與數值一律靠左，避免表頭與數字對不齊 */
+  .cost.cmp { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .cost.cmp table { min-width: 560px; }
+  .cost.cmp th, .cost.cmp td, .cost.cmp td.num { text-align: left; }
+  .cost.cmp td.num { white-space: nowrap; }
+  .cost.cmp th:first-child, .cost.cmp td:first-child { width: 30%; white-space: nowrap; }
+  .cost.cmp .vnd { white-space: normal; }
+  /* ===== Badge ===== */
+  .badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+  .badge-inc { background: var(--ok-soft); color: var(--ok); }
+  .badge-self { background: var(--warn-soft); color: var(--warn); }
+  .badge-free { background: var(--accent2-soft); color: var(--accent2); }
+  .badge-day { background: var(--accent-soft); color: var(--accent); }
+
+  /* ===== Phrase table ===== */
+  .phrase { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .phrase td { padding: 7px 4px; border-bottom: 1px dashed var(--line); vertical-align: top; }
+  .phrase td:first-child { font-weight: 700; width: 40%; }
+  .phrase tr:last-child td { border-bottom: none; }
+
+  /* ===== 越南語發音 ===== */
+  .phrase td.sayc { width: 46px; text-align: right; vertical-align: middle; }
+  .say { display: inline-block; text-decoration: none; font-size: 15px; line-height: 1;
+         padding: 7px 9px; border: 1px solid var(--line); border-radius: 10px;
+         background: var(--panel); color: var(--ink); }
+  .say:active { background: var(--chip); }
+  .say.on { background: var(--accent2); border-color: var(--accent2); }
+  .phrase .vi { color: var(--accent2); font-weight: 600; }
+  .phrase .hint { color: var(--muted); font-weight: 500; font-size: 12px; }
+  .vnote { font-size: 12px; color: var(--muted); background: var(--panel-soft);
+           border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px;
+           margin-bottom: 4px; line-height: 1.7; }
+  .vnote.ok { background: var(--ok-soft); border-color: #a8c6b0; color: var(--ok); }
+  .vnote.warn { background: var(--warn-soft); border-color: #e0b58c; color: var(--warn); }
+
+  /* ===== Checklist ===== */
+  .chk { list-style: none; padding: 0; margin: 0; }
+  .chk li { border-bottom: 1px dashed var(--line); }
+  .chk li:last-child { border-bottom: none; }
+  .chk label { display: flex; gap: 10px; align-items: flex-start; padding: 9px 4px;
+               font-size: 13.5px; cursor: pointer; }
+  .chk input { flex: 0 0 auto; width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--ok); }
+  .chk input:checked + span { text-decoration: line-through; color: var(--muted); }
+
+  .rooms { display: grid; gap: 8px; }
+  .room { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 10px 12px; font-size: 13px; }
+  .room .r-t { font-weight: 800; color: var(--accent2); font-size: 12px; margin-bottom: 3px; }
+
+  .foot { text-align: center; font-size: 11.5px; color: var(--muted); margin-top: 26px; line-height: 1.8; }
+
+  /* ===== Google Map ===== */
+  .maps { margin-top: 12px; border: 1px solid #bcdadd; border-radius: 14px; background: var(--accent2-soft); padding: 12px 14px; }
+  .maps h4 { font-size: 13px; font-weight: 800; color: var(--accent2); margin-bottom: 9px; }
+  .mapbtn { display: block; text-align: center; background: var(--accent2); color: #fff; text-decoration: none;
+            font-weight: 800; font-size: 13.5px; padding: 12px 10px; border-radius: 11px; margin-bottom: 10px; }
+  .mapbtn:active { opacity: .82; }
+  .mapbtn small { display: block; font-weight: 600; font-size: 11px; opacity: .85; margin-top: 2px; }
+  .pins { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pins a { font-size: 12px; text-decoration: none; background: var(--panel); border: 1px solid var(--line);
+            color: var(--accent2); padding: 5px 10px; border-radius: 999px; font-weight: 600; }
+  .pins a:active { background: var(--chip); }
+  .legdist { font-size: 11.5px; color: var(--muted); margin-top: 9px; line-height: 1.7; }
+
+  /* ===== Park zone maps ===== */
+  .parkmap { background: var(--panel-soft); border: 1px solid var(--line); border-radius: 14px;
+             padding: 11px 11px 8px; margin-top: 12px; }
+  .parkmap h5 { font-size: 13px; font-weight: 800; color: var(--accent2); margin-bottom: 9px; }
+  .parkmap svg { width: 100%; height: auto; display: block;
+                 font-family: "Segoe UI","Helvetica Neue",Arial,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif; }
+  .parkmap .zt { font-size: 12px; font-weight: 800; }
+  .parkmap .zs { font-size: 9.5px; font-weight: 600; }
+  .parkmap .mapnote { font-size: 11.5px; color: var(--muted); margin-top: 9px; line-height: 1.7; }
+
+  /* ===== Day route links ===== */
+  .daylink { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink);
+             background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+             padding: 11px 12px; margin-bottom: 8px; }
+  .daylink:active { background: var(--panel-soft); }
+  .dl-day { flex: 0 0 auto; width: 36px; height: 36px; border-radius: 10px; background: var(--accent2);
+            color: #fff; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; }
+  .dl-body { flex: 1; min-width: 0; }
+  .dl-body b { display: block; font-size: 13px; font-weight: 700; line-height: 1.45; }
+  .dl-body small { display: block; font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+  .dl-go { flex: 0 0 auto; color: var(--accent2); font-weight: 800; font-size: 18px; }
+
+  .conv { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+  .conv div { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 8px; text-align: center; font-size: 12.5px; }
+  .conv div b { display: block; font-size: 15px; color: var(--accent); }
+
+  @media (min-width: 640px) {
+    body { padding: 28px 20px 90px; font-size: 15.5px; }
+    .report-header h1 { font-size: 25px; }
+  }
+  /* YouTube 攻略 */
+  ul.yt li { margin-bottom: 9px; }
+  .tc { display: inline-block; font-size: 11.5px; font-weight: 800; text-decoration: none; color: #fff; background: var(--accent2);
+        padding: 1px 8px; border-radius: 999px; margin-right: 4px; font-variant-numeric: tabular-nums; }
+  .tc:active { opacity: .75; }
+  .yd { font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ============ HEADER ============ -->
+<div class="report-header">
+  <div class="eyebrow">STARLUX · 獨立包團 9 人</div>
+  <h1>富國島親子放電六日<br>玩遍四樂園 · 精彩表演秀</h1>
+  <div class="meta">2026/09/23（三） ~ 09/28（一）&nbsp;|&nbsp; 越南 富國島 Phú Quốc</div>
+  <div class="hero-stats">
+    <div class="stat"><div class="k">天數</div><div class="v">6 天 5 夜</div></div>
+    <div class="stat"><div class="k">簽證</div><div class="v">免簽</div></div>
+    <div class="stat"><div class="k">時差</div><div class="v">台灣 −1 小時</div></div>
+    <div class="stat"><div class="k">貨幣</div><div class="v">越南盾 VND</div></div>
+  </div>
+</div>
+
+<!-- ============ NAV ============ -->
+<div class="daynav">
+  <a href="#flight" class="hi">✈ 航班</a>
+  <a href="#routemap">🗺 路線導航</a>
+  <a href="#dining">🍽 餐廳訂位</a>
+  <a href="#hotels">🏨 飯店</a>
+  <a href="#d1">D1 大世界</a>
+  <a href="#d2">D2 動物園</a>
+  <a href="#d2guide">D2 攻略</a>
+  <a href="#d3">D3 夜市</a>
+  <a href="#d4">D4 纜車</a>
+  <a href="#d4guide">D4 攻略</a>
+  <a href="#d5">D5 度假村</a>
+  <a href="#d6">D6 返台</a>
+  <a href="#money">💱 換匯</a>
+  <a href="#tickets">🎫 購票</a>
+  <a href="#budget">💰 總預算</a>
+  <a href="#spa">💆 按摩 SPA</a>
+  <a href="#lang">🗣 越南語</a>
+  <a href="#pack">🎒 打包</a>
+  <a href="#notice">⚠ 注意</a>
+  <a href="#ytguide">🎬 YT 攻略</a>
+  <a href="#ytgift">🛍 伴手禮</a>
+</div>
+
+<!-- ============ 航班 ============ -->
+<div class="sec-title" id="flight">航班資訊</div>
+<details class="card" open>
+  <summary class="card-head">
+    <div class="ch-row">
+      <div class="left">
+        <span class="toggle-icon">&#9654;</span>
+        <div><div class="card-title">星宇航空 直飛 · 桃園 ⇄ 富國島</div>
+        <div class="card-sub">AIRBUS A321NEO · 經濟艙 · 機位已確認</div></div>
+      </div>
+    </div>
+  </summary>
+    <div class="card-body">
+
+      <div class="flight">
+        <div class="flight-top"><span class="flight-no">JX705 去程</span><span>09/23（三）</span></div>
+        <div class="flight-row">
+          <div class="fpt"><div class="time">14:05</div><div class="code">TPE</div><div class="name">桃園 T2</div></div>
+          <div class="fline"><div class="dur">3 小時 50 分</div><div class="bar"></div><div class="dur">直飛</div></div>
+          <div class="fpt"><div class="time">16:55</div><div class="code">PQC</div><div class="name">富國國際</div></div>
+        </div>
+        <div class="flight-foot"><span class="badge badge-self">機票旅客自理</span><span class="badge badge-free">建議 11:05 前到 T2 報到</span></div>
+      </div>
+
+      <div class="flight">
+        <div class="flight-top"><span class="flight-no">JX706 回程</span><span>09/28（一）</span></div>
+        <div class="flight-row">
+          <div class="fpt"><div class="time">17:55</div><div class="code">PQC</div><div class="name">富國國際</div></div>
+          <div class="fline"><div class="dur">3 小時 55 分</div><div class="bar"></div><div class="dur">直飛</div></div>
+          <div class="fpt"><div class="time">22:45</div><div class="code">TPE</div><div class="name">桃園 T2</div></div>
+        </div>
+        <div class="flight-foot"><span class="badge badge-free">22:45 抵台，捷運末班將盡 —— 務必先訂機場接送</span></div>
+      </div>
+
+      <div class="block warnblock">
+        <h4>⚠️ 航班提醒</h4>
+        <ul>
+          <li>⚠️ <b>航班時刻已調整</b>：去程 14:05（原 13:15）、回程 17:55（原 17:05），<b>各晚 50 分鐘</b>。以此版為準，出發前仍請核對電子機票。</li>
+          <li>出發前 24 小時可線上報到選位。</li>
+          <li>富國島時間比台灣<b>慢 1 小時</b>，本攻略時間除註明外皆為「當地時間」。</li>
+          <li>星宇經濟艙托運行李額度依票種而異，出發前務必確認（一般 20–30kg）。</li>
+          <li>行動電源、鋰電池必須<b>隨身</b>不可托運；水壺過安檢前需倒空。</li>
+          <li>回程 <b>17:55</b> 起飛，建議 <b>15:20 前抵達機場</b>。</li>
+        </ul>
+      </div>
+
+    </div>
+</details>
+
+<!-- ============ 路線總覽 ============ -->
+<div class="sec-title" id="routemap">六日 Google Map 路線</div>
+<details class="card" open>
+  <summary class="card-head">
+    <div class="ch-row">
+      <div class="left">
+        <span class="toggle-icon">&#9654;</span>
+        <div><div class="card-title">🗺 每日路線一鍵導航</div>
+        <div class="card-sub">含當日起訖飯店 · 點擊直接開啟 Google Maps</div></div>
+      </div>
+    </div>
+  </summary>
+    <div class="card-body">
+
+      <a class="daylink" target="_blank" rel="noopener"
+         href="https://www.google.com/maps/dir/Phu+Quoc+International+Airport/Grand+World+Phu+Quoc/Bun+Quay+Kien+Xay+Grand+World+Phu+Quoc/Crowne+Plaza+Phu+Quoc+Starbay/">
+        <span class="dl-day">D1</span>
+        <span class="dl-body"><b>機場 → 富國大世界 → 小卷米粉 → 星灣皇冠</b>
+          <small>34.6 km · 行車約 53 分</small></span>
+        <span class="dl-go">›</span></a>
+
+      <a class="daylink" target="_blank" rel="noopener"
+         href="https://www.google.com/maps/dir/Crowne+Plaza+Phu+Quoc+Starbay/Vinpearl+Safari+Phu+Quoc/VinWonders+Phu+Quoc/Crowne+Plaza+Phu+Quoc+Starbay/">
+        <span class="dl-day">D2</span>
+        <span class="dl-body"><b>星灣皇冠 → 野生動物園 → 奇幻樂園（園內午餐）→ 星灣皇冠</b>
+          <small>約 15 km · 行車約 28 分（來回）　※午餐改用園區贈送餐券，不離園</small></span>
+        <span class="dl-go">›</span></a>
+
+      <a class="daylink" target="_blank" rel="noopener"
+         href="https://www.google.com/maps/dir/Crowne+Plaza+Phu+Quoc+Starbay/Grand+World+Phu+Quoc/Xin+Chao+Seafood+Restaurant+Phu+Quoc/Robinson+Pearl+Phu+Quoc/Dinh+Cau+Phu+Quoc/KingKong+Mart+Phu+Quoc/Sunset+Sanato+Beach+Club/Sonasea+Shopping+Center+Phu+Quoc/Crowne+Plaza+Phu+Quoc+Starbay/">
+        <span class="dl-day">D3</span>
+        <span class="dl-body"><b>星灣皇冠 → 大世界 → 海鮮午餐 → 換匯 → 小龍王廟 → 金剛超市 → 日落沙灘 → Sonasea → 星灣皇冠</b>
+          <small>73.0 km · 行車約 1 小時 58 分（來回，全程車程最多）</small></span>
+        <span class="dl-go">›</span></a>
+
+      <a class="daylink" target="_blank" rel="noopener"
+         href="https://www.google.com/maps/dir/Crowne+Plaza+Phu+Quoc+Starbay/Sun+World+Hon+Thom+Cable+Car+Station+An+Thoi/New+World+Phu+Quoc+Resort/Sunset+Town+Phu+Quoc/New+World+Phu+Quoc+Resort/">
+        <span class="dl-day">D4</span>
+        <span class="dl-body"><b>星灣皇冠 → 跨海纜車站 → 新世界（16:05 入住）→ 地中海小鎮 → 新世界</b>
+          <small>63.2 km · 行車約 1 小時 44 分　※水樂園在香島，需搭纜車</small></span>
+        <span class="dl-go">›</span></a>
+
+      <a class="daylink" target="_blank" rel="noopener"
+         href="https://www.google.com/maps/dir/New+World+Phu+Quoc+Resort/Com+Tho+Tay+Cam+Seafood+Meat+BBQ+Restaurant+Phu+Quoc/New+World+Phu+Quoc+Resort/Sunset+Town+Phu+Quoc/New+World+Phu+Quoc+Resort/">
+        <span class="dl-day">D5</span>
+        <span class="dl-body"><b>新世界 ↔ 午餐 Cơm Thố ↔ 地中海小鎮（全日度假村，只有短程）</b>
+          <small>9.5 km · 行車約 28 分（來回）　※本日無派車，搭飯店免費接駁車；小鎮內全程步行</small></span>
+        <span class="dl-go">›</span></a>
+
+      <a class="daylink" target="_blank" rel="noopener"
+         href="https://www.google.com/maps/dir/New+World+Phu+Quoc+Resort/The+Home+Pizza+Phu+Quoc/KingKong+Mart+Phu+Quoc/Coi+Nguon+Museum+Phu+Quoc/Phu+Quoc+International+Airport/">
+        <span class="dl-day">D6</span>
+        <span class="dl-body"><b>新世界 → 楊東鎮（午餐／金剛超市／博物館）→ 富國國際機場</b>
+          <small>32.2 km · 行車約 56 分　※三站走路互通</small></span>
+        <span class="dl-go">›</span></a>
+
+      <div class="maps">
+        <h4>🏨 兩間飯店位置</h4>
+        <div class="pins">
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Crowne+Plaza+Phu+Quoc+Starbay">🏨 星灣皇冠假日（D1–D3）</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=New+World+Phu+Quoc+Resort">🏝 新世界度假村（D4–D5）</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/Crowne+Plaza+Phu+Quoc+Starbay/New+World+Phu+Quoc+Resort/">🚗 兩飯店間路線</a>
+        </div>
+        <div class="legdist">
+          <b>島形概念</b>：星灣皇冠在<b>西北端白黛海灘</b>、樂園區也在北部；楊東鎮在<b>中部</b>；機場在中南部；
+          新世界、地中海小鎮、纜車站在<b>南端安泰</b>。南北全長約 50 公里，是本行程主要的車程來源。<br>
+          <b>行前建議</b>：在 Google Maps 搜尋「Phú Quốc」→ 選單「離線地圖」→ 下載此區域，島上網路不穩時仍可導航。
+        </div>
+      </div>
+
+      <p style="font-size:11.5px;color:var(--muted);margin-top:10px">＊上列公里數與時間為 Google Maps 實測（離峰路況），實際依當日交通與導遊安排為準。</p>
+
+      <div class="block warnblock">
+        <h4>⚠️ 本攻略與旅行社 V4／V6 版的 4 處差異</h4>
+        <p style="margin:0 0 8px;font-size:12.5px">旅行社版已採納大部分建議，<b>D6 也已改為 V4 版</b>（包車陪同購物）。目前剩 4 處不同 —— <b>導遊當天可能照旅行社版走</b>，先知道差在哪，現場才好溝通。</p>
+        <div class="cost wide">
+          <table>
+            <tr><th>項目</th><th>旅行社 V4</th><th>本攻略</th></tr>
+            <tr><td><b>D3 日落</b><span class="vnd">最該爭取</span></td><td>17:00 就離開 Sanato 去買伴手禮</td><td><b>待到 18:20</b>，看完 18:00 的日落</td></tr>
+            <tr><td><b>D4 陸上樂園</b></td><td>10:00–12:00 排 Exotica 陸上區</td><td><b>不排</b>，時間全給水樂園（見 D4 攻略的選配方案）</td></tr>
+            <tr><td><b>D4 入住</b></td><td>16:00 check-in</td><td><b>16:05</b>（15:30 搭回程纜車→15:50 泰安站→12 分車程）</td></tr>
+            <tr><td><b>D4 晚上</b><span class="vnd">已定案</span></td><td>Symphony 19:30 ＋ Kiss 21:00</td><td><b>只看 Kiss</b>（飯店贈票）；晚餐 RuNam 19:00，Symphony 不看</td></tr>
+          </table>
+        </div>
+        <p style="margin-top:8px;font-size:12px">💡 <b>最該爭取的是 D3 日落那一項</b> —— Sunset Sanato 的賣點就是日落，17:00 走等於白去。另外兩項照 V4 走也不會出事。<br>
+        🛒 伴手禮現在有三個機會：<b>D3 楊東鎮</b>（主場）、<b>D5 VUI-Fest 夜市</b>（補貨）、<b>D6 楊東鎮</b>（最後補完）。</p>
+      </div>
+
+    </div>
+</details>
+
+<!-- ============ 餐廳訂位 ============ -->
+<div class="sec-title" id="dining">餐廳訂位總表</div>
+<details class="card" open>
+  <summary class="card-head">
+    <div class="ch-row">
+      <div class="left">
+        <span class="toggle-icon">&#9654;</span>
+        <div><div class="card-title">🍽 六日三餐 · 訂位一覽</div>
+        <div class="card-sub">4 家已訂位 · 皆為 9 位（6 大 3 小）· 到店直接出示這頁</div></div>
+      </div>
+    </div>
+  </summary>
+    <div class="card-body">
+
+      <div class="block" style="margin-top:0;background:var(--ok-soft);border-color:var(--ok)">
+        <h4 style="color:var(--ok)">✅ 已訂位（4 家）</h4>
+        <div class="cost" style="margin-top:0">
+          <table>
+            <tr><th>日期／餐廳</th><th style="text-align:right">時間 · 人數</th></tr>
+            <tr><td><b>D3 9/25（五）午餐</b><br>Xin Chao Seafood Restaurant<span class="vnd">⚠️ 沒有冷氣，訂的是室外遮陽座位；現點現付，先問價、看秤</span></td><td class="num"><b>13:00</b><span class="vnd">9 位（6 大 3 小）</span></td></tr>
+            <tr><td><b>D4 9/26（六）晚餐</b><br>RuNam Sunset Town<span class="vnd">越南餐廳，Sunset Town 內，打烊 22:00</span></td><td class="num"><b>19:00</b><span class="vnd">9 位（6 大 3 小）</span></td></tr>
+            <tr><td><b>D5 9/27（日）午餐</b><br>Cơm Thố Tay Cầm Seafood &amp; Meat BBQ<span class="vnd">New World 旁 220 m，走路 5 分 · 📞 +84 932 993 771</span></td><td class="num"><b>13:00</b><span class="vnd">9 位（6 大 3 小）</span></td></tr>
+            <tr><td><b>D6 9/28（一）午餐</b><br>The Home Pizza Phu Quoc<span class="vnd">129 Trần Hưng Đạo，楊東鎮；吃完走 2 分到金剛超市</span></td><td class="num"><b>12:00</b><span class="vnd">9 位（6 大 3 小）</span></td></tr>
+          </table>
+        </div>
+        <div class="pins" style="margin-top:10px">
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Xin+Chao+Seafood+Restaurant+Phu+Quoc">📍 Xin Chao</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=RuNam+Sunset+Town+Phu+Quoc">📍 RuNam</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Com+Tho+Tay+Cam+Seafood+Meat+BBQ+Restaurant+Phu+Quoc">📍 Cơm Thố Tay Cầm</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=The+Home+Pizza+Phu+Quoc">📍 The Home Pizza</a>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>📅 每日三餐總覽</h4>
+        <div class="cost wide" style="margin-top:0">
+          <table>
+            <tr><th>DAY</th><th>早餐</th><th>午餐</th><th>晚餐</th></tr>
+            <tr><td><b>D1</b><span class="vnd">9/23（三）</span></td><td>各自解決</td><td>星宇機上餐 <span class="badge badge-inc">含</span></td><td>富國大世界（小卷米粉）<span class="badge badge-self">自理</span></td></tr>
+            <tr><td><b>D2</b><span class="vnd">9/24（四）</span></td><td>飯店 <span class="badge badge-inc">含</span></td><td>珍珠樂園／動物園內餐廳 <span class="badge badge-inc">餐券</span><span class="vnd">9 月底前每位送一張：大人 ₫200,000、小孩 ₫100,000</span></td><td>珍珠樂園內餐廳 <span class="badge badge-self">自理</span><span class="vnd">攻略建議 Seahorse Restaurant</span></td></tr>
+            <tr><td><b>D3</b><span class="vnd">9/25（五）</span></td><td>飯店 <span class="badge badge-inc">含</span></td><td><b>Xin Chao Seafood</b> <span class="badge badge-inc">已訂位</span><span class="vnd">13:00 · 9 位 · 室外遮陽座位</span></td><td>夜市 Ricordo Restaurant <span class="badge badge-self">自理</span></td></tr>
+            <tr><td><b>D4</b><span class="vnd">9/26（六）</span></td><td>飯店 <span class="badge badge-inc">含</span></td><td>香山水樂園自助餐 <span class="badge badge-inc">門票已含</span><span class="vnd">11:30–14:30</span></td><td><b>RuNam Sunset Town</b> <span class="badge badge-inc">已訂位</span><span class="vnd">19:00 · 9 位</span></td></tr>
+            <tr><td><b>D5</b><span class="vnd">9/27（日）</span></td><td>飯店 <span class="badge badge-inc">含</span></td><td><b>Cơm Thố Tay Cầm</b> <span class="badge badge-inc">已訂位</span><span class="vnd">13:00 · 9 位</span></td><td>VUI-Fest 海濱夜市 <span class="badge badge-self">逛街吃攤販</span></td></tr>
+            <tr><td><b>D6</b><span class="vnd">9/28（一）</span></td><td>飯店 <span class="badge badge-inc">含</span></td><td><b>The Home Pizza</b> <span class="badge badge-inc">已訂位</span><span class="vnd">12:00 · 9 位</span></td><td>星宇機上餐 <span class="badge badge-inc">含</span></td></tr>
+          </table>
+        </div>
+        <p style="margin-top:6px;font-size:11.5px;color:var(--muted)">＊表格可左右滑動。</p>
+        <div class="pins" style="margin-top:8px">
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Bun+Quay+Kien+Xay+Grand+World+Phu+Quoc">📍 小卷米粉（D1）</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Ricordo+Restaurant+Phu+Quoc">📍 Ricordo（D3）</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Aquatopia+Water+Park+Hon+Thom">📍 香山水樂園（D4）</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Cho+Dem+Vui-Fest+Bazaar+Sunset+Town+Phu+Quoc">📍 VUI-Fest 夜市（D5）</a>
+        </div>
+      </div>
+
+      <div class="block warnblock">
+        <h4>⚠️ 訂位提醒</h4>
+        <ul>
+          <li>出發前跟旅行社確認<b>訂位是用誰的名字／電話</b>，到店報名字最快。</li>
+          <li>9 人大桌<b>遲到可能被取消</b>，會晚到請導遊或飯店櫃檯先打電話通知。</li>
+          <li><b>D2 餐券</b>：怎麼領、9 人是否都有、哪幾間可用 —— 出發前跟旅行社確認。</li>
+          <li>海鮮餐廳（D3 Xin Chao）<b>現點現付、按重量計價</b>：點之前先問價、看秤。</li>
+        </ul>
+      </div>
+
+    </div>
+</details>
+
+<!-- ============ 飯店資訊 ============ -->
+<div class="sec-title" id="hotels">飯店資訊</div>
+<details class="card" open>
+  <summary class="card-head">
+    <div class="ch-row">
+      <div class="left">
+        <span class="toggle-icon">&#9654;</span>
+        <div><div class="card-title">🏨 兩間飯店 · 住宿總覽</div>
+        <div class="card-sub">星灣皇冠 3 晚（D1–D3）· 新世界 2 晚（D4–D5）</div></div>
+      </div>
+    </div>
+  </summary>
+    <div class="card-body">
+
+      <div class="cost" style="margin-top:0">
+        <table>
+          <tr><th>日期</th><th>住宿</th></tr>
+          <tr><td><b>D1–D3</b><span class="vnd">9/23–9/25 · 3 晚</span></td><td><b>星灣皇冠假日飯店</b><span class="vnd">島西北端 · 白黛海灘 Bãi Dài · 不需換房</span></td></tr>
+          <tr><td><b>D4–D5</b><span class="vnd">9/26–9/27 · 2 晚</span></td><td><b>新世界度假飯店</b><span class="vnd">島南端 · 甘海灘 Bãi Khem · 9/26 換飯店</span></td></tr>
+          <tr class="total"><td><b>D6</b><span class="vnd">9/28</span></td><td>10:00 退房 → 楊東鎮 → 機場 → 溫暖的家</td></tr>
+        </table>
+      </div>
+
+      <div class="block">
+        <h4>🏨 D1–D3　富國島星灣皇冠假日飯店</h4>
+        <p style="margin:0 0 8px;font-size:12.5px"><b>Crowne Plaza Phu Quoc Starbay</b>　五星海景度假村，位在島<b>西北端的白黛海灘（Bãi Dài）</b>，靠近珍珠樂園與動物園。</p>
+        <div class="cost" style="margin-top:0">
+          <table>
+            <tr><td style="white-space:nowrap"><b>地址</b></td><td>Bai Dai Area, Ganh Dau, Phu Quoc<span class="vnd">官網公布地址</span></td></tr>
+            <tr><td style="white-space:nowrap"><b>電話</b></td><td><a href="tel:+842973683999" style="color:var(--accent);font-weight:800;text-decoration:none">+84 297 3683999</a></td></tr>
+            <tr><td style="white-space:nowrap"><b>房型</b></td><td>1 King Standard Ocean View ×3 ＋ Extrabed ×3<span class="vnd">連住 3 晚，D2、D3 不需換房</span></td></tr>
+            <tr><td style="white-space:nowrap"><b>入住／退房</b></td><td>官方 15:00 入住 · 12:00 退房<span class="vnd">本行程：D1 約 21:15 入住 · D4 07:30 退房、行李上車</span></td></tr>
+            <tr><td style="white-space:nowrap"><b>早餐</b></td><td>06:30–10:30 <span class="badge badge-inc">含</span><span class="vnd">D2 07:45 就要出發，早餐請 07:00 前開動</span></td></tr>
+          </table>
+        </div>
+        <div class="pins" style="margin-top:10px">
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Crowne+Plaza+Phu+Quoc+Starbay">📍 Google Map</a>
+          <a target="_blank" rel="noopener" href="https://phuquoc.crowneplaza.com/">🌐 官方網站</a>
+          <a href="tel:+842973683999">📞 撥打電話</a>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>🏝 D4–D5　富國島新世界度假飯店</h4>
+        <p style="margin:0 0 8px;font-size:12.5px"><b>New World Phu Quoc Resort</b>　獨棟 villa 度假村，位在島<b>南端的甘海灘（Bãi Khem）</b>，走路可到私人海灘，離地中海小鎮與纜車站很近。</p>
+        <div class="cost" style="margin-top:0">
+          <table>
+            <tr><td style="white-space:nowrap"><b>地址</b></td><td>Khem Beach, An Thoi Ward, Phu Quoc<span class="vnd">官網公布地址</span></td></tr>
+            <tr><td style="white-space:nowrap"><b>電話</b></td><td><a href="tel:+842973716666" style="color:var(--accent);font-weight:800;text-decoration:none">+84 297 371 6666</a><span class="vnd" style="word-break:break-all">訂房信箱 reservations.phuquoc@newworldhotels.com</span></td></tr>
+            <tr><td style="white-space:nowrap"><b>房型</b></td><td>Premium Pool Villa ×1 ＋ Extrabed ×1<span class="vnd">連住 2 晚，D5 不需換房 · villa 有私人泳池</span></td></tr>
+            <tr><td style="white-space:nowrap"><b>入住／退房</b></td><td>官方 15:00 入住 · 中午前退房<span class="vnd">本行程：D4 約 16:05 入住 · <b>D6 10:00 退房</b>（旅行社行程表載明）</span></td></tr>
+            <tr><td style="white-space:nowrap"><b>早餐</b></td><td>約 07:00–10:30 · The Bay Kitchen <span class="badge badge-inc">含</span><span class="vnd">時間為訂房平台資料，非官網，抵達時請向櫃檯確認</span></td></tr>
+            <tr><td style="white-space:nowrap"><b>兒童設施</b></td><td>Kids Club（3–12 歲）· 兒童池 · 滑水道</td></tr>
+            <tr class="total"><td style="white-space:nowrap"><b>訂房贈品</b></td><td>Kiss of the Sea 門票 ×9 <span class="badge badge-inc">已含</span><span class="vnd">D4 check-in 時就跟櫃檯領票／QR，別等到晚上</span></td></tr>
+          </table>
+        </div>
+        <div class="pins" style="margin-top:10px">
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=New+World+Phu+Quoc+Resort">📍 Google Map</a>
+          <a target="_blank" rel="noopener" href="https://phuquoc.newworldhotels.com/en/">🌐 官方網站</a>
+          <a href="tel:+842973716666">📞 撥打電話</a>
+          <a href="#d5">🚌 免費接駁車時刻表</a>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>🚗 兩間飯店的位置關係</h4>
+        <p style="margin:0 0 8px;font-size:12.5px">星灣皇冠在<b>西北端</b>、新世界在<b>南端安泰</b>，南北全長約 50 公里，<b>D4 換飯店那天是全程車程最長的一段</b>。</p>
+        <div class="pins">
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/Crowne+Plaza+Phu+Quoc+Starbay/New+World+Phu+Quoc+Resort/">🚗 兩飯店間路線</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Phu+Quoc+International+Airport">✈ 富國國際機場</a>
+        </div>
+        <div class="legdist" style="margin-top:8px">新世界 → 機場約 25–30 分；星灣皇冠在北端，離機場較遠。<b>D6 退房後先往楊東鎮，再去機場。</b></div>
+      </div>
+
+      <div class="block warnblock">
+        <h4>⚠️ 住宿注意事項</h4>
+        <ul>
+          <li><b>存好兩間飯店的地址與電話</b>（中英文各一份），外出走散或叫 Grab 時直接給司機看。</li>
+          <li><b>D4 早上 07:30 退房</b>，行李會整天在車上 —— 泳具、換洗衣物請放隨身包。退房前檢查<b>保險箱、充電器、陽台曬的泳衣</b>。</li>
+          <li><b>D6 10:00 退房</b>，退房後直接開始跑行程，前一晚就把行李整理好。</li>
+          <li><b>Pool Villa 的私人泳池沒有救生員</b>，孩童全程需有大人在旁。</li>
+          <li>床頭小費每房每晚約 ₫20,000–50,000；行李員每件 ₫20,000。</li>
+          <li>度假村內餐飲約為外面的 2–3 倍，D5 建議搭免費接駁車到地中海小鎮吃。</li>
+          <li><b>9 人的 SPA、餐廳代訂</b>都可以請櫃檯協助，早一晚講比較保險。</li>
+        </ul>
+      </div>
+
+      <p style="font-size:11.5px;color:var(--muted);margin-top:10px">＊地址、電話、入住／退房與早餐時間查證於 <b>2026/09/23</b>，來源為兩間飯店官網與 IHG 官方訂房頁；新世界早餐時間取自訂房平台資料。<b>實際時間以現場公告為準。</b></p>
+
+    </div>
+</details>
+
+<!-- ============ DAY 1 ============ -->
+<div class="sec-title" id="d1">每日行程</div>
+
+<details class="card" open>
+  <summary class="card-head">
+    <div class="ch-row">
+      <div class="left">
+        <span class="toggle-icon">&#9654;</span>
+        <div><div class="card-title">DAY 1 · 台北 → 富國島 → 富國大世界</div>
+        <div class="card-sub">09/23（三）&nbsp;|&nbsp; 抵達日 · 換匯 · 歐風園區夜遊</div></div>
+      </div>
+      <span class="badge badge-day">D1</span>
+    </div>
+  </summary>
+    <div class="card-body">
+      <ul class="tl">
+        <li><div class="t-name">11:05　桃園機場 T2 集合報到</div><div class="t-desc">起飛前 3 小時，星宇櫃檯辦理托運。</div></li>
+        <li><div class="t-name">14:05 → 16:55　JX705 直飛富國島</div><div class="t-desc">機上供應午餐套餐。落地後入境、提領行李約需 40–60 分鐘，<b>約 17:45 出關</b>。</div></li>
+        <li class="self"><div class="t-name">17:45　機場換匯 <span class="badge badge-self">要換足</span></div><div class="t-desc">⚠️ <b>這是 D3 中午之前唯一的換匯機會</b>，D2 一整天都在北部樂園區，沒有換匯點。<br>
+        <b>每位大人換 US$120–150（約 315–395 萬盾）</b>，撐過 D1 晚上 ＋ D2 全天 ＋ D3 上午。<br>
+        機場匯率比 Robinson Pearl 差約 3–5%，每人只差 US$5 —— 買保險很划算，剩下的 D3 再到 Robinson Pearl 補換。</div></li>
+        <li><div class="t-name">18:30　抵達富國大世界 Grand World</div><div class="t-desc">車程約 40–45 分。園區 <b>24 小時開放</b>。<br>🧸 泰迪熊博物館、貢多拉遊船<b>改排在 D3 上午</b>（今晚時間排滿，且白天逛比較從容）。</div></li>
+        <li class="self"><div class="t-name">18:45–19:30　晚餐</div><div class="t-desc">園內用餐。小卷米粉 Bún Quậy Kiến Xây 是富國島名物，醬料自己調（辣椒＋金桔＋魚露＋糖）是靈魂。</div></li>
+        <li><div class="t-name">19:35–20:05　木玄秀 Mộc Huyền Show <span class="badge badge-inc">免費</span></div><div class="t-desc">精粹秀開演前的暖場演出，就在精粹秀區。<br>⚠️ <b>威尼斯水舞秀（Sắc Màu Venice）本次旅遊期間暫停演出</b>，不必空等 21:30。</div></li>
+        <li class="self"><div class="t-name">20:15–21:00　越南精粹秀 <span class="badge badge-self">需另購票</span></div><div class="t-desc">官方場次<b>每日僅 20:15–21:00 一場</b>，票價 <b>300,000 VND／人</b>（9 人約 NT$3,400）。<br>⚠️ <b>先跟旅行社確認團費是否含此票</b>。3D 光雕＋真人演出，但飛行日帶小孩看到 21:00 偏晚，<b>可視孩子狀況放棄</b>。</div></li>
+        <li><div class="t-name">21:15　入住 星灣皇冠假日飯店</div><div class="t-desc">大世界到飯店僅約 10 分鐘。白黛海灘 Bai Dai，五星海景度假村。<br>不看精粹秀的話，20:15 就能回飯店休息。</div></li>
+      </ul>
+
+      <div class="block">
+        <h4>🎪 大世界今晚的免費演出（官方場次）</h4>
+        <ul>
+          <li><b>18:00–18:10</b>　中央湖　河上歌劇「愛之波」</li>
+          <li><b>18:10–18:15</b>　中央湖　雷射秀 ＋ 貢多拉船上泰迪熊快閃</li>
+          <li><b>18:20–18:30</b>　竹屋區　水上雜技與魔術</li>
+          <li><b>18:45–19:00</b>　竹屋區　湄公河色彩</li>
+          <li><b>19:35–20:05</b>　精粹秀區　木玄秀 Mộc Huyền</li>
+          <li><b>21:00–21:10</b>　精粹秀區　放水燈（看完精粹秀順道）</li>
+        </ul>
+        <p style="font-size:11.5px;color:var(--muted);margin:6px 0 0">以上皆免費，只有 20:15 的越南精粹秀需另購票。場次可能因天候調整，以現場售票口公告為準。</p>
+      </div>
+
+      <div class="meal">
+        <div class="m-k">早餐</div><div>溫馨的家</div>
+        <div class="m-k">午餐</div><div>機上套餐 <span class="badge badge-inc">含</span></div>
+        <div class="m-k">晚餐</div><div>敬請自理（小卷米粉）<span class="badge badge-self">自理</span></div>
+      </div>
+
+      <div class="hotel">
+        <div class="ico">🏨</div>
+        <div>
+          <div class="h-name">富國島星灣皇冠假日飯店<br>Crowne Plaza Phu Quoc Starbay</div>
+          <div class="h-meta">房型：1 King Standard Ocean View ×3 ＋ Extrabed ×3　|　連住 D1–D3 共 3 晚</div>
+        </div>
+      </div>
+
+      <div class="cost">
+        <table>
+          <tr><th>項目</th><th style="text-align:right">預估（每人）</th></tr>
+          <tr><td>晚餐 小卷米粉 + 飲料</td><td class="num">NT$120–200<span class="vnd">≈ 100–160k VND</span></td></tr>
+          <tr><td>越南精粹秀門票（20:15 場，選）</td><td class="num">NT$375<span class="vnd">300k VND（官方價）</span></td></tr>
+          <tr><td>園內飲料 / 甜點 / 小紀念品</td><td class="num">NT$100–250<span class="vnd">≈ 80–200k VND</span></td></tr>
+          <tr class="total"><td>DAY 1 小計</td><td class="num">NT$595–825<span class="vnd">泰迪熊、貢多拉已移至 D3</span></td></tr>
+        </table>
+      </div>
+
+      <div class="maps">
+        <h4>🗺 DAY 1 Google Map 路線</h4>
+        <a class="mapbtn" target="_blank" rel="noopener"
+           href="https://www.google.com/maps/dir/Phu+Quoc+International+Airport/Grand+World+Phu+Quoc/Bun+Quay+Kien+Xay+Grand+World+Phu+Quoc/Crowne+Plaza+Phu+Quoc+Starbay/">
+          一鍵開啟本日完整路線<small>機場 → 富國大世界 → 小卷米粉 → 星灣皇冠（今晚住宿）</small></a>
+        <div class="pins">
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Phu+Quoc+International+Airport">✈️ 富國國際機場</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Grand+World+Phu+Quoc">📍 富國大世界</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Bun+Quay+Kien+Xay+Grand+World+Phu+Quoc">🍜 小卷米粉</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Crowne+Plaza+Phu+Quoc+Starbay">🏨 星灣皇冠（今晚）</a>
+        </div>
+        <div class="legdist"><b>全程 34.6 km · 行車約 53 分</b><br>16:55 落地 → 約 17:45 出關 → <b>18:30 到大世界</b>（車程 40–45 分）　·　富國大世界 → 飯店 約 8–10 分</div>
+      </div>
+
+      <div class="block warnblock">
+        <h4>⚠️ 今日注意</h4>
+        <ul>
+          <li><b>入境不需簽證</b>，但需備妥回程機票證明；護照效期須滿 6 個月。</li>
+          <li><b>機場換匯要換足，不能只換應急金。</b>D2 全天在北部樂園區沒有換匯點，下一次換匯要等到 <b>D3 中午</b>的 Robinson Pearl。<b>每位大人在機場換 US$120–150</b>（約 315–395 萬盾）。</li>
+          <li><b>航班晚 50 分鐘，第一天更緊</b>：17:45 才出關、18:30 到大世界。園區要走很多路，<b>務必讓孩子在飛機上補眠</b>。</li>
+          <li>越南盾零很多，<b>付錢時務必數清楚位數</b>（500,000 與 50,000 顏色相近）。</li>
+          <li>富國島 9 月為雨季尾，隨身帶輕便雨衣或折傘。</li>
+        </ul>
+      </div>
+    </div>
+</details>
+
+<!-- ============ DAY 2 ============ -->
+<details class="card" id="d2" open>
+  <summary class="card-head">
+    <div class="ch-row">
+      <div class="left">
+        <span class="toggle-icon">&#9654;</span>
+        <div><div class="card-title">DAY 2 · 珍珠野生動物園 + 珍珠奇幻樂園</div>
+        <div class="card-sub">09/24（四）&nbsp;|&nbsp; VIP 08:40 場 · 園內午餐用餐券 · 全家同行</div></div>
+      </div>
+      <span class="badge badge-day">D2</span>
+    </div>
+  </summary>
+    <div class="card-body">
+      <ul class="tl">
+        <li><div class="t-name">07:00　早餐 → 07:45 出發</div><div class="t-desc">⚠️ <b>今天要早起</b>，孩子約 06:30 起床。車程 15 分。</div></li>
+        <li><div class="t-name">08:10　動物園 VIP 櫃檯報到</div><div class="t-desc">VIP 服務櫃檯就在<b>主售票櫃檯旁</b>，出示線上訂購的 QR Code。</div></li>
+        <li><div class="t-name">08:25　到 VIP 候車點</div><div class="t-desc">官方要求<b>發車前 15 分鐘抵達</b>。逾時視同未報到，<b>不退款、不順延</b>。</div></li>
+        <li class="self"><div class="t-name">08:40–09:40　VIP 電瓶車遊 Zoo 區（60 分）</div><div class="t-desc">專屬司機＋雙語導覽，全程遮陽。餵駱駝，另有大象、環尾狐猴等互動。<br>✨ <b>這個時段的隱藏優勢：環尾狐猴早上最活躍</b>（中午過後就都在睡了）。想餵長頸鹿就請司機在長頸鹿區停一下，自費買紅蘿蔔。</div></li>
+        <li><div class="t-name">10:00–10:30　群鳥飛舞秀（必看）</div><div class="t-desc">Flamingo 區旁劇場，全園評價最高。提早 10 分卡前排。</div></li>
+        <li><div class="t-name">10:40–11:30　Safari 野生動物巴士</div><div class="t-desc">獅子老虎就在車旁，冷氣很強。<b>VIP 含優先通道，免排那 15 分鐘</b>。</div></li>
+        <li><div class="t-name">11:40　離開動物園 → 11:55 抵達奇幻樂園</div><div class="t-desc">兩園相鄰，車程僅 5–10 分。</div></li>
+        <li class="self"><div class="t-name">12:00–13:10　午餐：園內餐廳（用贈送餐券）<span class="badge badge-inc">餐券</span></div><div class="t-desc">🎟 <b>珍珠樂園＋動物園 9 月底前活動：每位客人贈送一張餐券</b><br>
+        <b>大人 ₫200,000 ／ 小孩 ₫100,000</b>，9 人合計價值 <b>₫1,500,000（約 NT$1,875）</b>。<br>
+        建議在<b>巨型海龜水族館餐廳</b>（樂園內）用餐，吃完直接接 13:20 的 The Sea Shell。<br>
+        ⚠️ <b>餐券可能不夠付全額，差額自付</b>（園內一餐約 ₫200,000–400,000）。<b>餐券只能在園內用，離園就作廢。</b><br>
+        💡 原本排的 Bách Giai 已取消 —— 用餐券可省下 9 人約 NT$7,200–13,500。</div></li>
+        <li><div class="t-name">13:25　抵達奇幻樂園</div><div class="t-desc">餐廳就在樂園隔壁，車程 5–10 分。</div></li>
+        <li><div class="t-name">13:30–14:00　進 The Sea Shell 海龜水族館</div><div class="t-desc">唯一室內冷氣館。先逛前段，順便找美人魚秀的位置。</div></li>
+        <li><div class="t-name">14:00–14:20　美人魚秀（必看）</div><div class="t-desc">Colors of the Ocean，官方場次 14:00 / 15:30。<b>08:40 場才趕得上第一場</b>，主水槽（海王宮殿）。</div></li>
+        <li><div class="t-name">14:20–15:10　水族館慢慢逛</div><div class="t-desc">五條以上海底隧道、企鵝、水母、兒童鑽行隧道。</div></li>
+        <li><div class="t-name">15:15–15:50　摩天輪</div><div class="t-desc">120 公尺高、一圈 15 分，可俯瞰全園與海龜館外觀。<b>這個版本時間夠，摩天輪回來了。</b>怕高的人在下面等就好。</div></li>
+        <li><div class="t-name">16:00–17:00　奇幻世界 Fantasy World</div><div class="t-desc">完整一小時。西部牛仔射擊<b>免費玩到飽</b>、古埃及室內冷氣區有球池溜滑梯與攀岩牆、阿拉丁魔毯劇場每小時一場。</div></li>
+        <li><div class="t-name">17:00–17:30　嘉年華遊行（推薦）</div><div class="t-desc">歐洲街道。結束後 17:30 同一區還有音樂噴泉秀。</div></li>
+        <li class="self"><div class="t-name">17:40–18:25　晚餐 Seahorse Restaurant</div><div class="t-desc">走回 The Sea Shell 一樓（約 10 分），水族箱旁用餐。<br>嫌來回麻煩就直接在歐洲街道吃，緊鄰火鳳凰廣場。</div></li>
+        <li><div class="t-name">18:30　火鳳凰廣場卡位</div><div class="t-desc">Fire Phoenix Square，就在歐洲街道內。好位置約 15–20 分鐘前坐滿。</div></li>
+        <li><div class="t-name">18:45–19:05　Once 閉園秀（必看）</div><div class="t-desc">官方時間 18:45–19:05。39 支火焰噴嘴最高噴 61 公尺、150 台霧機、10 台投影機。</div></li>
+      </ul>
+
+      <div class="meal">
+        <div class="m-k">早餐</div><div>酒店內享用 <span class="badge badge-inc">含</span></div>
+        <div class="m-k">午餐</div><div>園內餐廳（贈送餐券）<span class="badge badge-inc">餐券</span></div>
+        <div class="m-k">晚餐</div><div>Seahorse Restaurant <span class="badge badge-self">自理</span></div>
+      </div>
+
+      <div class="hotel">
+        <div class="ico">🏨</div>
+        <div>
+          <div class="h-name">富國島星灣皇冠假日飯店<br>Crowne Plaza Phu Quoc Starbay</div>
+          <div class="h-meta">房型：1 King Standard Ocean View ×3 ＋ Extrabed ×3（同 D1，不需換房）</div>
+        </div>
+      </div>
+
+      <div class="cost">
+        <table>
+          <tr><th>項目</th><th style="text-align:right">預估（每人）</th></tr>
+          <tr><td><b>加購方案</b>（見下方比較表）<span class="vnd">出發前線上付清，非現場付現</span></td><td class="num">NT$410–1,200<span class="vnd">Ultimate ~$13／VIP ~$19／Premium ~$38</span></td></tr>
+          <tr><td><b>午餐（園內餐廳）</b><span class="vnd">餐券大人 ₫200,000／小孩 ₫100,000，只需補差額</span></td><td class="num">NT$0–250<span class="vnd">≈ 0–200k VND</span></td></tr>
+          <tr><td>餵食飼料（長頸鹿等）<span class="vnd">買 Ultimate 則已含</span></td><td class="num">NT$130–200<span class="vnd">≈ 100–160k VND</span></td></tr>
+          <tr><td>晚餐（Seahorse Restaurant）</td><td class="num">NT$380–630<span class="vnd">≈ 300–500k VND</span></td></tr>
+          <tr><td>飲料 / 冰品 / 紀念品</td><td class="num">NT$120–250<span class="vnd">≈ 100–200k VND</span></td></tr>
+          <tr class="total"><td>DAY 2 小計（含 VIP）</td><td class="num">NT$1,040–2,530<span class="vnd">改用餐券後每人省 NT$800–1,250</span></td></tr>
+        </table>
+      </div>
+
+      <p style="margin-top:12px;font-size:13px"><a href="#d2guide" style="color:var(--accent);font-weight:800;text-decoration:none">→ 看 DAY 2 深度攻略（場次時刻 · 必玩清單 · 身高限制）</a></p>
+
+      <div class="maps">
+        <h4>🗺 DAY 2 Google Map 路線</h4>
+        <a class="mapbtn" target="_blank" rel="noopener"
+           href="https://www.google.com/maps/dir/Crowne+Plaza+Phu+Quoc+Starbay/Vinpearl+Safari+Phu+Quoc/VinWonders+Phu+Quoc/Crowne+Plaza+Phu+Quoc+Starbay/">
+          一鍵開啟本日完整路線<small>星灣皇冠 → 動物園 → 奇幻樂園（園內午餐）→ 星灣皇冠</small></a>
+        <div class="pins">
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Crowne+Plaza+Phu+Quoc+Starbay">🏨 星灣皇冠（出發）</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Vinpearl+Safari+Phu+Quoc">🦒 珍珠野生動物園</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=VinWonders+Phu+Quoc">🎡 珍珠奇幻樂園</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Crowne+Plaza+Phu+Quoc+Starbay">🏨 星灣皇冠（今晚）</a>
+        </div>
+        <div class="legdist"><b>全程約 15 km · 行車約 28 分</b><br>
+          飯店 → 動物園 約 15 分　·　<b>動物園 → 奇幻樂園 僅 5–10 分</b>（就在隔壁）　·　樂園 → 飯店 約 10 分。<br>
+          <b>午餐改在園內用餐券，不用離園</b> —— 今天車程是全程最輕鬆的一天。</div>
+      </div>
+
+      <div class="block warnblock">
+        <h4>⚠️ 今日注意</h4>
+        <ul>
+          <li><b>防曬照樣要做足</b>：防曬乳、帽子、涼感巾、電風扇，兩瓶水起跳。VIP 電瓶車有遮陽，但下車看動物與樂園戶外區仍會曬。</li>
+          <li><b>今天不玩水樂園</b>，泳衣留到 D4 的 Aquatopia。兩園設施新、人不多，<b>幾乎不用排隊</b>，重點是抓表演場次而不是衝設施。</li>
+          <li>動物園內<b>禁止餵食未購買的食物</b>，也不要用閃光燈拍動物。</li>
+          <li><b>Once 閉園秀 18:45–19:05</b>（官網明載每日演出，<b>目前無停演公告</b>）—— 入園當天仍建議看一下園區當日場次看板。</li>
+          <li>樂園內多為刷卡或手環儲值，但<b>額外的餵食飼料與小攤位收現金</b>，身上留 50 萬盾小鈔備用。</li>
+          <li>小孩容易走失，<b>先拍一張今日穿著照片</b>，約定走失就到<b>粉紅城堡前</b>集合。</li>
+        </ul>
+      </div>
+    </div>
+</details>
+
+<!-- ============ DAY 2 深度攻略 ============ -->
+<details class="card" id="d2guide" open>
+  <summary class="card-head">
+    <div class="ch-row">
+      <div class="left">
+        <span class="toggle-icon">&#9654;</span>
+        <div><div class="card-title">🎯 DAY 2 深度攻略 · 兩大樂園</div>
+        <div class="card-sub">場次時刻 · 必玩清單 · 身高限制 · 親子避雷</div></div>
+      </div>
+      <span class="badge badge-day">攻略</span>
+    </div>
+  </summary>
+    <div class="card-body">
+
+      <div class="block warnblock" style="margin-top:0">
+        <h4>⏰ 今天最關鍵的四件事</h4>
+        <ul>
+          <li><b>VIP 訂 08:40 場，今天要早起</b> —— 07:00 早餐、07:45 出發、08:25 到候車點。逾時視同未報到，不退不延。</li>
+          <li><b>加購項目出發前先在官網訂好</b> —— booking.vinwonders.com，官方標示「線上獨家」。每時段限 60 人。</li>
+          <li><b>動物園 16:00–16:30 就關園</b>（官方地圖標示 16:30，多數旅記寫 16:00 —— <b>抓 16:00 較保險</b>）。全島最早關的景點。</li>
+          <li><b>群鳥飛舞秀 10:00</b> —— 每天只有這一場最穩（下午場週末停演），錯過就沒了。</li>
+          <li><b>美人魚秀 14:00</b> —— 每日 14:00／15:30 兩場，<b>08:40 版趕得上第一場</b>，13:30 就進館先卡位。</li>
+          <li><b>嘉年華遊行 17:00–17:30</b> —— 歐洲街道，親子必看，晚餐要閃開這個時段。</li>
+          <li><b>Once 閉園秀 18:45–19:05</b>（<b>不是 18:30</b>）—— 設施 18:00 關門，秀完就閉園。</li>
+        </ul>
+      </div>
+
+      <div class="cost">
+        <table>
+          <tr><th>場次 / 設施</th><th>地點</th><th style="text-align:right">時間</th></tr>
+          <tr><td>祖魯舞秀 Zulu Show</td><td>動物園入口廣場</td><td class="num">09:20 / 11:20 / 15:30</td></tr>
+          <tr><td><b>群鳥飛舞秀（必看）</b></td><td>動物園 Flamingo 區</td><td class="num">10:00–10:30<span class="vnd">下午場 14:00（週末停演）</span></td></tr>
+          <tr><td>野生動物巴士 Safari</td><td>動物園 Zoo 區底部</td><td class="num">09:20–15:20<span class="vnd">免費 · 不限次數</span></td></tr>
+          <tr><td>動物餵食體驗</td><td>動物園 Zoo 區各點</td><td class="num">10:40–14:00<span class="vnd">自費</span></td></tr>
+          <tr><td>動物園關園</td><td>—</td><td class="num">16:00–16:30</td></tr>
+          <tr><td>童話人物見面會</td><td>樂園 歐洲街道</td><td class="num">09:30–10:00<span class="vnd">今天在動物園</span></td></tr>
+          <tr><td>水族館餵食秀</td><td>樂園 The Sea Shell</td><td class="num">11:00–11:10<span class="vnd">今天趕不上</span></td></tr>
+          <tr><td>音樂噴泉秀</td><td>樂園 歐洲街道</td><td class="num">11:30 / 14:00 / <b>17:30</b></td></tr>
+          <tr><td><b>美人魚秀（必看）</b><span class="vnd">Colors of the Ocean</span></td><td>樂園 The Sea Shell 主水槽</td><td class="num">14:00 / <b>15:30</b><span class="vnd">各 20 分 · 今天看 15:30</span></td></tr>
+          <tr><td>Tropical Dance / Wild Dance</td><td>樂園 風暴世界</td><td class="num">16:00 / 16:30<span class="vnd">今天不去水樂園</span></td></tr>
+          <tr><td>角色互動</td><td>樂園 歐洲街道</td><td class="num">16:30–16:35</td></tr>
+          <tr><td><b>嘉年華遊行（推薦）</b></td><td>樂園 歐洲街道</td><td class="num"><b>17:00–17:30</b></td></tr>
+          <tr><td>樂園設施關閉</td><td>—</td><td class="num">18:00</td></tr>
+          <tr class="total"><td><b>Once 閉園秀（必看）</b></td><td>樂園 <b>火鳳凰廣場</b><span class="vnd">Fire Phoenix Square，歐洲街道內</span></td><td class="num"><b>18:45–19:05</b></td></tr>
+        </table>
+      </div>
+      <p style="font-size:11.5px;color:var(--muted);margin-top:8px">＊<b>樂園場次取自 VinWonders 官網「Phu Quoc show schedule」頁</b>（2026/08 查證），動物園場次取自官方地圖與說明頁。場次仍會因季節、天候與園方安排調整，<b>入園時請再看入口的當日場次看板</b>。</p>
+
+      <!-- ===== 動物園 ===== -->
+      <div class="block">
+        <h4>🦁 珍珠野生動物園 Vinpearl Safari</h4>
+        <p style="font-size:12.5px;color:var(--muted);margin-bottom:8px">
+          越南最大野生動物園，150 種、3,000 多隻動物。<b>營業 09:00–16:30（官方地圖標示；行程請抓 16:00 為準）。</b>園區分成兩塊，玩法完全不同：</p>
+        <ul>
+          <li><b>Safari 野生動物區（上半部）</b> —— 只能搭巴士進入。獅子、老虎、犀牛、黑熊在車旁自由活動。</li>
+          <li><b>Zoo 動物園區（下半部）</b> —— 步行參觀。餵食體驗、環尾狐猴、大象、可愛動物區、表演場都在這。</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>⭐ 動物園必玩四件事</h4>
+        <ul>
+          <li><b>群鳥飛舞秀（Animal Show）</b>　10:00–10:30。十多種鳥類低空飛過觀眾席，不是逼動物表演，而是展現飛行姿態，評價極高。<b>提早 10 分鐘入座卡前排。</b></li>
+          <li><b>野生動物巴士</b>　含在門票、<b>不限次數</b>。玻璃窗開得很低很大，幾乎可以平視動物。車上冷氣超強 —— 熱到受不了就再搭一次。正常排隊約 15 分，<b>有 VIP／Premium／Ultimate 則走優先通道</b>。</li>
+          <li><b>長頸鹿餐廳 Giraffe Restaurant</b>　買紅蘿蔔餵長頸鹿，牠們會直接衝過來。旁邊就是餐廳，可以坐著吃飯看長頸鹿，<b>午餐就在這裡解決最順</b>。</li>
+          <li><b>餵大象與環尾狐猴</b>　大象特別愛甘蔗。環尾狐猴區是開放空間，牠們會睡在你旁邊的矮牆上、尾巴垂到你頭上，<b>但中午過後幾乎都在睡</b>。<br>你們的 VIP 車 11:15 出發，狐猴區約 11:30–11:45 會經過，正好卡在牠們想睡前的尾聲 —— <b>上車就先跟司機說想先開狐猴這一站</b>。</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>🎫 三種加購方案比較</h4>
+        <p style="font-size:12.5px;color:var(--muted);margin-bottom:9px">
+          全部可在 <b>booking.vinwonders.com</b> 線上預訂（官方標示「Exclusive Online」，線上才是主要通路）。
+          三者<b>互不衝突、可以疊加</b>：Ultimate 是權益券，VIP／Premium 是專屬電瓶車。</p>
+        <div class="cost wide cmp" style="margin-top:0">
+          <table>
+            <tr><th>比較</th><th>Ultimate</th><th>VIP</th><th>Premium</th></tr>
+            <tr><td>單價（6人以上）</td><td class="num">~$13</td><td class="num">~$19</td><td class="num">~$38</td></tr>
+            <tr class="total"><td>9 人合計</td><td class="num">NT$3,700</td><td class="num">NT$5,400</td><td class="num">NT$10,800</td></tr>
+            <tr><td>本質</td><td>權益兌換包</td><td>私人包車導覽</td><td>私人包車導覽</td></tr>
+            <tr><td>交通<span class="vnd">Zoo 步行區</span></td><td>❌ 自己走 4 小時</td><td>電瓶車 <b>60 分</b></td><td>電瓶車 <b>90 分</b></td></tr>
+            <tr><td>專屬導遊</td><td>❌</td><td>✅ 雙語</td><td>✅ 雙語</td></tr>
+            <tr><td>餵動物</td><td>長頸鹿、水豚<span class="vnd">飼料已含</span></td><td>餵駱駝<span class="vnd">另有大象、環尾狐猴等互動機會</span></td><td><b>免費餵</b>大象、水豚、長頸鹿</td></tr>
+            <tr><td>合照</td><td>金剛鸚鵡</td><td>—</td><td>—</td></tr>
+            <tr><td>Safari 巴士優先<span class="vnd">野生動物區</span></td><td>✅</td><td><b>✅</b><span class="vnd">官方商品頁載明</span></td><td>✅</td></tr>
+            <tr><td>入園 Fastpass<span class="vnd">驗票閘門</span></td><td>❌</td><td>❌</td><td>✅</td></tr>
+            <tr><td>紀念品</td><td>✅ 長頸鹿餐廳兌換</td><td>❌</td><td>玩偶＋飲料</td></tr>
+            <tr><td>導覽後接送</td><td>❌</td><td>✅ 送到主出口</td><td>✅ 送到主出口</td></tr>
+            <tr><td>場次</td><td>無<span class="vnd">09:15–14:30 自由使用</span></td><td>08:40 / 10:00<br>11:15 / 13:00 / 14:30<span class="vnd">訂票系統實測</span></td><td>08:30 / 10:15<br>14:30</td></tr>
+            <tr><td>最低張數</td><td>無</td><td><b>5 張</b></td><td><b>5 張</b></td></tr>
+          </table>
+        </div>
+        <p style="font-size:11.5px;color:var(--muted);margin-top:8px">
+          ＊三者皆為 <b>per guest、不分年齡身高同價</b>，100cm 以下免費，且<b>都不含入園門票</b>（門票已在團費內）。
+          VIP／Premium <b>每時段限 60 人</b>。</p>
+      </div>
+
+
+      <div class="block warnblock">
+        <h4>✅ 曾有的疑點已釐清</h4>
+        <ul>
+          <li>官方<b>方案比較表</b>把 VIP 的「優先通道」標為不適用，一度讓人以為 VIP 沒有任何優先。</li>
+          <li>但 <b>VIP Zoo Tour 商品頁的「Exclusive privileges」明列「Priority line for the Safari Bus tour」</b> —— 所以比較表那欄講的是<b>入園閘門</b>的專用通道（只有 Premium 有），跟 Safari 巴士是兩回事。</li>
+          <li>結論：<b>VIP 含 Safari 巴士優先</b>。若已買 VIP，就不必為了插隊再買 Ultimate。</li>
+        </ul>
+      </div>
+
+
+
+
+
+
+      <div class="block">
+        <h4>🛒 VIP Zoo Tour 怎麼訂（官方訂票頁）</h4>
+        <a class="mapbtn" target="_blank" rel="noopener"
+           href="https://booking.vinwonders.com/en-USD/search?code=PQSAF&amp;usingDate=24-09-2026&amp;tab=Tour_Experiences">
+          開啟動物園訂票頁（已帶入 09/24）<small>booking.vinwonders.com · code=PQSAF</small></a>
+        <p style="font-size:12.5px;margin-bottom:8px"><b>官方沒有單一商品的直達網址</b>，所有加購都在同一頁，步驟如下：</p>
+        <ul>
+          <li>① 開啟上方連結（日期已帶 <b>24/09/2026</b>，分頁已切到 <b>Tours &amp; Experiences</b>）</li>
+          <li>② 找到 <b>[Onsite service] - VIP Zoo Tour Vinpearl Safari Phu Quoc</b>（~$19），按右側 <b>Select</b></li>
+          <li>③ 地點選 <b>PQ - VPS - Viptour</b></li>
+          <li>④ 時段選 <b>08:40</b>（本行程採用）<span style="color:var(--accent)">—— 10:00 撞群鳥飛舞秀；11:15 實測只剩 3 個名額、不足最低 5 張；13:00 尚有餘位，可當備案</span></li>
+          <li>⑤ 數量填 <b>9</b>（最低 5 張才發車），按 Continue 結帳</li>
+          <li>⑥ 當天到 <b>VIP 服務櫃檯（主售票櫃檯旁）</b>出示 QR Code 報到</li>
+        </ul>
+        <div class="block warnblock" style="margin-top:10px">
+          <h4>⚠️ 訂購與使用的四個重點</h4>
+          <ul>
+            <li><b>實際可選時段：08:40 / 10:00 / 11:15 / 13:00 / 14:30</b>。官方說明頁寫 13:20，但訂票系統是 <b>13:00</b> —— 以訂票系統為準。</li>
+            <li>數量選單<b>只有一種票種「Adult（Over 140cm）」</b>，沒有兒童選項。官方條款寫「不分年齡同價、100cm 以下免費」，所以三個孩子<b>應該也是買 Adult 票</b>，但選單標示 140cm 以上會讓人猶豫 —— <b>下單前建議先寫信問客服</b>：we-care@vinwonders.com。</li>
+            <li><b>遲到就是 No-Show</b>：官方明訂逾發車時間抵達即取消，<b>不退款、不順延</b>。請提前 15 分鐘到候車點。</li>
+            <li><b>不受理改期與改時段</b>，只限所選日期與時段使用 —— 下單前確認清楚。</li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="block">
+        <h4>🎟 午餐改用園區贈送餐券 <span class="badge badge-inc">V6 定案</span></h4>
+        <ul>
+          <li><b>活動內容</b>：珍珠樂園＋動物園<b>至 9 月底前</b>，每位客人贈送一張餐券 —— <b>大人 ₫200,000／小孩 ₫100,000</b>。</li>
+          <li><b>9 人合計價值 ₫1,500,000（約 NT$1,875）</b>。比起原本要自付的 Bách Giai（9 人 NT$7,200–13,500）省很多。</li>
+          <li><b>建議地點</b>：奇幻樂園內的<b>巨型海龜水族館餐廳</b> —— 吃完直接接 13:20 的 The Sea Shell，動線最順。動物園內的餐廳也可以用。</li>
+          <li>⚠️ <b>餐券只能在園內使用，離園就作廢</b>。原本排的 Bách Giai 已取消。</li>
+          <li>⚠️ <b>餐券可能不夠付全額</b>，園內一餐約 ₫200,000–400,000，差額自付（每人約 NT$0–250）。</li>
+          <li>💡 <b>順便保住長頸鹿體驗</b>：留在園內用餐，原本「跑去 Bách Giai 就沒得餵長頸鹿」的問題自動解決。</li>
+          <li>❓ <b>出發前跟旅行社確認</b>：餐券怎麼領、9 人是否都有、能在哪幾間餐廳使用。</li>
+        </ul>
+      </div>
+
+      <div class="block warnblock">
+        <h4>📞 出發前三件必辦</h4>
+        <ul>
+          <li><b>① 訂 VIP 08:40 場</b>（實測只剩 10 個位，你們要 9 個 —— 越快越好），並問客服<b>能否 09:00 前入園</b>。</li>
+          <li><b>② 跟旅行社確認午餐券</b>：怎麼領、9 人是否都有、可用的餐廳有哪些。</li>
+          <li><b>③ 問 VIP 9 人會安排幾台車</b>（官方未公布座位數，KKday 說每團最多 7 人 —— 你們很可能被拆兩台）。</li>
+        </ul>
+      </div>
+
+      <div class="block warnblock">
+        <h4>📌 訂票前務必確認</h4>
+        <ul>
+          <li><b>VIP 場次選 08:40</b>，但<b>需先確認能否 09:00 前入園</b>（官方地圖標示 09:00 開園）。<br>各時段實測餘位：08:40 剩 10、10:00 充足但撞群鳥秀、<b>11:15 只剩 3（不可用）</b>、13:00 充足、14:30 太晚。<br><b>08:40 只剩 10 個位而你們要 9 個 —— 盡快下訂。</b></li>
+          <li>VIP／Premium <b>最少 5 張、每時段限 60 人</b>，早訂比較保險。</li>
+          <li>有疑問可寫 <b>we-care@vinwonders.com</b> 或打 <b>1900 6677</b>。</li>
+        </ul>
+      </div>
+
+      <!-- ===== 奇幻樂園 ===== -->
+      <div class="block">
+        <h4>🎡 珍珠奇幻樂園 VinWonders：六大園區</h4>
+        <ul>
+          <li><b>歐洲街道</b>　入口到城堡的歐風長廊，有咖啡廳、河粉店、韓式與速食可選，<b>粉紅城堡</b>與閉園秀廣場在這。</li>
+          <li><b>The Sea Shell 海龜水族館</b>　<span class="badge badge-inc">今日重點</span> 全園最大亮點、<b>唯一大型室內冷氣館</b>。三層樓、15,000 m²，五條以上海底隧道、企鵝、水母、兒童鑽行隧道。</li>
+          <li><b>冒險世界</b>　<span class="badge badge-self">今天不排</span> 11 種刺激設施（自由落體、海盜船、雲霄飛車），多數需 120cm 以上。旁邊的 <b>120 公尺摩天輪</b>沒有身高門檻，<b>本行程 15:15 會去搭</b>。</li>
+          <li><b>風暴世界</b>　<span class="badge badge-self">今天不排</span> 水上樂園（含在門票內）。人造浪、滑水道、漂漂河、幼童戲水區 —— 留給 DAY 4 的 Aquatopia。</li>
+          <li><b>神秘維京村</b>　<span class="badge badge-self">今天不排</span> 雷神試煉（三層攀爬＋30 公尺吊橋＋10 公尺滑索）、急流泛舟（會全身濕）。</li>
+          <li><b>奇幻世界</b>　<span class="badge badge-inc">今日重點</span> 童話造景、西部牛仔射擊（免費玩到飽）、<b>古埃及室內冷氣區有球池溜滑梯與攀岩牆</b>、阿拉丁魔毯劇場每小時一場。</li>
+        </ul>
+      </div>
+
+      <div class="block warnblock">
+        <h4>📏 為什麼避開有身高限制的設施</h4>
+        <ul>
+          <li>冒險世界的刺激設施<b>幾乎都要 120 cm 以上</b>。林昱橙（9 歲）多半過關，洪郁翔（快 7 歲）很可能卡在門檻。</li>
+          <li>只要排了這類設施，結果就是<b>大的排隊玩、小的在旁邊等</b>，或大人被迫拆成兩隊 —— 九個人的團體管理會變得很累。</li>
+          <li>所以今天只排<b>全家都能一起做的事</b>：水族館、摩天輪、奇幻世界、嘉年華遊行、閉園秀。</li>
+          <li>刺激設施的癮，<b>DAY 4 的跨海纜車與 Aquatopia 水樂園</b>會補回來。</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>🐠 The Sea Shell 這樣逛最舒服</h4>
+        <ul>
+          <li><b>14:20 一到樂園就先進水族館</b> —— 午後最曬，這是全園唯一能吹冷氣的地方，慢慢逛到 15:30 的美人魚秀。<br>⚠️ <b>餵食秀是 11:00–11:10，今天趕不上</b>（官方場次表；不是我先前寫的 15:00）。</li>
+          <li><b>美人魚秀（Colors of the Ocean Show）14:00 / 15:30，每日兩場</b> —— 官方訂票頁載明。你們 14:20 進館，<b>15:30 那場剛好趕得上</b>，就在主水槽（海王宮殿）。官方建議<b>提早 15 分鐘卡位</b>。<br>另有 <b>~$10 的優先觀賞區＋Seahorse 糕點</b>可加購（9 人約 NT$2,800），一般座位其實也看得到，非必要。</li>
+          <li>一入館就是震撼的巨型水族箱，前面有階梯可以坐著看很久。</li>
+          <li><b>Seahorse Restaurant</b>（1 樓）就在水族箱旁，可以看著魚吃牛排 —— 這就是行程表寫的「海龜水族館餐廳」。</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>🔥 Once 閉園秀 —— 全日壓軸</h4>
+        <ul>
+          <li><b>官方時間 18:45–19:05，共 20 分鐘，每天演出</b>（官網明載，<b>目前無維修或停演公告</b>）。</li>
+          <li>地點：<b>火鳳凰廣場 Fire Phoenix Square</b>，位於歐洲街道內、粉紅城堡前方。</li>
+          <li>水舞 ＋ 3D 光雕投影 ＋ 真人歌舞 ＋ 城堡燈光，故事是火鳳凰對抗巫婆。官方數據：<b>39 支火焰噴嘴（最高 61 公尺）、150 台霧機、10 台投影機</b>。</li>
+          <li><b>18:30 前就要去卡位</b>，正中央的好位置通常提前 15–20 分鐘坐滿。</li>
+          <li>⚠️ <b>火燒城堡橋段會噴出真火，聲光很強</b>。怕吵怕火的小小孩容易被嚇哭，建議坐<b>稍後排、靠邊</b>，隨時可以抱走。</li>
+        </ul>
+      </div>
+
+      <div class="block warnblock">
+        <h4>🎒 親子避雷清單</h4>
+        <ul>
+          <li><b>兩園都幾乎不用排隊</b>（設施新、人不多），所以不必衝，重點是抓好<b>表演場次</b>：群鳥秀 10:00、<b>美人魚秀 15:30</b>、<b>嘉年華遊行 17:00</b>、<b>Once 秀 18:45</b>。</li>
+          <li><b>晚餐卡在 17:40–18:25</b>：17:00–17:30 有嘉年華遊行、18:45 要看 Once 秀，中間這段是唯一的空檔。設施 18:00 關門、19:05 秀完就閉園。</li>
+          <li><b>今天不玩水，泳衣留到 D4</b>：省下的 1.5 小時拿來慢慢逛水族館與奇幻世界，全家不用分頭行動。</li>
+          <li><b>加購項目線上先付</b>：出發前用信用卡在官網付清，當天只要出示 QR Code，不用帶大筆現金。</li>
+          <li><b>水與電解質</b>：動物園步行區完全曝曬，園內飲料貴，出門前先在便利商店買好。</li>
+          <li><b>走失預防</b>：早上先拍一張三個孩子今天穿著的照片，並約好走失就到<b>粉紅城堡前</b>集合。今天全家同行，但奇幻世界的球池與造景區小孩容易跑散。</li>
+          <li><b>樂園內多為刷卡或手環儲值</b>，但餵食體驗、小攤位仍收現金，<b>身上留 50 萬盾小鈔</b>。</li>
+          <li>動物園<b>禁止餵食自備食物</b>，也不要對動物使用閃光燈。</li>
+        </ul>
+      </div>
+
+      <div class="maps">
+        <h4>🗺 官方園區地圖（出發前先存到手機相簿）</h4>
+        <a class="mapbtn" target="_blank" rel="noopener"
+           href="https://static.vinwonders.com/production/VinWonders-Phu-Quoc-map-2.jpg">
+          珍珠奇幻樂園 官方全區地圖<small>JPG · 開啟後長按存圖，離線也能看</small></a>
+        <a class="mapbtn" target="_blank" rel="noopener"
+           href="https://static.vinwonders.com/2023/02/220804_Map-Safari-_English.pdf">
+          珍珠野生動物園 官方地圖<small>PDF 英文版 · 含全部動物區與設施編號</small></a>
+        <a class="mapbtn" target="_blank" rel="noopener"
+           href="https://static.vinwonders.com/2022/05/PQUC_MAP.pdf">
+          富國聯合中心 全區地圖<small>PDF · 動物園／奇幻樂園／富國大世界／飯店接駁關係</small></a>
+        <div class="legdist">⚠️ 這三份是 Vinpearl 官方檔案，<b>需要網路才能開啟</b>。島上網路不穩，請<b>出發前先開啟並存到手機相簿</b>，當天才看得到。下方的分區示意圖已內建在本檔案裡，離線也能看。</div>
+      </div>
+
+      <div class="parkmap">
+        <h5>🦁 珍珠野生動物園 · 分區配置</h5>
+        <svg viewBox="0 0 340 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="珍珠野生動物園分區示意圖">
+          <rect x="0" y="0" width="340" height="300" rx="10" fill="#eef2ea"/>
+
+          <rect x="14" y="12" width="312" height="98" rx="12" fill="#d7e8d9" stroke="#8fae95" stroke-width="1.5"/>
+          <text class="zt" x="170" y="36" text-anchor="middle" fill="#2f5c3f">Safari 野生動物區</text>
+          <text class="zs" x="170" y="55" text-anchor="middle" fill="#4a6b55">只能搭「野生動物巴士」進入，不可步行</text>
+          <text class="zs" x="170" y="71" text-anchor="middle" fill="#4a6b55">獅子 · 老虎 · 犀牛 · 黑熊 · 斑馬 · 長頸鹿</text>
+          <text class="zs" x="170" y="93" text-anchor="middle" fill="#2f5c3f">巴士 09:20–15:20 · 含在門票 · 不限次數 · 有冷氣</text>
+
+          <rect x="14" y="118" width="312" height="36" rx="10" fill="#f7ddd3" stroke="#c9a08e" stroke-width="1.5"/>
+          <text class="zt" x="170" y="134" text-anchor="middle" fill="#8c3d24">長頸鹿餐廳 Giraffe Restaurant</text>
+          <text class="zs" x="170" y="148" text-anchor="middle" fill="#8c3d24">餵長頸鹿 ＋ 午餐 · 位在 Zoo 區底部、緊鄰 Safari 乘車處</text>
+
+          <rect x="14" y="162" width="312" height="86" rx="12" fill="#e6ddcb" stroke="#b9a888" stroke-width="1.5"/>
+          <text class="zt" x="170" y="180" text-anchor="middle" fill="#6b5530">Zoo 動物園區（步行 · 完全無遮蔭）</text>
+          <rect x="24" y="188" width="70" height="26" rx="7" fill="#fffdf9" stroke="#c9bda9"/>
+          <text class="zs" x="59" y="205" text-anchor="middle" fill="#4a3f28">餵大象</text>
+          <rect x="102" y="188" width="70" height="26" rx="7" fill="#fffdf9" stroke="#c9bda9"/>
+          <text class="zs" x="137" y="205" text-anchor="middle" fill="#4a3f28">環尾狐猴</text>
+          <rect x="180" y="188" width="70" height="26" rx="7" fill="#fffdf9" stroke="#c9bda9"/>
+          <text class="zs" x="215" y="205" text-anchor="middle" fill="#4a3f28">爬蟲類區</text>
+          <rect x="258" y="188" width="58" height="26" rx="7" fill="#fffdf9" stroke="#c9bda9"/>
+          <text class="zs" x="287" y="205" text-anchor="middle" fill="#4a3f28">可愛動物</text>
+          <text class="zs" x="170" y="235" text-anchor="middle" fill="#6b5530">餵食體驗 10:40–14:00（自費）· 環尾狐猴中午後在睡</text>
+
+          <rect x="14" y="256" width="100" height="34" rx="9" fill="#d9ecee" stroke="#7fb0b6" stroke-width="1.5"/>
+          <text class="zs" x="64" y="271" text-anchor="middle" fill="#155258">Flamingo 區</text>
+          <text class="zs" x="64" y="284" text-anchor="middle" fill="#155258">群鳥秀 10:00</text>
+
+          <rect x="122" y="256" width="96" height="34" rx="9" fill="#1f2531"/>
+          <text class="zt" x="170" y="272" text-anchor="middle" fill="#fff">入口 ENTRANCE</text>
+          <text class="zs" x="170" y="285" text-anchor="middle" fill="#c9cfd8">祖魯舞秀 09:20</text>
+
+          <rect x="226" y="256" width="100" height="34" rx="9" fill="#d9ecee" stroke="#7fb0b6" stroke-width="1.5"/>
+          <text class="zs" x="276" y="271" text-anchor="middle" fill="#155258">VIP 櫃檯（售票旁）</text>
+          <text class="zs" x="276" y="284" text-anchor="middle" fill="#155258">出示 QR 報到</text>
+        </svg>
+        <p class="mapnote">本行程動線：<b>08:10 VIP 櫃檯報到 → 08:40 VIP 電瓶車遊 Zoo 區 → 10:00 群鳥飛舞秀 → 10:40 Safari 巴士 → 11:40 離園</b>。<br>✅ <b>午餐改在園內用贈送餐券</b>（建議奇幻樂園的巨型海龜水族館餐廳），不離園。想餵長頸鹿可請 VIP 司機在長頸鹿區停靠。</p>
+      </div>
+
+      <div class="parkmap">
+        <h5>🎡 珍珠奇幻樂園 · 六大園區配置</h5>
+        <svg viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="珍珠奇幻樂園分區示意圖">
+          <rect x="0" y="0" width="340" height="340" rx="10" fill="#efe9f2"/>
+
+          <rect x="12" y="12" width="118" height="92" rx="12" fill="#e4e1dc" stroke="#bdb7ae" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <text class="zt" x="71" y="36" text-anchor="middle" fill="#8d8578">冒險世界</text>
+          <text class="zs" x="71" y="52" text-anchor="middle" fill="#8d8578">多數需 120cm 以上</text>
+          <text class="zt" x="71" y="78" text-anchor="middle" fill="#9a4a4a">今天不排</text>
+
+          <circle cx="164" cy="48" r="27" fill="#fff5da" stroke="#d2b45c" stroke-width="2"/>
+          <text class="zs" x="164" y="41" text-anchor="middle" fill="#7a6116">摩天輪</text>
+          <text class="zs" x="164" y="54" text-anchor="middle" fill="#7a6116">120m</text>
+          <text class="zs" x="164" y="67" text-anchor="middle" fill="#0f6b2f">15:15</text>
+
+          <rect x="198" y="12" width="130" height="92" rx="12" fill="#d9ecee" stroke="#7fb0b6" stroke-width="1.5"/>
+          <text class="zt" x="263" y="34" text-anchor="middle" fill="#125058">The Sea Shell</text>
+          <text class="zs" x="263" y="50" text-anchor="middle" fill="#125058">海龜水族館</text>
+          <text class="zs" x="263" y="70" text-anchor="middle" fill="#0f6b2f">★ 今日重點 · 唯一冷氣館</text>
+          <text class="zs" x="263" y="88" text-anchor="middle" fill="#125058">美人魚秀 15:30（必看）</text>
+
+          <rect x="12" y="114" width="118" height="110" rx="12" fill="#e4e1dc" stroke="#bdb7ae" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <text class="zt" x="71" y="146" text-anchor="middle" fill="#8d8578">風暴世界</text>
+          <text class="zs" x="71" y="162" text-anchor="middle" fill="#8d8578">水上樂園</text>
+          <text class="zt" x="71" y="188" text-anchor="middle" fill="#9a4a4a">今天不排</text>
+          <text class="zs" x="71" y="206" text-anchor="middle" fill="#8d8578">留給 D4 Aquatopia</text>
+
+          <rect x="198" y="114" width="130" height="60" rx="12" fill="#e4e1dc" stroke="#bdb7ae" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <text class="zt" x="263" y="136" text-anchor="middle" fill="#8d8578">神秘維京村</text>
+          <text class="zs" x="263" y="151" text-anchor="middle" fill="#8d8578">雷神試煉 · 急流泛舟</text>
+          <text class="zt" x="263" y="167" text-anchor="middle" fill="#9a4a4a">今天不排</text>
+
+          <rect x="198" y="182" width="130" height="62" rx="12" fill="#dceadf" stroke="#7ea88b" stroke-width="1.5"/>
+          <text class="zt" x="263" y="204" text-anchor="middle" fill="#2f5c3f">奇幻世界</text>
+          <text class="zs" x="263" y="220" text-anchor="middle" fill="#2f5c3f">Fantasy World</text>
+          <text class="zs" x="263" y="236" text-anchor="middle" fill="#0f6b2f">★ 今日重點 · 有冷氣室內區</text>
+
+          <rect x="138" y="114" width="52" height="130" rx="12" fill="#f7d7e4" stroke="#d18aa8" stroke-width="1.5"/>
+          <text class="zt" x="164" y="160" text-anchor="middle" fill="#8f2f56">粉紅</text>
+          <text class="zt" x="164" y="176" text-anchor="middle" fill="#8f2f56">城堡</text>
+          <text class="zs" x="164" y="200" text-anchor="middle" fill="#8f2f56">閉園秀</text>
+          <text class="zs" x="164" y="214" text-anchor="middle" fill="#8f2f56">18:45</text>
+
+          <rect x="12" y="254" width="316" height="40" rx="12" fill="#e6ddcb" stroke="#b9a888" stroke-width="1.5"/>
+          <text class="zt" x="170" y="272" text-anchor="middle" fill="#6b5530">歐洲街道 European Streetmosphere</text>
+          <text class="zs" x="170" y="287" text-anchor="middle" fill="#6b5530">嘉年華遊行 17:00 · 音樂噴泉 17:30 · 餐廳</text>
+
+          <rect x="112" y="302" width="116" height="30" rx="9" fill="#1f2531"/>
+          <text class="zt" x="170" y="321" text-anchor="middle" fill="#fff">入口 · 售票 · 停車場</text>
+        </svg>
+        <p class="mapnote"><b>灰底虛線＝今天不排</b>（冒險世界／維京村／水樂園）。<br>動線：<b>13:30 進 The Sea Shell（14:00 美人魚秀）→ 15:15 摩天輪 → 16:00 奇幻世界 → 17:00 嘉年華遊行 → 17:40 晚餐 → 18:30 火鳳凰廣場卡位 → 18:45 Once 秀</b>。設施 18:00 全部關門。</p>
+      </div>
+
+      <p style="font-size:11.5px;color:var(--muted);margin-top:10px">＊上方兩張為<b>方位與重點標示圖</b>（我依官方地圖繪製、標上中文與場次），用來快速決定動線；<b>要看完整設施編號與詳細位置，請開上面的官方地圖</b>。</p>
+
+
+      <div class="maps">
+        <h4>🗺 兩園位置與接駁</h4>
+        <div class="pins">
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Vinpearl+Safari+Phu+Quoc">🦒 珍珠野生動物園</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=VinWonders+Phu+Quoc">🎡 珍珠奇幻樂園</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/Vinpearl+Safari+Phu+Quoc/VinWonders+Phu+Quoc/">🚌 兩園之間路線</a>
+          <a target="_blank" rel="noopener" href="https://vinwonders.com/en/vinpearl-safari-phu-quoc/">🔗 動物園官網場次</a>
+          <a target="_blank" rel="noopener" href="https://vinwonders.com/en/vinwonders-phu-quoc/">🔗 樂園官網場次</a>
+        </div>
+        <div class="legdist">兩園與富國大世界同屬<b>富國聯合中心 Phu Quoc United Center</b>，彼此車程約 15 分鐘，<b>園區間有免費接駁車，每小時至少一班</b>。本團有派車，但接駁車可作為機動備案。</div>
+      </div>
+
+    </div>
+</details>
+
+<!-- ============ DAY 3 ============ -->
+<details class="card" id="d3" open>
+  <summary class="card-head">
+    <div class="ch-row">
+      <div class="left">
+        <span class="toggle-icon">&#9654;</span>
+        <div><div class="card-title">DAY 3 · 大世界泰迪熊 · 楊東鎮 · 日落沙灘 · 夜市</div>
+        <div class="card-sub">09/25（五）&nbsp;|&nbsp; 伴手禮主日 · 18:00 看日落</div></div>
+      </div>
+      <span class="badge badge-day">D3</span>
+    </div>
+  </summary>
+    <div class="card-body">
+
+      <div class="block" style="margin-top:0">
+        <h4>🔀 本日已依建議調整</h4>
+        <ul>
+          <li><b>上午加入富國大世界</b>：泰迪熊博物館、貢多拉、竹子傳奇從 D1 晚上移到今天白天。</li>
+          <li><b>超市與日落對調</b>：原排 17:00 就離開日落沙灘，但 9/25 日落是 <b>約 18:00</b>，會完全錯過。改成先買伴手禮、再去海灘待到日落。</li>
+          <li><b>伴手禮今天一次買齊</b>：最大間金剛超市在楊東鎮，之後兩天都住南端安泰，單程要 45 分。</li>
+        </ul>
+      </div>
+
+      <ul class="tl" style="margin-top:14px">
+        <li><div class="t-name">07:30　飯店早餐</div></li>
+        <li><div class="t-name">08:30　出發前往富國大世界</div><div class="t-desc">飯店到大世界僅約 10 分鐘，同在白黛海灘區。</div></li>
+        <li><div class="t-name">08:45–09:30　竹子傳奇 Bamboo Legend</div><div class="t-desc">全越南最大竹建築，24 小時開放、免費入場。上午人少好拍。</div></li>
+        <li class="self"><div class="t-name">09:30–10:30　泰迪熊博物館 <span class="badge badge-self">需另購票</span></div><div class="t-desc">官方營業 <b>08:00–22:00</b>，票價 <b>200,000 VND／人</b>。甜甜圈造型建築、2,162 ㎡、五大主題區、500+ 隻泰迪熊，室內冷氣，小孩最愛。<br>⚠️ 先跟旅行社確認團費是否含此票。</div></li>
+        <li class="self"><div class="t-name">10:40–11:20　威尼斯運河 貢多拉遊船 <span class="badge badge-self">需另購票</span></div><div class="t-desc">官方票價 <b>單程 200,000 ／ 來回 300,000 VND</b>（含拍照）。船夫會現場清唱義大利歌。</div></li>
+        <li class="self"><div class="t-name">11:20–11:50　園區自由活動 / Herbs Spa</div><div class="t-desc">Herbs Spa Grand World 營業 10:00–23:00，主打越南草本熱敷球，結束附熱茶與新鮮芒果。<br>
+        ⚠️ <b>這裡只有 30 分鐘，只夠足部按摩</b>，全身療程請留到 D5。或單純在園區咖啡廳歇腳。
+        <a href="#spa" style="color:var(--accent);font-weight:800;text-decoration:none">→ 看按摩店比較</a></div></li>
+        <li><div class="t-name">11:55　出發前往楊東鎮</div><div class="t-desc">車程約 35–40 分，本日最長的一段。</div></li>
+        <li class="self"><div class="t-name">13:00–14:00　午餐：Xin Chao Seafood Restaurant <span class="badge badge-inc">已訂位</span></div><div class="t-desc">✅ <b>已訂位 13:00，9 位（6 大 3 小）</b>。現點現付，蒜蓉蒸蝦、椒鹽花蟹、烤生蠔都值得試。<b>務必先問價、看秤</b>。<br>
+        ⚠️ <b>餐廳沒有空調，訂的是室外遮陽座位</b> —— 中午會熱，帶扇子或濕紙巾。</div></li>
+        <li class="self"><div class="t-name">13:50–14:20　Robinson Pearl 換匯 <span class="badge badge-self">補換</span></div><div class="t-desc">就在 Xin Chao 旁邊，<b>全島匯率最好的點</b>。<br>
+        ⚠️ <b>這是全程第二次、也是最後一次好匯率的換匯機會</b>。等一下 15:00 就要在金剛超市大採買伴手禮（每人 400k–1.2M 盾），<b>請一次換足到行程結束</b>。<br>
+        <b>每位大人再換 US$100–150</b>。<br>
+        ✅ D4 的秀票已經不用現金了（Kiss 飯店贈票、Symphony 不看）；若當晚決定買 Dinner Show，那是<b>官網刷 Visa 卡</b>，也不用現金。<br>
+        順便請對方多給 10k／20k／50k 小鈔，夜市與小費都用得到。</div></li>
+        <li><div class="t-name">14:30–15:00　小龍王廟 Dinh Cậu</div><div class="t-desc">19 世紀海神廟，建於突出岩石上，需爬石階。可眺望海岸與漁港。距離換匯處僅 5 分鐘。</div></li>
+        <li class="self"><div class="t-name">15:00–16:10　金剛超市 KingKong Mart <span class="badge badge-self">伴手禮主場</span></div><div class="t-desc">141A Trần Hưng Đạo，楊東鎮，<b>全島最大間</b>，營業 08:00–22:00。<br>腰果、手炒花生、越南咖啡、G7、椰子糖、蓮花茶、風油精、藤編包。<b>本趟唯一一次大採買，請在這裡買齊。</b></div></li>
+        <li><div class="t-name">16:20　出發前往日落沙灘</div><div class="t-desc">車程約 25 分，往南到 Bãi Trường 一帶。</div></li>
+        <li class="self"><div class="t-name">16:45–18:20　Sunset Sanato Beach Club</div><div class="t-desc">現點現付、需低消。網美打卡點（愛心裝置、貝殼椅）。<br>🌅 <b>9/25 日落約 18:00</b> —— 待到日落後再走，這是今天的重點。</div></li>
+        <li class="self"><div class="t-name">18:40–20:30　Sonasea 夜市 自由逛街 + 晚餐</div><div class="t-desc">距離 Sanato 僅 5 分鐘。海鮮熱炒、越南點心、炒冰、按摩店都在這。夜市 19:00 開始最熱鬧。<br>
+        🍽 <b>V4 指定餐廳：Ricordo Restaurant</b>。<br>
+        💆 <b>按摩 19:00 開始</b> —— 夜市旁的 <b>The Bay Spa &amp; Nail</b>（60 分排毒精油 ₫590,000）是這區最有人氣的一家，2 人以上預約按摩＋美甲還有飯店免費接送。
+        <a href="#spa" style="color:var(--accent);font-weight:800;text-decoration:none">→ 看按摩店比較</a></div></li>
+        <li><div class="t-name">20:40　回飯店</div><div class="t-desc">Sonasea 在南部、飯店在西北端，<b>車程約 50 分鐘</b>，約 21:30 到。</div></li>
+      </ul>
+
+      <div class="meal">
+        <div class="m-k">早餐</div><div>飯店內享用 <span class="badge badge-inc">含</span></div>
+        <div class="m-k">午餐</div><div>Xin Chao Seafood（現點現付）<span class="badge badge-self">自理</span></div>
+        <div class="m-k">晚餐</div><div>Sonasea 夜市 · Ricordo Restaurant <span class="badge badge-self">自理</span></div>
+      </div>
+
+      <div class="hotel">
+        <div class="ico">🏨</div>
+        <div>
+          <div class="h-name">富國島星灣皇冠假日飯店<br>Crowne Plaza Phu Quoc Starbay</div>
+          <div class="h-meta">房型：1 King Standard Ocean View ×3 ＋ Extrabed ×3（最後一晚，明日換飯店）</div>
+        </div>
+      </div>
+
+      <div class="cost">
+        <table>
+          <tr><th>項目</th><th style="text-align:right">預估（每人）</th></tr>
+          <tr><td>泰迪熊博物館門票</td><td class="num">NT$250<span class="vnd">200k VND（官方價）</span></td></tr>
+          <tr><td>貢多拉遊船（來回含拍照）</td><td class="num">NT$375<span class="vnd">300k VND（官方價）</span></td></tr>
+          <tr><td>Xin Chao 海鮮午餐</td><td class="num">NT$500–760<span class="vnd">≈ 400–600k VND</span></td></tr>
+          <tr><td>Sanato Beach Club 下午茶／低消</td><td class="num">NT$250–380<span class="vnd">≈ 200–300k VND</span></td></tr>
+          <tr><td>夜市晚餐</td><td class="num">NT$250–440<span class="vnd">≈ 200–350k VND</span></td></tr>
+          <tr><td>伴手禮採買（金剛超市，彈性）</td><td class="num">NT$500–1,500<span class="vnd">≈ 400k–1.2M VND</span></td></tr>
+          <tr><td>按摩 60 分（自費，選）<span class="vnd">The Bay Spa 排毒精油 ₫590,000</span></td><td class="num">NT$500–740<span class="vnd">≈ 400–590k VND</span></td></tr>
+          <tr class="total"><td>DAY 3 小計</td><td class="num">NT$1,625–2,525<span class="vnd">不含伴手禮與按摩</span></td></tr>
+        </table>
+      </div>
+      <p style="font-size:11.5px;color:var(--muted);margin-top:6px">＊泰迪熊與貢多拉若旅行社已含票，本日小計可再減 NT$625。</p>
+
+      <div class="maps">
+        <h4>🗺 DAY 3 Google Map 路線</h4>
+        <a class="mapbtn" target="_blank" rel="noopener"
+           href="https://www.google.com/maps/dir/Crowne+Plaza+Phu+Quoc+Starbay/Grand+World+Phu+Quoc/Xin+Chao+Seafood+Restaurant+Phu+Quoc/Robinson+Pearl+Phu+Quoc/Dinh+Cau+Phu+Quoc/KingKong+Mart+Phu+Quoc/Sunset+Sanato+Beach+Club/Sonasea+Shopping+Center+Phu+Quoc/Crowne+Plaza+Phu+Quoc+Starbay/">
+          一鍵開啟本日完整路線<small>星灣皇冠 → 大世界 → 海鮮午餐 → Robinson Pearl 換匯 → 小龍王廟 → 金剛超市 → 日落沙灘 → Sonasea → 星灣皇冠</small></a>
+        <div class="pins">
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Crowne+Plaza+Phu+Quoc+Starbay">🏨 星灣皇冠（出發）</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Grand+World+Phu+Quoc">🎠 富國大世界</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Teddy+Bear+Museum+Grand+World+Phu+Quoc">🧸 泰迪熊博物館</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Xin+Chao+Seafood+Restaurant+Phu+Quoc">🦐 Xin Chao 海鮮</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Robinson+Pearl+Phu+Quoc">💱 Robinson Pearl 換匯</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Dinh+Cau+Phu+Quoc">⛩ 小龍王廟 Dinh Cậu</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=KingKong+Mart+Phu+Quoc">🛒 金剛超市（最大間）</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Sunset+Sanato+Beach+Club">🌅 Sanato 日落沙灘</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Sonasea+Shopping+Center+Phu+Quoc">🌃 Sonasea 夜市</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Crowne+Plaza+Phu+Quoc+Starbay">🏨 星灣皇冠（今晚）</a>
+        </div>
+        <div class="legdist"><b>全程 73.0 km · 行車約 1 小時 58 分（來回）</b> —— 本行程<b>單日車程最長的一天</b>。<br>
+          飯店 → 大世界僅 10 分；大世界 → 楊東鎮約 35–40 分；<b>Xin Chao（Trần Hưng Đạo）↔ Robinson Pearl（102 Bạch Đằng）↔ 小龍王廟 ↔ 金剛超市 全部在 5 分鐘車程內</b>，這四點幾乎可以用走的；金剛超市 → Sanato 約 25 分；Sanato ↔ Sonasea 僅 5 分；<b>Sonasea → 飯店約 50 分</b>。<b>易暈車者請先備藥。</b><br>
+          ＊加入 Robinson Pearl 只多 0.5 km／1 分鐘，等於順路。</div>
+      </div>
+
+      <div class="block warnblock">
+        <h4>⚠️ 今日注意</h4>
+        <ul>
+          <li><b>今天是伴手禮的主場</b>。D4、D5 都住南端安泰，回楊東單程要 40 分。<b>盡量一次買足</b> —— 後面還有 D5 的 VUI-Fest 海濱夜市（補貨）和 D6 退房後再來一次楊東（最後補完），但別全留到最後。</li>
+          <li><b>換匯在 Robinson Pearl 一次換夠</b>：D4 園內飲料與置物櫃、D4 晚餐、D5 度假村消費與 SPA，都要現金。</li>
+          <li><b>海鮮務必先問價、看秤</b>，以「每公斤」計價，點餐時確認總價再下單。</li>
+          <li>日落約 <b>18:00</b>，Sanato 請待到日落後再離開，這是今天安排的重點。</li>
+          <li>小龍王廟為宗教場所，<b>穿著勿過於暴露</b>，石階濕滑注意小孩。</li>
+          <li>夜市可小幅殺價（約打 7–8 折），超市則是固定價不殺價。</li>
+          <li>明天要換飯店且是水樂園日，<b>今晚先整理好行李，泳衣放外層好拿</b>。</li>
+          <li>路邊攤生食（生菜、冰塊）腸胃敏感者斟酌，隨身備腸胃藥。</li>
+        </ul>
+      </div>
+    </div>
+</details>
+
+<!-- ============ DAY 4 ============ -->
+<details class="card" id="d4" open>
+  <summary class="card-head">
+    <div class="ch-row">
+      <div class="left">
+        <span class="toggle-icon">&#9654;</span>
+        <div><div class="card-title">DAY 4 · 跨海纜車 + 水上樂園 + 兩場海上大秀</div>
+        <div class="card-sub">09/26（六）&nbsp;|&nbsp; 換飯店 → New World · 本行程最精彩的一天</div></div>
+      </div>
+      <span class="badge badge-day">D4</span>
+    </div>
+  </summary>
+    <div class="card-body">
+
+      <div class="block" style="margin-top:0">
+        <h4>🔀 本日已依建議調整</h4>
+        <ul>
+          <li><b>拿掉陸上樂園</b>，水上樂園時間從 1 小時拉長到 <b>4 小時 45 分</b>，才值得跑這一趟。</li>
+          <li><b>Check-in 提前到 15:15</b>：原排「16:00 離開水樂園 → 16:00 入住」是不可能的，從島上回飯店要 45–50 分（走路＋纜車 15 分＋車程 12 分）。現在先回飯店休息、換衣服，再出門看秀。</li>
+          <li><b>日落接上了</b>：9/26 日落約 18:00，安排 16:45 就到親吻橋。</li>
+        </ul>
+      </div>
+
+      <ul class="tl" style="margin-top:14px">
+        <li><div class="t-name">07:00　早餐</div><div class="t-desc">早點吃，今天要趕纜車。</div></li>
+        <li><div class="t-name">07:30　退房，行李上車</div><div class="t-desc">檢查保險箱、充電器、陽台曬的泳衣。<b>泳具放隨身包，行李會整天在車上。</b></div></li>
+        <li><div class="t-name">07:45　出發前往安泰纜車站</div><div class="t-desc">⚠️ <b>55 km、車程 1 小時 15 分</b>，全島最長的一段。從西北端一路開到最南端。</div></li>
+        <li><div class="t-name">09:00　抵達纜車站、換票</div></li>
+        <li><div class="t-name">09:15–09:30　世界最長跨海纜車</div><div class="t-desc">全長 <b>7,899 公尺</b>、單程約 15 分鐘，空中俯瞰珍珠群島。官方票價來回 <b>850,000 VND（優惠 825,000）</b>，<b>已含親吻橋入場 1 次</b>。</div></li>
+        <li><div class="t-name">09:45–14:30　Aquatopia 水上樂園</div><div class="t-desc">富國島最大水上樂園：人造浪、多條滑水道、漂漂河。<br>⚠️ 官方規定：<b>身高 1m–1.3m 兒童須由家長全程陪同</b>。</div></li>
+        <li><div class="t-name">11:30–12:30　島上自助午餐 <span class="badge badge-inc">門票已含</span></div><div class="t-desc">✅ <b>旅行社餐廳表載明「香山水樂園自助餐（門票有包）」，供餐 11:30–14:30</b> —— 不用另外付錢。<br>
+        ⏰ <b>供應時間 11:00／11:30–14:30</b>。V4 特別註明：<b>12:00–13:00 是用餐尖峰、人潮非常多且大排長龍</b>，建議 <b>11:00–11:30 就去</b>，品質也較好。<br>
+        👉 所以本表把午餐<b>提前到 11:30</b>（原排 12:00），避開尖峰、也把下午的水樂園時間拉長。</div></li>
+        <li><div class="t-name">15:30　排隊搭回程纜車 → 約 15:50 回到泰安站 <span class="badge badge-self">V6 定案</span></div><div class="t-desc">V6 把回程時間定在 15:30。<b>避開官方標示的回程尖峰 15:30–17:00 起頭</b>，早一點排隊比較保險。</div></li>
+        <li><div class="t-name">16:05　入住 新世界度假飯店 Pool Villa</div><div class="t-desc">纜車站 → 新世界僅 4.5 km／約 12 分。<b>先洗澡換衣服</b>，晚上還有晚餐與 Kiss of the Sea。<br>
+        🎫 <b>Check-in 時順便跟櫃檯領 Kiss of the Sea 的 9 張贈票／QR</b>，別等到晚上才問。</div></li>
+        <li><div class="t-name">16:45　出發前往地中海日落小鎮</div><div class="t-desc">約 10–12 分鐘。</div></li>
+        <li><div class="t-name">17:00–18:20　Sunset Town + 親吻橋看日落</div><div class="t-desc">歐風造鎮、鐘塔、彩色房屋。親吻橋兩端相距 30 公分不相接，是 Marco Casamonti 的作品。<br>🌅 <b>9/26 日落約 18:00</b>。親吻橋入場開放 07:00–19:00（纜車票、秀票都已含 1 次）。</div></li>
+        <li class="self"><div class="t-name">19:00–20:20　晚餐 RuNam Sunset Town <span class="badge badge-inc">已訂位</span></div><div class="t-desc">✅ <b>V6 定案：已訂位 19:00，9 位（6 大 3 小）</b>。越南餐廳，Sunset Town 內，打烊 22:00。<br>
+        📍 <b>離 Kiss of the Sea 會場只有約 100 公尺、走路 1–2 分鐘</b> —— 吃完慢慢晃過去剛好。<br>
+        ⭐ Google 評價 4.1（1,626 則），是本行程餐廳裡偏低的一家。</div></li>
+        <li><div class="t-name">19:30–20:05　Symphony of the Sea <span class="badge badge-neu" style="background:var(--chip);color:var(--muted)">本次不看</span></div><div class="t-desc">🚫 <b>決定不看這場</b> —— 要另購票（₫660,000／人），且會打斷 19:00 的晚餐。<br>
+        💡 秀在 Sunset Beach 海灘看台，19:30 開始時<b>可以留意南邊天空的高空煙火</b>，在餐廳大概看得到一點。</div></li>
+        <li><div class="t-name">20:20–20:30　走到 Kiss of the Sea 會場</div><div class="t-desc">📍 RuNam → 會場約 <b>100 公尺</b>，走路 1–2 分鐘。<br>
+        🎫 <b>入場券由 New World 訂房贈送</b> —— 記得先在櫃檯領好，或請導遊協助。</div></li>
+        <li><div class="t-name">21:00–21:40　Kiss of the Sea <span class="badge badge-inc">飯店已含</span></div><div class="t-desc">✅ <b>New World 訂房加贈門票，不用另外買。</b>20:30 開放入場。<br>
+        1,000 ㎡ 水幕、8 種科技、60 位國際演員，有劇情（跨時空的愛情故事），<b>21:30 有 7 分鐘專屬煙火</b>。<br>
+        ⭐ Google 評價 4.5（2,833 則）。評論常提到<b>動線擁擠、椅子不好坐</b>，20:30 一開放就進去卡位。</div></li>
+        <li><div class="t-name">22:00　回新世界度假村 <span class="badge badge-self">要搭包車</span></div><div class="t-desc">⚠️ <b>免費接駁車末班 21:30 就從纜車站開走了</b>，而 Kiss of the Sea 約 21:40 才散場 —— <b>回程趕不上接駁車，必須搭旅行社的包車</b>。出發前跟導遊確認好集合點。<br>
+        👶 <b>小小孩撐不住的話</b>，RuNam 吃完（約 20:20）就先回飯店，不用硬撐到 Kiss 散場。</div></li>
+      </ul>
+
+      <div class="block">
+        <h4>🎆 兩場秀差在哪？（官方資料）</h4>
+        <div class="cost cmp" style="margin-top:8px">
+          <table>
+            <tr><th></th><th>Symphony of the Sea</th><th>Kiss of the Sea</th></tr>
+            <tr><td>時間</td><td>19:30–20:05</td><td><b>21:00</b>（21:30 煙火）</td></tr>
+            <tr><td>地點</td><td>Sunset Beach 海灘看台</td><td>Sunset Town 海上舞台</td></tr>
+            <tr><td>型態</td><td>戶外運動秀</td><td>多媒體劇場秀</td></tr>
+            <tr><td>內容</td><td>水上摩托車＋飛行板空中特技、live music、高空煙火。無劇情</td><td>1,000㎡ 水幕、8 種科技、60 位國際演員，有劇情</td></tr>
+            <tr><td>官方票價</td><td>₫660,000（優惠 ₫640,000）</td><td>₫950,000</td></tr>
+            <tr><td>附贈</td><td>親吻橋入場 ×1</td><td>親吻橋入場 ×1（兩張都送，不加倍）</td></tr>
+            <tr><td>一句話</td><td>熱鬧動感，小孩會喜歡</td><td>精緻震撼，這才是「大秀」</td></tr>
+          </table>
+        </div>
+        <p style="font-size:12px;margin:10px 0 0"><b>✅ 本團決定：只看 Kiss of the Sea（New World 訂房已贈票），Symphony 不看。</b><br>
+        兩場秀其實同一時段區、票分開賣。Symphony 19:30 會卡到 19:00 的 RuNam 晚餐，且要另付 ₫660,000／人（9 人約 NT$7,400），CP 值不高 —— 直接跳過。</p>
+      </div>
+
+      <div class="block">
+        <h4>🍽 想看 Symphony 又想吃飽？Dinner Show 票（Day 3 再決定）</h4>
+        <p style="margin:0 0 8px;font-size:12.5px">如果 Day 3 玩下來大家還有體力、也想看 Symphony，Sun World 有一張
+        <b>Dinner Show Ticket ₫971,000／人</b>，內容是：<b>Sun Bavaria GastroPub 晚餐 buffet 18:00–21:00 ＋ 無限暢飲 Sun Kraft 啤酒與果汁 ＋ Symphony of the Sea 19:30–20:05 ＋ 親吻橋入場</b>。
+        比單買 Symphony（₫660,000）多 ₫311,000 就多一頓吃到飽晚餐＋啤酒。</p>
+        <p style="margin:0 0 8px;font-size:12.5px">⚠️ 但<b>要選這張就得取消 RuNam 19:00 的訂位</b>，而且 Sun Bavaria 走到 Kiss 會場約 294 m（4–5 分），RuNam 只要 100 m。<b>Day 3 晚上做決定就好，別提早訂。</b></p>
+        <div class="steps">
+          <div class="step"><b>① 開官方訂票頁</b><br><a target="_blank" rel="noopener" href="https://booking.sunworld.vn/en/ticket-detail/14522270-dinner-show-ticket" style="color:var(--accent);font-weight:700;word-break:break-all">booking.sunworld.vn/en/ticket-detail/14522270-dinner-show-ticket</a></div>
+          <div class="step"><b>② 先 Sign in 註冊／登入</b> —— 沒登入買的票<b>之後不能改期</b>，一定要先辦帳號。</div>
+          <div class="step"><b>③ 日期選 26 Sep 2026</b>（Day 4）。</div>
+          <div class="step"><b>④ Area 選 SUN BAVARIA GASTROPUB</b>（只有這一個選項）。</div>
+          <div class="step"><b>⑤ Time 選 17:00–22:00</b>（只有這一個選項）。</div>
+          <div class="step"><b>⑥ Person 填張數</b> —— <b>身高 100 cm 以上才要買票，未滿 100 cm 免費</b>。9 人若都要票＝₫8,739,000（定價 ₫9,000,000，官網 −3%），約 <b>NT$10,900</b>。</div>
+          <div class="step"><b>⑦ 用國際 Visa 卡付款</b>（官網對 Visa 另有折扣），付完 email 會收到<b>電子票券 QR</b>，現場出示即可。</div>
+        </div>
+        <p style="margin:8px 0 0;font-size:11.5px;color:var(--muted)">⚠️ 退款只退成 Sun Paradise Land App 裡的 <b>e-voucher</b>（不退現金、只能用一次、不可合併、2026/12/31 到期），等於不能退 —— 確定要去才刷。<br>
+        ⚠️ 我無法代為下單（涉及個人資料與付款），請自行操作。</p>
+      </div>
+
+      <div class="meal">
+        <div class="m-k">早餐</div><div>酒店內享用 <span class="badge badge-inc">含</span></div>
+        <div class="m-k">午餐</div><div>香山水樂園自助餐 11:30–14:30 <span class="badge badge-inc">門票已含</span></div>
+        <div class="m-k">晚餐</div><div>RuNam Sunset Town　19:00（已訂位 9 位）<span class="badge badge-self">自理</span></div>
+      </div>
+
+      <div class="hotel">
+        <div class="ico">🏝</div>
+        <div>
+          <div class="h-name">富國島新世界度假飯店<br>New World Phu Quoc Resort</div>
+          <div class="h-meta">房型：Premium Pool Villa ×1 ＋ Extrabed ×1　|　連住 D4–D5 共 2 晚　·　距機場約 25–30 分鐘　·　<b>16:05 入住</b>　·　<b>贈 Kiss of the Sea 門票</b></div>
+        </div>
+      </div>
+
+      <div class="cost">
+        <table>
+          <tr><th>項目</th><th style="text-align:right">預估（每人）</th></tr>
+          <tr><td>Kiss of the Sea 門票<span class="vnd">New World 訂房贈送</span></td><td class="num">NT$0<span class="vnd">原價 ₫950,000</span></td></tr>
+          <tr><td>Symphony of the Sea<span class="vnd">本次不看</span></td><td class="num">—<span class="vnd">省下 ₫660,000／人</span></td></tr>
+          <tr><td>水樂園置物櫃 / 租泳圈毛巾</td><td class="num">NT$130–250<span class="vnd">≈ 100–200k VND</span></td></tr>
+          <tr><td>園內飲料 / 冰品</td><td class="num">NT$100–190<span class="vnd">≈ 80–150k VND</span></td></tr>
+          <tr><td>RuNam 晚餐<span class="vnd">19:00 已訂位</span></td><td class="num">NT$310–560<span class="vnd">≈ 250–450k VND</span></td></tr>
+          <tr class="total"><td>DAY 4 小計</td><td class="num">NT$540–1,000<span class="vnd">若改買 Dinner Show → 每人 +NT$1,215</span></td></tr>
+        </table>
+      </div>
+      <p style="font-size:11.5px;color:var(--muted);margin-top:6px">＊<b>跨海纜車（₫825,000／人）未列入本表</b> —— 它在行程每日標題明列，屬合約 A 表，理應已含。若旅行社回覆不含，本日每人要再加 NT$1,030。<br>
+      ＊<b>Kiss of the Sea 門票由 New World 訂房贈送，不需另購</b>，出發前請旅行社／飯店確認 9 張都有。<br>
+      ＊Symphony 本次不看；若 Day 3 改變主意，見上方 Dinner Show 訂購方式。</p>
+
+      <div class="maps">
+        <h4>🗺 DAY 4 Google Map 路線</h4>
+        <a class="mapbtn" target="_blank" rel="noopener"
+           href="https://www.google.com/maps/dir/Crowne+Plaza+Phu+Quoc+Starbay/Sun+World+Hon+Thom+Cable+Car+Station+An+Thoi/New+World+Phu+Quoc+Resort/Sunset+Town+Phu+Quoc/New+World+Phu+Quoc+Resort/">
+          一鍵開啟本日陸路路線<small>星灣皇冠 → 纜車站 → 新世界（先入住）→ 地中海小鎮 → 新世界</small></a>
+        <div class="pins">
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Crowne+Plaza+Phu+Quoc+Starbay">🏨 星灣皇冠（退房）</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Sun+World+Hon+Thom+Cable+Car+Station+An+Thoi">🚡 跨海纜車站</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Aquatopia+Water+Park+Hon+Thom">🏄 Aquatopia 水樂園</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=New+World+Phu+Quoc+Resort">🏝 新世界（16:05 入住）</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Sunset+Town+Phu+Quoc">🏘 地中海小鎮</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Kiss+Bridge+Sunset+Town+Phu+Quoc">💋 親吻橋 Kiss Bridge</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=RuNam+Sunset+Town+Phu+Quoc">🍽 RuNam（19:00 晚餐）</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Kiss+of+the+Sea+show+Sunset+Town+Phu+Quoc">💋 Kiss of the Sea 會場（21:00）</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Sun+Bavaria+GastroPub+Phu+Quoc">🍺 Sun Bavaria（Dinner Show 選配）</a>
+        </div>
+        <a class="mapbtn" style="margin-top:8px" target="_blank" rel="noopener"
+           href="https://www.google.com/maps/dir/Kiss+Bridge+Sunset+Town+Phu+Quoc/RuNam+Sunset+Town+Phu+Quoc/Kiss+of+the+Sea+show+Sunset+Town+Phu+Quoc/data=!4m2!4m1!3e2">
+          🚶 晚上步行動線<small>親吻橋看日落 → RuNam 晚餐 19:00 → Kiss of the Sea 會場 21:00（步行模式）</small></a>
+        <div class="legdist" style="margin-top:8px"><b>🌃 晚上全程只有 400 公尺、步行 6 分</b>（Google 實測，步行模式）<br>
+          <b>RuNam → Kiss 會場約 100 m（1–2 分）</b>　·　親吻橋 → RuNam 約 300 m（4 分）　·　Sun Bavaria → Kiss 會場約 294 m（4–5 分）<br>
+          ⚠️ Sunset Town 的 Google 步行路網不完整，顯示的「1 分鐘」常常不準，以上為座標直線距離推估。<b>Symphony 本次不看，該點已從清單移除。</b></div>
+        <div class="legdist"><b>陸路全程 63.2 km · 行車約 1 小時 44 分</b><br>
+          ⚠️ <b>Aquatopia 水樂園在香島（Hòn Thơm）上，沒有道路，Google 無法規劃車行路線</b> —— 必須從纜車站搭纜車前往（單程 15 分／7.9 km）。上方水樂園連結只顯示位置。<br>
+          星灣皇冠 → 安泰纜車站 <b>55 km／1 小時 15 分</b>（今日上午最長車程）　·　纜車站 → 新世界 4.5 km／12 分　·　新世界 ↔ 小鎮約 10–12 分。<br>
+          <b>從水樂園回到新世界的完整時間 ≈ 45–50 分</b>（換裝＋走到纜車站＋纜車 15 分＋車程 12 分）—— 15:30 排回程纜車、15:50 回泰安站，<b>16:05 才到得了飯店</b>。</div>
+      </div>
+
+      <div class="block warnblock">
+        <h4>⚠️ 今日注意</h4>
+        <ul>
+          <li><b>今日換飯店</b>：07:30 退房，行李整天在車上。<b>泳衣、防曬、換洗衣物放隨身包。</b></li>
+          <li><b>07:45 一定要出發</b>，晚一步就趕不上纜車第一批。</li>
+          <li>纜車遇<b>強風或雷雨可能停駛</b>，行程順序由導遊視天候調整。</li>
+          <li>水樂園請穿<b>正式泳裝</b>（部分設施禁止棉質衣物下水），孩童需穿救生衣。官方規定 <b>1m–1.3m 兒童須家長全程陪同</b>。</li>
+          <li>手機／相機請用<b>防水袋</b>；貴重物品鎖置物櫃。</li>
+          <li>纜車與樂園間走動距離長，<b>穿好走的鞋 + 一雙拖鞋</b>。</li>
+          <li><b>Kiss of the Sea 票是 New World 訂房贈送的</b> —— 入住時就去櫃檯把 9 張票／QR 領好，別等到晚上。</li>
+          <li>Kiss of the Sea <b>20:30 開放入場、21:00 開演、約 21:40 散場</b>。評論常說動線擠、椅子硬，<b>20:30 一開就進去卡位</b>。</li>
+          <li><b>帶小小孩撐不住的話</b>：RuNam 吃完（約 20:20）就先搭包車回飯店，不勉強看 Kiss。</li>
+          <li>Pool Villa 有私人泳池，<b>小孩絕不可單獨下水</b>，夜間務必關門上鎖。</li>
+        </ul>
+      </div>
+
+      <div class="block okblock" style="background:var(--ok-soft);border-color:var(--ok)">
+        <h4 style="color:var(--ok)">✅ Aquatopia 確認營運中</h4>
+        <p style="margin:0;font-size:12.5px">Sun World 官方營運資訊頁已查到 <b>Aquatopia Water Park</b>，狀態 Open、
+        <b>每日 09:45–16:45</b>；園區 Sun World Hon Thom 每日 <b>09:00–17:00</b>。之前查不到是因為它不是獨立售票品項。</p>
+      </div>
+
+      <p style="margin-top:12px;font-size:13px"><a href="#d4guide" style="color:var(--accent);font-weight:800;text-decoration:none">→ 看 DAY 4 深度攻略（水樂園時刻 · 票種比較 · 身高限制 · 親子避雷）</a></p>
+
+    </div>
+</details>
+
+<!-- ============ DAY 4 攻略 ============ -->
+<details class="card" id="d4guide" open>
+  <summary class="card-head">
+    <div class="ch-row">
+      <div class="left">
+        <span class="toggle-icon">&#9654;</span>
+        <div><div class="card-title">🏄 DAY 4 深度攻略 · Aquatopia 水上樂園</div>
+        <div class="card-sub">開放時刻 · 票種比較 · 身高限制 · 親子避雷</div></div>
+      </div>
+      <span class="badge badge-day">攻略</span>
+    </div>
+  </summary>
+    <div class="card-body">
+
+      <div class="block warnblock" style="margin-top:0">
+        <h4>⏰ 今天最關鍵的四件事</h4>
+        <ul>
+          <li><b>07:45 一定要出發。</b>星灣皇冠 → 安泰纜車站 55 km／1 小時 15 分，是全程最長車程。晚出發就吃到纜車尖峰。</li>
+          <li><b>水樂園 09:45 才開。</b>官方營運時間 <b>09:45–16:45</b>，不是 09:00。09:15 搭纜車、09:30 到島上，剛好接上開園。</li>
+          <li><b>避開纜車尖峰。</b>官方標示尖峰為<b>去程 10:00–11:00、回程 15:30–17:00</b>。我們排 09:15 去、14:45 回，兩頭都避開。</li>
+          <li><b>14:30 一定要離開水池。</b>換裝＋走到纜車站要 15 分鐘，14:45 那班纜車不能錯過，晚了就撞上回程尖峰。</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>🕘 官方營運時刻（Sun World 官方營運資訊頁）</h4>
+        <div class="cost wide">
+          <table>
+            <tr><th>設施</th><th>每日開放</th><th>備註</th></tr>
+            <tr><td><b>Sun World Hon Thom</b> 園區</td><td class="num">09:00 – 17:00</td><td>纜車站在 An Thới（Anh Duong Station）</td></tr>
+            <tr><td><b>Aquatopia 水上樂園</b></td><td class="num">09:45 – 16:45</td><td>比園區晚開 45 分、早關 15 分</td></tr>
+            <tr><td>Mango 餐廳午餐 buffet</td><td class="num">11:00 – 14:30</td><td>兩時段：11:00–12:30 ／ 13:00–14:30</td></tr>
+            <tr><td>跨海纜車</td><td class="num">單程約 15 分</td><td>全長 <b>7,899 公尺</b>，世界最長跨海纜車</td></tr>
+          </table>
+        </div>
+        <p style="font-size:11.5px;color:var(--muted);margin-top:8px">＊官方註記：營運時間可能變動，出發前請至 sunworld.vn/operations 再確認一次。</p>
+      </div>
+
+      <div class="block">
+        <h4>🎟 島上有哪些？別搞混</h4>
+        <ul>
+          <li><b>Aquatopia 水上樂園</b>　滑水道、人造浪、漂漂河 —— 今天的主場。</li>
+          <li><b>Exotica</b>　島上的<b>陸上遊樂設施區</b>（木製雲霄飛車、120m 觀景塔）。V3 行程寫的「Aquatopia 陸上樂園」指的應該就是這裡 —— Aquatopia 本身只有水上區。<b>16:45 關閉</b>，詳見下方選配區塊。</li>
+          <li><b>Mango 餐廳</b>　島上的 buffet 餐廳，官方午餐 buffet 就在這裡（11:00–14:30，兩時段）。<br>
+          ⚠️ V3 寫的「Coconut Garden 自助餐廳」<b>不在 Sun World 香島的官方 POI 清單裡</b>（清單上只有 Sunset Town 的 Coconut Island 與 Coconut Spa），但有旅客資料稱它位在 Exotica Village 內。<b>兩邊對不上，請向旅行社確認位置</b>，這也是確認表 E 表的第 2 題。</li>
+          <li><b>親吻橋 Kiss Bridge</b>　在本島 Sunset Town 這側，不在香島上。纜車票已含入場。</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>💰 票種比較（Sun World 官方訂票，9/26 實查）</h4>
+        <div class="cost cmp">
+          <table>
+            <tr><th>方案</th><th>官方價／人</th><th>包含什麼</th></tr>
+            <tr><td><b>來回纜車</b></td><td>₫825,000<span class="vnd">定價 850,000</span></td><td>來回纜車＋飲料券 1 杯＋親吻橋入場（07:00–17:30 或 20:15–23:00）．當日有效</td></tr>
+            <tr><td>纜車＋午餐 buffet</td><td>₫1,115,000<span class="vnd">定價 1,150,000</span></td><td>上列＋Mango 午餐 buffet</td></tr>
+            <tr><td>兩場秀 Combo</td><td>₫1,165,000<span class="vnd">定價 1,200,000</span></td><td>Symphony 19:30–20:05＋Kiss 21:00</td></tr>
+            <tr class="total"><td><b>Sun Paradise Combo</b><br>👑 最划算</td><td>₫2,475,000<span class="vnd">定價 2,550,000</span></td><td>來回纜車＋<b>Mango 午餐 buffet</b>＋Symphony＋Kiss＋<b>Sun Bavaria 晚餐 buffet 18:00–21:00</b>＋飲料券＋親吻橋．<b>票效 2 天</b></td></tr>
+            <tr><td>Wow Pass（優先證）</td><td>₫300,000</td><td>非門票。Silver＝纜車優先道；Gold 另含餐廳優先座位、Exotica 免排隊、水樂園設施使用、迎賓飲料。限 100cm 以上</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="block okblock" style="background:var(--ok-soft);border-color:var(--ok)">
+        <h4 style="color:var(--ok)">✅ 結論：這一天的票，什麼都不用另外買</h4>
+        <p style="margin:0 0 8px;font-size:12.5px">上面那張票種比較表是<b>「如果全都要自費」的參考價</b>。我們的狀況其實已經被兩邊包掉了：</p>
+        <div class="cost wide">
+          <table>
+            <tr><th>項目</th><th style="text-align:right">誰出</th><th style="text-align:right">自付</th></tr>
+            <tr><td>來回跨海纜車 ₫825,000</td><td>合約 A 表</td><td class="num">₫0</td></tr>
+            <tr><td>Aquatopia 水樂園</td><td>纜車票／園區票已含</td><td class="num">₫0</td></tr>
+            <tr><td>島上午餐 buffet</td><td>合約 A 表</td><td class="num">₫0</td></tr>
+            <tr><td><b>Kiss of the Sea ₫950,000</b></td><td><b>New World 訂房贈送</b></td><td class="num">₫0</td></tr>
+            <tr><td>Symphony of the Sea ₫660,000</td><td>本次不看</td><td class="num">₫0</td></tr>
+            <tr class="total"><td><b>D4 門票自付合計</b></td><td></td><td class="num">₫0</td></tr>
+          </table>
+        </div>
+        <p style="margin-top:8px;font-size:12.5px">👉 所以<b>不要買 Sun Paradise Combo ₫2,475,000，也不要買兩場秀 Combo ₫1,165,000</b> —— 買了就是重複付錢。<br>
+        👉 這一天唯一可能要刷卡的是 <b>Dinner Show（₫971,000／人）</b>，而那是 Day 3 晚上才決定的選配，見 DAY 4 行程卡內的訂購方式。</p>
+        <p style="margin-top:8px;font-size:12.5px;padding-top:8px;border-top:1px dashed var(--line)">
+        ⚠️ <b>出發前一定要確認兩件事</b>：① 旅行社書面回覆纜車＋島上午餐確實含在團費（確認表 A 表）；② New World 確實會給 9 張 Kiss of the Sea 票。<br>
+        兩件任一落空，才回頭看上面的票種比較表。</p>
+      </div>
+
+      <div class="block">
+        <h4>🎢 選配：Exotica 陸上樂園（值得，但要犧牲水樂園時間）</h4>
+        <p style="margin:0 0 8px;font-size:12.5px">島上除了水樂園，還有 <b>Exotica 陸上遊樂區</b>。官方營運資訊頁顯示
+        <b>Exotica Village 與 Exotica 主題公園營業中、16:45 關閉</b>（與水樂園同時）。<br>
+        從 Wow Pass 的說明可反推：Gold 版權益是「Exotica 設施免排隊（無限次）」，代表<b>一般纜車票就能玩</b>，Wow Pass 只是買免排隊。</p>
+        <div class="cost wide">
+          <table>
+            <tr><th>設施</th><th>內容</th><th>適合誰</th></tr>
+            <tr><td><b>Mắt Đại Bàng<br>Eagle Eye</b></td><td>120 公尺 360° 觀景塔，一輪約 70 人。可俯瞰整個安泰群島</td><td><b>全家</b><span class="vnd">👍 最推薦</span></td></tr>
+            <tr><td><b>Mộc Xà Thịnh Nộ<br>Roaring Timbers</b></td><td>越南<b>唯一</b>木製雲霄飛車，時速約 80 km/h</td><td>大人<span class="vnd">小孩多半身高不足</span></td></tr>
+            <tr><td>Cơn Lốc Xoáy 龍捲風</td><td>高速旋轉設施</td><td>大人／大童</td></tr>
+            <tr><td>Exotica 村落</td><td>叢林風格建築，拍照點</td><td>全家</td></tr>
+          </table>
+        </div>
+        <p style="font-size:11.5px;color:var(--muted);margin-top:8px">＊設施名稱與內容來自旅客資料，非 Sun World 官方頁面（官方已移除香島遊樂介紹頁）。
+        另有來源指園區<b>尚未完工、目前僅 3 項刺激設施</b>。官方 POI 資料未填這兩項設施的營業時段，<b>無法從官方確認現況</b>，請以現場為準。</p>
+      </div>
+
+      <div class="block okblock" style="background:var(--ok-soft);border-color:var(--ok)">
+        <h4 style="color:var(--ok)">👉 建議：只加 Eagle Eye 觀景塔，其他跳過</h4>
+        <p style="margin:0 0 8px;font-size:12.5px">理由：<b>不用換裝</b>（泳裝外套件衣服就行）、<b>全家可一起</b>、20–30 分鐘結束，
+        而且從 120 公尺往下看能一眼看懂整個安泰群島的地形，這是纜車上看不到的角度。<br>
+        木製雲霄飛車要換下泳裝、玩完再換回來，動線很差，小孩也多半玩不了。</p>
+        <div class="cost wide">
+          <table>
+            <tr><th>時間</th><th>調整後的安排</th></tr>
+            <tr><td>12:00–13:00</td><td>Mango 餐廳午餐（不變）</td></tr>
+            <tr class="total"><td><b>13:00–13:40</b></td><td><b>Eagle Eye 觀景塔 ＋ Exotica 村拍照</b></td></tr>
+            <tr><td>13:40–14:30</td><td>回水樂園最後一輪</td></tr>
+            <tr><td>14:45</td><td>搭纜車回本島（不變）</td></tr>
+          </table>
+        </div>
+        <p style="margin-top:8px;font-size:12.5px"><b>代價：水樂園少 40 分鐘。</b><br>
+        另一個選項：<b>大人輪流</b>去玩 Roaring Timbers，小孩留在水樂園（須留大人陪同）。越南只有這一座木製雲霄飛車，對大人有獨特性。</p>
+      </div>
+
+      <div class="block warnblock">
+        <h4>📏 身高與年齡限制</h4>
+        <ul>
+          <li><b>未滿 100 cm</b>　纜車與秀票<b>免費</b>；水樂園多數滑水道<b>不可搭乘</b>，只能玩兒童戲水區。</li>
+          <li><b>100–130 cm</b>　官方規定<b>須由家長全程陪同</b>入水，且高強度滑水道通常禁止。</li>
+          <li><b>Wow Pass</b> 限身高 <b>100 cm 以上</b>才能購買。</li>
+          <li>大型滑水道多半有<b>身高與體重雙重限制</b>，各設施入口都有告示牌，<b>以現場為準</b>。</li>
+          <li>孩童一律穿<b>救生衣</b>（園區免費提供），大人也建議在造浪池穿。</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>🎒 水樂園必帶清單</h4>
+        <ul>
+          <li><b>正式泳裝</b>　部分設施<b>禁止棉質衣物下水</b>，T 恤短褲會被擋。</li>
+          <li><b>防水袋 / 防水手機殼</b>　園內走動全程濕滑，手機沒有防水等於報廢。</li>
+          <li><b>拖鞋 ＋ 一雙好走的鞋</b>　纜車站到樂園、樂園內部都要走一段。</li>
+          <li><b>防曬（防水型）</b>　9 月紫外線仍強，中午要補擦。</li>
+          <li><b>大浴巾 ×2／人</b>　園區毛巾可能要租，自備比較省。</li>
+          <li><b>換洗衣物、塑膠袋</b>　濕泳衣要裝，下午還要 check-in New World、吃晚餐、看 Kiss of the Sea。</li>
+          <li><b>零錢／小鈔</b>　置物櫃、飲料、冰品用得到；園內禁帶外食外飲。</li>
+        </ul>
+      </div>
+
+      <div class="block warnblock">
+        <h4>🧒 親子避雷清單</h4>
+        <ul>
+          <li><b>先去人少的區、最後玩造浪池。</b>造浪池是全園人最多的地方，早上剛開園時最空。</li>
+          <li><b>約定集合點。</b>園區大、人多、大家又都穿泳裝很難認人。指定一個顯眼的固定點，每小時集合一次。</li>
+          <li><b>置物櫃只租一個大的。</b>9 個人分租很浪費，貴重物品集中放，指定一個人保管鑰匙。</li>
+          <li><b>午餐時段選 13:00–14:30 那一場。</b>11:00–12:30 那場人擠、而且會打斷玩水的黃金時段。</li>
+          <li><b>14:30 準時收工。</b>換裝＋走到纜車站要 15 分鐘，錯過 14:45 那班就撞上 15:30–17:00 的回程尖峰，可能排隊 40 分鐘以上。</li>
+          <li><b>雷雨會停開。</b>9 月午後常雷陣雨，水上設施與纜車都可能暫停。行程順序由導遊視天候調整，別排死。</li>
+          <li><b>小孩體力。</b>玩水非常耗體力，晚上 19:00 還有晚餐、21:00 還有 Kiss of the Sea（約 21:40 散場）。<b>16:05 回飯店後一定要讓小孩睡一下</b>，否則撐不到散場。</li>
+        </ul>
+      </div>
+
+      <div class="block warnblock">
+        <h4>❗ 唯一還沒確認的事</h4>
+        <p style="margin:0;font-size:12.5px">Sun World 官方訂票系統的 11 項商品裡，<b>沒有任何一項是單獨賣 Aquatopia 入場的</b>。
+        最可能是<b>纜車票即島上入場票、水樂園含在內</b>（Wow Pass 的說明把「水樂園設施使用」列為 Gold 的附加權益，暗示一般票也能進水樂園），
+        但官方票券說明沒有明寫。<br>
+        👉 請旅行社確認<b>水樂園入場是否含在纜車票內</b>，或現場到售票口再確認一次。客服 <b>1800 1000</b>。</p>
+      </div>
+
+      <div class="maps">
+        <h4>🔗 官方連結</h4>
+        <div class="pins">
+          <a target="_blank" rel="noopener" href="https://sunworld.vn/en/operations">🕘 Sun World 營運時間查詢</a>
+          <a target="_blank" rel="noopener" href="https://booking.sunworld.vn/en/catalog?land=SunParadiseLandPhuQuoc&amp;park=HTI">🎟 香島官方訂票（11 項商品）</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Aquatopia+Water+Park+Hon+Thom">🏄 Aquatopia 位置</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Sun+World+Hon+Thom+Cable+Car+Station+An+Thoi">🚡 安泰纜車站</a>
+        </div>
+        <div class="legdist">資料查證於 2026/09/05，來源為 Sun World 官方營運資訊頁與官方訂票系統。<b>營運時間與票價可能變動，出發前請再確認。</b></div>
+      </div>
+
+    </div>
+</details>
+
+<!-- ============ DAY 5 ============ -->
+<details class="card" id="d5" open>
+  <summary class="card-head">
+    <div class="ch-row">
+      <div class="left">
+        <span class="toggle-icon">&#9654;</span>
+        <div><div class="card-title">DAY 5 · 全日度假村自由活動</div>
+        <div class="card-sub">09/27（日）&nbsp;|&nbsp; 無派車、無導遊　睡到自然醒 · 晚上按摩</div></div>
+      </div>
+      <span class="badge badge-day">D5</span>
+    </div>
+  </summary>
+    <div class="card-body">
+      <div class="block warnblock" style="margin-top:0">
+        <h4>⚠️ 重要</h4>
+        <ul>
+          <li><b>本日為全天自由活動，無派車、無導遊</b>，合約也載明 DAY 5 無導遊。</li>
+          <li>飯店活動（SPA、兒童俱樂部、水上活動）請於<b>渡假村現場預訂</b>，費用自理。</li>
+          <li>外出可自由叫<b>飯店接駁車或 Grab</b>，出發前先向櫃檯確認班次與回程時間。</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>🔀 本日已依建議調整</h4>
+        <p style="margin:0 0 6px;font-size:12.5px"><b>今天留在甘海灘一帶，不要跑楊東鎮採買。</b></p>
+        <ul>
+          <li><b>V3 的午餐 Cơm Thố Tay Cầm 保留了</b> —— 它就在新世界隔壁（走路 5 分鐘），不需要車。</li>
+          <li><b>刪掉的是傍晚往楊東鎮的採買行程。</b>全島最大間金剛超市在楊東鎮，離新世界 30 km、<b>單程約 45 分</b>；今天沒有派車，9 個人來回要叫 6 趟 Grab、耗掉 1.5 小時純車程。伴手禮已在 D3 於同一間超市買齊。</li>
+          <li>連玩三天（動物園、樂園、水樂園），<b>今天讓大人小孩都真正休息一天</b>，明天才有體力搭 5 小時的飛機。</li>
+        </ul>
+      </div>
+
+      <ul class="tl" style="margin-top:14px">
+        <li><div class="t-name">睡到自然醒 → 五星級早餐 <span class="badge badge-inc">含</span></div></li>
+        <li><div class="t-name">上午　全島知名大型泳池 / 私人海灘（甘海灘 Bãi Khem）</div><div class="t-desc">9 月午後常有雷陣雨，<b>水上活動盡量安排上午</b>。</div></li>
+        <li class="self"><div class="t-name">兒童俱樂部 Kids Club（多數免費）</div><div class="t-desc">親子放電首選，可讓大人休息一下。</div></li>
+        <li class="self"><div class="t-name">13:00–14:15　午餐 Cơm Thố Tay Cầm（走路 5 分鐘）<span class="badge badge-inc">已訂位</span></div><div class="t-desc">✅ <b>已訂位 13:00，9 位（6 大 3 小）</b>。<br>
+        Shophouse R171, Bãi Khem —— <b>就在新世界旁邊，距離約 220 公尺</b>，走過去 4–5 分鐘。<br>
+        Google 評價 <b>4.7 分 / 564 則</b>，人均 ₫100,000–700,000，營業到 22:00。海鮮＋燒烤，砂鍋飯是招牌。<br>
+        💡 評論一致建議<b>坐室外</b>（室內油煙較重）；炸春卷、椰皇被點名必點。9 人建議先訂位：<b>+84 932 993 771</b>。<br>
+        其他選擇：度假村內餐廳（價格約外面的 2–3 倍），或 Grab 10 分鐘到地中海小鎮。</div></li>
+        <li><div class="t-name">14:15–15:40　回飯店休息</div><div class="t-desc">泳池、Kids Club，或回房小睡。</div></li>
+        <li><div class="t-name">15:50　搭免費接駁車出發 <span class="badge badge-inc">V6 定案</span></div><div class="t-desc">🚌 New World 門口上車 → <b>約 16:10 抵達日落小鎮</b>。<br>
+        <b>今天用接駁車就夠，不用叫 Grab</b>（9 人本來要叫 3 台、來回 6 趟，約省 NT$750–1,125）。<br>
+        ⚠️ <b>接駁車時刻表上沒有 15:50 這班</b>（New World 發車是 13:40／14:40／<b>16:40</b>）—— 請跟櫃檯或導遊確認是另外派車，還是搭 16:40 那班。</div></li>
+        <li class="self"><div class="t-name">16:10–17:30　地中海小鎮逛街 ＋ VUI-Fest 夜市前段</div><div class="t-desc">威尼斯街區、鐘塔、彩色房屋。<br>
+        🌊 <b>VUI-Fest 海濱夜市 16:00 就開了</b> —— 先逛一輪、把伴手禮買掉（門口就有高級超市 Vietnam Select），晚上才不用趕。</div></li>
+        <li class="self"><div class="t-name">17:30–18:20　親吻橋看日落</div><div class="t-desc">🌅 <b>9/27 日落 17:57</b>。全家一起看，這段不要排別的。</div></li>
+        <li class="self"><div class="t-name">18:20–19:40　晚餐 VUI-Fest Bazaar 海濱夜市（逛街吃攤販）<span class="badge badge-self">自理</span></div><div class="t-desc">🍢 <b>晚餐就在夜市邊逛邊吃攤販，不用訂位</b>。從親吻橋走回夜市約 12 分。<br>
+        烤海鮮、越南法國麵包 Bánh mì、炒冰、椰子水都在這條海濱道路上；<b>18:30 起有街頭表演</b>，剛好邊吃邊看。<br>
+        💡 9 人一起找座位不容易，<b>建議 1–2 位大人先佔桌、其他人分頭買</b>；攤販多收現金，備好 10k／20k／50k 小鈔。<br>
+        ⏰ <b>19:40 離開夜市</b> —— SOLANA 就在夜市旁（180 m，走路 3 分）。</div></li>
+        <li><div class="t-name">19:40–19:45　夜市 → SOLANA Spa</div><div class="t-desc">🚶 <b>180 公尺、走路 3 分鐘</b>。比原本從 Yushima 過去（1.3 km／20 分）輕鬆很多。</div></li>
+        <li class="self"><div class="t-name">19:50–21:20　按摩 SPA（90 分） <span class="badge badge-inc">改晚上</span></div><div class="t-desc">💆 <b>SOLANA Spa</b>　A103 Amafi，Sunset Town　·　⭐4.8（106）<br>
+        ✅ <b>週日 09:00–23:00</b>（Google 實查），<b>90 分鐘全身油壓 ₫500,000–600,000（NT$625–750）</b>，是小鎮 6 家裡 90 分療程最便宜、家庭客評價最好的一家。<br>
+        📞 訂位 <b>+84 866 565 628</b>　·　<b>9 人務必前一晚請 New World 櫃檯代訂</b>（多數店只有 4–6 張床，可能要分兩批）。<br>
+        💡 <b>排在最後一個行程的理由</b>：按完直接搭車回房睡覺，不用再頂著一身油走行程；而且明天 10:00 才退房，可以晚點睡。<br>
+        👶 小孩不按的話，讓一位大人帶去旁邊的夜市（走路 3 分）或先回飯店（接駁車 20:10／20:40／21:10 都有班次）。
+        <a href="#spa" style="color:var(--accent);font-weight:800;text-decoration:none">→ 看按摩店比較</a></div></li>
+        <li><div class="t-name">21:25　走到 VUI-Fest 站 → 21:40 末班接駁車</div><div class="t-desc">🚌 <b>SOLANA → VUI-Fest 站只有約 180 公尺、走路 3 分鐘</b>（就在夜市旁）。<b>末班 21:40 發車、21:50 到 New World</b>。<br>
+        ⚠️ <b>這是末班車，21:35 一定要到站牌。</b>萬一按摩延遲，直接叫 Grab（小鎮→New World 約 10–12 分，3 台車合計約 ₫150,000–250,000，NT$190–310）。</div></li>
+        <li><div class="t-name">睡前　整理行李</div><div class="t-desc">明天退房後就直接南北跑，行李先打包好。</div></li>
+      </ul>
+
+      <div class="block">
+        <h4>🌊 VUI-Fest Bazaar 海濱夜市 <span class="badge badge-self">今天逛兩次</span></h4>
+        <p style="margin:0 0 6px;font-size:12.5px"><b>越南第一座海濱夜市</b>，就在 Sunset Town，緊鄰親吻橋與纜車站。<b>營業 16:00–24:00，免費入場</b>，40–100 個攤位沿海濱道路排開。</p>
+        <ul>
+          <li>🛒 <b>大門口就有高級超市「Vietnam Select」</b> —— 伴手禮可以在這裡補，不用跑楊東鎮。</li>
+          <li>🎵 <b>街頭表演與快閃音樂秀</b>（Loảng Xoảng Show 等）：<b>每日約 18:30–22:00 不定期演出</b>。</li>
+          <li>💡 攤販多可掃 QR，但備點現金比較方便。</li>
+          <li>📍 本日逛兩段：<b>16:10–17:30 先逛＋買伴手禮</b>；看完日落 <b>18:20–19:40 回來吃攤販當晚餐</b>，剛好碰上 18:30 開始的街頭表演。想把表演看完的人，見下方方案 B。</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>💆 按摩時段：三個方案，挑一個</h4>
+        <div class="cost wide">
+          <table>
+            <tr><th>方案</th><th>時段／店家</th><th style="text-align:right">每人</th></tr>
+            <tr class="total"><td><b>A 晚上</b><br>👑 建議</td><td><b>19:50–21:20（90 分）</b><br><b>SOLANA Spa</b>　週日 09:00–23:00<br>就在夜市旁（走路 3 分），按完直接搭 21:40 末班車回房</td><td class="num">₫500–600k<span class="vnd">NT$625–750</span></td></tr>
+            <tr><td><b>B 深夜</b><span class="vnd">想看街頭表演選這個</span></td><td><b>21:15–22:15（60 分）</b><br><b>Hanz Sunset Spa</b>　每日 09:00–23:30<br>夜市與 18:30–22:00 的表演完整保留，<b>回程改叫 Grab</b></td><td class="num">₫580k<span class="vnd">NT$725．官網價</span></td></tr>
+            <tr><td><b>C 傍晚</b><span class="vnd">會犧牲全家一起看日落</span></td><td><b>17:00–18:30（90 分）</b><br><b>Hanz Sunset Spa</b><br>窗外直接看到親吻橋日落，老闆夫妻會說中文</td><td class="num">₫780k<span class="vnd">NT$975．官網價</span></td></tr>
+          </table>
+        </div>
+        <p style="margin-top:8px;font-size:12.5px">👉 <b>選 A 的理由</b>：便宜（90 分最低價）、不卡日落、不卡晚餐，店就在夜市旁，按完走 3 分鐘上車回房睡覺。晚餐就在夜市吃，走過來只要 3 分；缺點是 19:40 就得離開，只看得到街頭表演的前段。<br>
+        👉 <b>選 B 的理由</b>：夜市、表演、按摩全都要。缺點是 22:15 才結束、要自己叫 Grab，<b>小孩不適合</b>。<br>
+        👉 <b>選 C 的理由</b>：一邊按摩一邊看日落是很特別的體驗。缺點是最貴，而且全家不能一起在親吻橋看日落。</p>
+        <p style="margin-top:8px;font-size:11.5px;color:var(--muted)">＊三家的營業時間與 Hanz 的價格皆為 <b>2026/09 官方資料實查</b>（Hanz 為官網 hanzsunsetspa.com 價目表；SOLANA 為 Google 商家頁）。<br>
+        ＊Hanz 官網的 <b>20% 折扣只限 10:00–14:00 且須透過官網預約</b>，晚上時段沒有這個折扣。<br>
+        ＊三家都在日落小鎮，彼此走路 5 分鐘內。<a href="#spa" style="color:var(--accent);font-weight:800;text-decoration:none">→ 看 13 家完整比較</a></p>
+      </div>
+
+      <div class="block okblock" style="background:var(--ok-soft);border-color:var(--ok)">
+        <h4 style="color:var(--ok)">🚌 New World 免費接駁車時刻表</h4>
+        <p style="margin:0 0 8px;font-size:12.5px">路線 4 站：<b>甘海灘巴士站 → New World → VUI-Fest Bazaar → Sun World 纜車站</b>。住客免費。</p>
+        <div class="cost wide">
+          <table>
+            <tr><th>去程<span class="vnd">New World 發車</span></th><th>VUI-Fest</th><th>纜車站</th><th>回程<span class="vnd">纜車站 發車</span></th><th>VUI-Fest</th><th>New World</th></tr>
+            <tr><td>08:40</td><td>—</td><td>09:00</td><td>09:00</td><td>—</td><td>09:15</td></tr>
+            <tr><td>09:40</td><td>—</td><td>10:00</td><td>10:00</td><td>—</td><td>10:15</td></tr>
+            <tr><td>10:40</td><td>—</td><td>11:00</td><td>11:00</td><td>—</td><td>11:15</td></tr>
+            <tr><td>11:40</td><td>—</td><td>12:00</td><td>12:00</td><td>—</td><td>12:15</td></tr>
+            <tr><td>13:40</td><td>—</td><td>14:00</td><td>14:00</td><td>—</td><td>14:15</td></tr>
+            <tr><td>14:40</td><td>—</td><td>15:00</td><td>15:00</td><td>—</td><td>15:15</td></tr>
+            <tr class="total"><td><b>16:40</b><span class="vnd">V6 寫 15:50，表上沒有；沒加開就搭這班</span></td><td>—</td><td><b>17:00</b></td><td>17:00</td><td>—</td><td>17:15</td></tr>
+            <tr><td>17:40</td><td>17:50</td><td>18:00</td><td>18:00</td><td>18:10</td><td>18:20</td></tr>
+            <tr><td>18:10</td><td>18:20</td><td>18:30</td><td>18:30</td><td>18:40</td><td>18:50</td></tr>
+            <tr><td>18:40</td><td>18:50</td><td>19:00</td><td>19:00</td><td>19:10</td><td>19:20</td></tr>
+            <tr><td>19:10</td><td>19:20</td><td>19:30</td><td>19:30</td><td>19:40</td><td>19:50</td></tr>
+            <tr><td>19:40</td><td>19:50</td><td>20:00</td><td>20:00</td><td>20:10</td><td>20:20</td></tr>
+            <tr><td>20:10</td><td>20:20</td><td>20:30 <span class="vnd">原表誤植 22:30</span></td><td>20:30</td><td>20:40</td><td>20:50</td></tr>
+            <tr><td>20:40</td><td>20:50</td><td>21:00</td><td>21:00</td><td>21:10</td><td>21:20</td></tr>
+            <tr class="total"><td>21:10</td><td>21:20</td><td>21:30</td><td><b>21:30 末班</b></td><td><b>21:40 末班</b></td><td><b>21:50</b></td></tr>
+          </table>
+        </div>
+        <ul style="margin-top:10px">
+          <li><b>VUI-Fest 站只有 17:40 以後的班次才停</b>（回程 18:10 以後）。下午班次是 New World 直達纜車站。</li>
+          <li><b>12:00–13:40 停開</b>（午休），排行程要避開。</li>
+          <li><b>9 人請提早 10 分鐘到站牌</b>。傍晚往小鎮的班次最擠，必要時請櫃檯協助。</li>
+          <li>時刻表以現場／櫃檯公告為準，出發前請再確認一次。</li>
+        </ul>
+      </div>
+
+      <div class="meal">
+        <div class="m-k">早餐</div><div>酒店內享用 <span class="badge badge-inc">含</span></div>
+        <div class="m-k">午餐</div><div>Cơm Thố Tay Cầm（走路 5 分）<span class="badge badge-self">自理</span></div>
+        <div class="m-k">晚餐</div><div>VUI-Fest 海濱夜市（逛街吃攤販）<span class="badge badge-self">自理</span></div>
+      </div>
+
+      <div class="hotel">
+        <div class="ico">🏝</div>
+        <div>
+          <div class="h-name">富國島新世界度假飯店<br>New World Phu Quoc Resort</div>
+          <div class="h-meta">房型：Premium Pool Villa ×1 ＋ Extrabed ×1（同 D4，不需換房）</div>
+        </div>
+      </div>
+
+      <div class="cost">
+        <table>
+          <tr><th>項目</th><th style="text-align:right">預估（每人）</th></tr>
+          <tr><td>渡假村午餐（村內餐廳偏貴）</td><td class="num">NT$380–630<span class="vnd">≈ 300–500k VND</span></td></tr>
+          <tr><td>晚餐（VUI-Fest 夜市攤販）<span class="vnd">估計值，依點的量而定</span></td><td class="num">NT$190–380<span class="vnd">≈ 150–300k VND</span></td></tr>
+          <tr><td>泳池畔飲料 / 下午茶</td><td class="num">NT$190–380<span class="vnd">≈ 150–300k VND</span></td></tr>
+          <tr><td>按摩 SPA（自費，選）<span class="vnd">方案 A 90 分 SOLANA；度假村內約 2–3 倍</span></td><td class="num">NT$625–975<span class="vnd">₫500–780k（依方案 A／B／C）</span></td></tr>
+          <tr class="total"><td>DAY 5 小計</td><td class="num">NT$750–1,420<span class="vnd">不含 SPA</span></td></tr>
+        </table>
+      </div>
+
+      <div class="maps">
+        <h4>🗺 DAY 5 Google Map 路線（自由活動建議）</h4>
+        <a class="mapbtn" target="_blank" rel="noopener"
+           href="https://www.google.com/maps/dir/New+World+Phu+Quoc+Resort/Com+Tho+Tay+Cam+Seafood+Meat+BBQ+Restaurant+Phu+Quoc/New+World+Phu+Quoc+Resort/Sunset+Town+Phu+Quoc/New+World+Phu+Quoc+Resort/">
+          一鍵開啟本日建議路線<small>新世界 → 午餐 Cơm Thố（走路 5 分）→ 新世界 → 地中海小鎮 → 新世界</small></a>
+        <a class="mapbtn" style="margin-top:8px" target="_blank" rel="noopener"
+           href="https://www.google.com/maps/dir/Cho+Dem+Vui-Fest+Bazaar+Sunset+Town+Phu+Quoc/Kiss+Bridge+Sunset+Town+Phu+Quoc/Cho+Dem+Vui-Fest+Bazaar+Sunset+Town+Phu+Quoc/SOLANA+Spa+Sunset+Town+Phu+Quoc/Cho+Dem+Vui-Fest+Bazaar+Sunset+Town+Phu+Quoc/data=!4m2!4m1!3e2">
+          🚶 小鎮內步行動線<small>夜市 16:10 → 親吻橋日落 17:30 → 回夜市吃攤販 18:20 → SOLANA 按摩 19:50 → 回夜市站搭 21:40 末班車（步行模式）</small></a>
+        <div class="legdist" style="margin-top:8px"><b>🚶 小鎮內步行約 30 分</b>（分段估算，步行模式）<br>
+          夜市 → 親吻橋 約 12 分　·　親吻橋 → 夜市 約 12 分　·　夜市 → SOLANA 180 m／3 分　·　SOLANA → 夜市站 180 m／3 分<br>
+          ✅ 晚餐改在夜市後，<b>整晚都在小鎮北側活動</b>，不用再走到南端。</div>
+        <div class="pins">
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=New+World+Phu+Quoc+Resort">🏝 新世界（今晚）</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Com+Tho+Tay+Cam+Seafood+Meat+BBQ+Restaurant+Phu+Quoc">🍲 Cơm Thố Tay Cầm（走路 5 分）</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Cho+Dem+Vui-Fest+Bazaar+Sunset+Town+Phu+Quoc">🌊 VUI-Fest 海濱夜市</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Vietnam+Select+Supermarket+Sunset+Town+Phu+Quoc">🛒 Vietnam Select 超市</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=SOLANA+Spa+Sunset+Town+Phu+Quoc">💆 SOLANA Spa（19:45）</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Bai+Khem+Beach+Phu+Quoc">🏖 甘海灘 Bãi Khem</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Sunset+Town+Phu+Quoc">🏘 地中海小鎮</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=An+Thoi+Market+Phu+Quoc">🍲 安泰市場</a>
+        </div>
+        <div class="legdist"><b>車行全程 9.5 km · 約 28 分（含午餐來回）</b><br>
+          今日<b>無派車、無導遊</b> —— 但 <b>New World 有免費接駁車直達日落小鎮與纜車站</b>（V6 定案 <b>15:50 出發</b>、回程搭 <b>21:40 末班</b>→21:50 到），<b>整天不用叫 Grab</b>。時刻表見上方。<br>
+          <b>Cơm Thố Tay Cầm 距新世界僅約 220 公尺，走路 4–5 分鐘，不需要車。</b>度假村 → 地中海小鎮約 10–12 分、→ 安泰市場約 12 分，甘海灘就在度假村門口。<br>
+          ⚠️ <b>不建議今天跑楊東鎮金剛超市</b> —— 單程 30 km／45 分，9 人來回要叫 6 趟 Grab。伴手禮 D3 已買齊。</div>
+      </div>
+
+      <div class="block warnblock">
+        <h4>⚠️ 今日注意</h4>
+        <ul>
+          <li>度假村內消費普遍是外面的 2–3 倍，<b>搭免費接駁車到地中海小鎮吃</b>比較划算（20 分鐘，免費）。</li>
+          <li>villa 私人泳池<b>無救生員</b>，孩童全程需有大人在旁。</li>
+          <li>9 月午後常有雷陣雨，<b>水上活動建議安排在上午</b>。</li>
+          <li>今天沒有導遊，<b>存好飯店中文／英文地址與電話</b>再外出。<b>優先搭免費接駁車</b>；錯過班次再用 Grab（先在 WiFi 下叫好車）。</li>
+          <li><b>按摩 19:50 那場請 D4 晚上就請櫃檯代訂</b>（9 人多半要分兩批）。按完 21:20，<b>21:35 前一定要到 VUI-Fest 站搭 21:40 末班車</b>（走路只要 3 分），否則只能叫 Grab。</li>
+          <li><b>晚餐在夜市吃攤販</b>：多數只收現金，備好小鈔；<b>19:40 前離開夜市</b>，走 3 分鐘到 SOLANA 趕 19:50 的按摩。</li>
+          <li>今晚是最後一晚，<b>睡前把行李整理好</b>，明天要趕飛機。</li>
+        </ul>
+      </div>
+    </div>
+</details>
+
+<!-- ============ DAY 6 ============ -->
+<details class="card" id="d6" open>
+  <summary class="card-head">
+    <div class="ch-row">
+      <div class="left">
+        <span class="toggle-icon">&#9654;</span>
+        <div><div class="card-title">DAY 6 · 退房 → 楊東鎮採買 → 機場 → 甜蜜的家</div>
+        <div class="card-sub">09/28（一）&nbsp;|&nbsp; 包車陪同購物 · JX706 17:55 起飛</div></div>
+      </div>
+      <span class="badge badge-day">D6</span>
+    </div>
+  </summary>
+    <div class="card-body">
+
+      <div class="block okblock" style="margin-top:0;background:var(--ok-soft);border-color:var(--ok)">
+        <h4 style="color:var(--ok)">✅ 本日已改為 V4 版（包車陪同購物）</h4>
+        <p style="margin:0;font-size:12.5px">因為<b>有包車全程陪同</b>，行李留在車上、不用叫 Grab，V4 的楊東鎮採買行程完全可行，而且時間很寬鬆。<br>
+        關鍵：<b>午餐、金剛超市、博物館三個點都在 Trần Hưng Đạo 同一條街上</b>（門牌 129 → 141A → 149），前後不到 400 公尺，<b>司機停一次車就能走完三站</b>。</p>
+      </div>
+
+      <ul class="tl" style="margin-top:14px">
+        <li><div class="t-name">08:00　飯店早餐 <span class="badge badge-inc">含</span></div></li>
+        <li><div class="t-name">08:30–09:45　最後泳池／海灘時間</div><div class="t-desc">泳衣最後一次下水，回房沖洗、晾乾再收。<b>今天 10:00 就要退房，時間比原本緊。</b></div></li>
+        <li><div class="t-name">10:00　退房，行李上車 <span class="badge badge-self">V6 提前</span></div><div class="t-desc">檢查：<b>保險箱、充電器、護照、陽台泳衣</b>。<br>
+        ⚠️ <b>行李會整天在車上</b>，護照、充電器、外套、常備藥先拿出來放隨身包。</div></li>
+        <li><div class="t-name">11:00　出發前往楊東鎮</div><div class="t-desc">New World → The Home Pizza <b>24.4 km／車程 40 分</b>。<br>
+        💡 退房後到出發有 1 小時，可在大廳或泳池畔休息。</div></li>
+        <li class="self"><div class="t-name">12:00–13:00　午餐 The Home Pizza Phu Quoc <span class="badge badge-inc">已訂位</span></div><div class="t-desc">✅ <b>已訂位 12:00，9 位（6 大 3 小）</b>。129 Trần Hưng Đạo，吃完走 2 分鐘就到金剛超市。<br>
+        🍽 其他備選：Xóm Mới Garden Phú Quốc、MEO Kitchen。</div></li>
+        <li class="self"><div class="t-name">13:05–14:00　金剛超市 KingKong Mart <span class="badge badge-self">最後採買</span></div><div class="t-desc">141A Trần Hưng Đạo，<b>全島最大間</b>，營業 08:00–22:00。<br>D3 沒買齊的在這裡補完。<b>魚露、風油精等液體記得留給托運</b>。</div></li>
+        <li class="self"><div class="t-name">14:05–15:00　Coi Nguon 私人收藏博物館 <span class="badge badge-self">可砍</span></div><div class="t-desc">149 Trần Hưng Đạo，再走 3 分鐘。9/28 週一 <b>07:00 開門</b>（打烊時間建議先電話確認 +84 297 3980 206）。<br>
+        ⚠️ Google 評價僅 <b>3.8 分／563 則</b>，是本行程評價最低的景點，小孩可能覺得悶。<b>想早點到機場就砍這站</b>，超市多逛一會兒即可。</div></li>
+        <li><div class="t-name">15:15　上車前往富國國際機場</div><div class="t-desc">Coi Nguon → 機場 <b>7.3 km／車程 14 分</b>。<br>
+        💡 V4 排了整整一小時車程（15:00–16:00），實際只要 14 分鐘 —— <b>多出 45 分鐘緩衝</b>，可視狀況在楊東多留半小時。</div></li>
+        <li><div class="t-name">15:30　抵達機場</div><div class="t-desc">距起飛還有 <b>2 小時 25 分</b>。</div></li>
+        <li><div class="t-name">15:30–16:40　辦理登機、託運、出境</div><div class="t-desc">魚露、風油精等液體<b>一律托運</b>，並用夾鏈袋包好防漏。</div></li>
+        <li class="self"><div class="t-name">16:40–17:20　機場免稅店</div><div class="t-desc">把剩下的越南盾在這裡花掉，回台換回台幣很不划算。</div></li>
+        <li><div class="t-name">17:55 → 22:45　JX706 返回桃園</div><div class="t-desc">機上供應晚餐套餐。</div></li>
+        <li><div class="t-name">22:45　抵達桃園 T2 · 甜蜜的家</div><div class="t-desc">⚠️ 出關領行李約 23:15。<b>機場捷運末班將盡，務必事先預約接送</b>。</div></li>
+      </ul>
+
+      <div class="block warnblock">
+        <h4>❗ 出發前一定要確認的一件事</h4>
+        <p style="margin:0;font-size:12.5px">合約的用車是<b>「四日包車」（DAY 5 無派車）</b>。
+        今天的車到底是<b>「單純 New World 直送機場」</b>還是<b>「含陪同前往楊東鎮購物」</b>，必須先跟旅行社講清楚。<br>
+        👉 如果只是送機，上面整段楊東鎮行程都不成立，本日就改成度假村休息 → 14:45 出發 → 15:20 到機場。</p>
+      </div>
+
+      <div class="meal">
+        <div class="m-k">早餐</div><div>酒店內享用 <span class="badge badge-inc">含</span></div>
+        <div class="m-k">午餐</div><div>The Home Pizza／Xóm Mới Garden／MEO Kitchen <span class="badge badge-self">自理</span></div>
+        <div class="m-k">晚餐</div><div>機上套餐 <span class="badge badge-inc">含</span></div>
+      </div>
+
+      <div class="hotel">
+        <div class="ico">🏠</div>
+        <div><div class="h-name">溫暖的家</div><div class="h-meta">22:45 抵達桃園機場 T2</div></div>
+      </div>
+
+      <div class="cost">
+        <table>
+          <tr><th>項目</th><th style="text-align:right">預估（每人）</th></tr>
+          <tr><td>午餐（楊東鎮）</td><td class="num">NT$250–440<span class="vnd">≈ 200–350k VND</span></td></tr>
+          <tr><td>Coi Nguon 博物館門票</td><td class="num">NT$60–125<span class="vnd">≈ 50–100k VND（現場為準）</span></td></tr>
+          <tr><td>金剛超市最後補買（彈性）</td><td class="num">NT$300–800<span class="vnd">≈ 240–640k VND</span></td></tr>
+          <tr><td>台灣端機場接送（一車）</td><td class="num">NT$1,200–1,800<span class="vnd">依居住地而定</span></td></tr>
+          <tr class="total"><td>DAY 6 小計</td><td class="num">NT$610–1,365<span class="vnd">不含台灣接送</span></td></tr>
+        </table>
+      </div>
+
+      <div class="maps">
+        <h4>🗺 DAY 6 Google Map 路線</h4>
+        <a class="mapbtn" target="_blank" rel="noopener"
+           href="https://www.google.com/maps/dir/New+World+Phu+Quoc+Resort/The+Home+Pizza+Phu+Quoc/KingKong+Mart+Phu+Quoc/Coi+Nguon+Museum+Phu+Quoc/Phu+Quoc+International+Airport/">
+          一鍵開啟本日路線<small>新世界 → 楊東鎮（午餐／金剛超市／博物館）→ 富國國際機場</small></a>
+        <div class="pins">
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=New+World+Phu+Quoc+Resort">🏝 新世界（退房）</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=The+Home+Pizza+Phu+Quoc">🍕 The Home Pizza（129）</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=KingKong+Mart+Phu+Quoc">🛒 金剛超市（141A）</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Coi+Nguon+Museum+Phu+Quoc">🏛 Coi Nguon 博物館（149）</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Phu+Quoc+International+Airport">✈️ 富國國際機場</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Taoyuan+International+Airport+Terminal+2">✈️ 桃園機場 T2</a>
+        </div>
+        <div class="legdist"><b>全程 32.2 km · 行車約 56 分</b>（不含停留）<br>
+          新世界 → 楊東鎮 <b>24.4 km／40 分</b>　·　<b>午餐 129 → 超市 141A → 博物館 149，三站走路 3 分鐘內</b>　·　楊東鎮 → 機場 <b>7.3 km／僅 14 分</b>。<br>
+          💡 楊東鎮到機場比想像中近很多 —— 這就是今天能排採買的原因。</div>
+      </div>
+
+      <div class="block warnblock">
+        <h4>⚠️ 今日注意</h4>
+        <ul>
+          <li><b>行李整天在車上</b>，退房時先把護照、充電器、外套、常備藥拿出來放隨身包。</li>
+          <li><b>剩餘越南盾在機場前花掉</b>，回台換回台幣很不划算。</li>
+          <li>越南出境<b>禁帶生鮮水果、榴槤製品</b>；液體＞100ml 須托運。</li>
+          <li>魚露、風油精等液體<b>一律托運</b>並用夾鏈袋包好防漏 —— <b>金剛超市買的東西別放隨身行李</b>。</li>
+          <li>離開房間前檢查：<b>保險箱、充電器、護照、泳衣</b>。</li>
+          <li>機場會待 <b>2 小時 25 分</b>，對小孩偏久。寧可超市多逛一會兒再走。</li>
+          <li><b>22:45 落地</b>，出關領行李約 23:15。機場捷運末班將盡，<b>務必事先預約機場接送或計程車</b>。</li>
+        </ul>
+      </div>
+    </div>
+</details>
+
+<!-- ============ 換匯 ============ -->
+<div class="sec-title" id="money">換匯 · ATM · 小費</div>
+<details class="card">
+  <summary class="card-head">
+    <div class="ch-row">
+      <div class="left">
+        <span class="toggle-icon">&#9654;</span>
+        <div><div class="card-title">💱 換匯攻略與現金規劃</div>
+        <div class="card-sub">越南盾換算速查 · Robinson Pearl · 小費慣例</div></div>
+      </div>
+    </div>
+  </summary>
+    <div class="card-body">
+
+      <div class="block">
+        <h4>🔢 心算速查（1 台幣 ≈ 780–820 越南盾）</h4>
+        <p style="font-size:12.5px;color:var(--muted)">最快的口訣：<b>越南盾去掉 3 個 0，再乘以 1.25，就是台幣</b>。</p>
+        <div class="conv">
+          <div>100,000 VND<b>≈ NT$125</b></div>
+          <div>200,000 VND<b>≈ NT$250</b></div>
+          <div>500,000 VND<b>≈ NT$620</b></div>
+          <div>1,000,000 VND<b>≈ NT$1,250</b></div>
+        </div>
+        <p style="font-size:11.5px;color:var(--muted);margin-top:8px">＊2026/08 參考匯率，實際以現場為準。街邊價格常寫成 <b>「100k」＝100,000 盾</b>。</p>
+      </div>
+
+      <div class="block">
+        <h4>🏦 在哪裡換？</h4>
+        <ul>
+          <li><b>台灣先換美金</b>：台幣直接換越南盾匯率差。在台灣先換<b>美金 100 元大面額新鈔</b>（越南非常看重面額與新舊，大鈔匯率明顯較好）。</li>
+          <li><b>富國機場（D1 17:45）</b>：匯率最差（比 Robinson Pearl 差約 3–5%），<b>但這是 D3 中午之前唯一的機會</b> —— 每位大人建議換 <b>US$120–150</b>。為省 US$5 的匯差而換太少，會在 D2 沒錢用。</li>
+          <li><b>Robinson Pearl（珍珠店，D3 13:50）</b>：楊東鎮，就在 Xin Chao 旁，匯率公開透明，島上公認最好。進門直接說「Money exchange」。<b>這次要換足到行程結束。</b></li>
+          <li><b>飯店櫃檯</b>：方便但匯率一般，適合小額補換。</li>
+          <li><b>ATM</b>：多數收手續費 22,000–66,000 VND／筆，單筆上限常為 2–3 百萬盾，適合應急。</li>
+        </ul>
+      </div>
+
+      <div class="block warnblock">
+        <h4>⏰ 現金時間軸 —— 全程只有兩次換匯機會</h4>
+        <p style="font-size:12.5px;margin-bottom:8px">D2 全天在北部樂園區、D3 上午在大世界，這段路上<b>沒有換匯點</b>。
+        所以 D1 機場換的錢，必須撐到 D3 中午 13:50 的 Robinson Pearl。<br>
+        <b>以下金額皆為「每位大人」</b>，兒童約抓 60–70%。</p>
+        <div class="cost wide">
+          <table>
+            <tr><th>時段</th><th>要用到的現金</th><th style="text-align:right">每人 VND</th></tr>
+            <tr><td>D1 晚上<span class="vnd">大世界</span></td><td>晚餐 100–160k ＋ 飲料紀念品 80–200k</td><td class="num">180–360k</td></tr>
+            <tr><td>D2 全天<span class="vnd">動物園＋樂園</span></td><td>午餐補差額 0–200k（餐券已付大部分）＋ Seahorse 晚餐 400–600k ＋ 園內零食 170–280k</td><td class="num">570–1,080k</td></tr>
+            <tr><td>D3 上午<span class="vnd">大世界</span></td><td>咖啡／Herbs Spa</td><td class="num">110–220k</td></tr>
+            <tr class="total"><td>票券已線上買 → 機場要換</td><td>撐到 D3 13:50</td><td class="num">1,500–2,660k<span class="vnd">≈ NT$1,875–3,325 ≈ US$57–101</span></td></tr>
+            <tr><td>若票券<b>現場買</b></td><td>＋精粹秀 300k ＋泰迪熊 200k ＋貢多拉 300k</td><td class="num">＋800k</td></tr>
+            <tr class="total"><td>票券現場買 → 機場要換</td><td>撐到 D3 13:50</td><td class="num">2,300–3,460k<span class="vnd">≈ NT$2,875–4,325 ≈ US$88–132</span></td></tr>
+          </table>
+        </div>
+        <ul style="margin-top:10px">
+          <li><b>機場換多少（每人）</b>：票已線上買 → <b>US$120</b>；票要現場買 → <b>US$150</b>。抓有餘裕，剩下的 D3 一起換掉。</li>
+          <li><b>D3 13:50 Robinson Pearl 補換（每人）</b>：伴手禮 400k–1.2M ＋ D4–D6 餐食與飲料 ≈ <b>再換 US$100–150</b>。<br>✅ D4 秀票已不需現金（Kiss 飯店贈票、Symphony 不看）；選配 Dinner Show 是官網刷 Visa。</li>
+          <li><b>大額盡量刷卡</b>：飯店、VinWonders 園區內、Seahorse／RuNam 等正式餐廳多可刷卡；<b>攤販、按摩店、夜市只收現金</b>。出發前請旅行社確認指定餐廳是否收卡。</li>
+          <li><b>ATM 是備案</b>：樂園與楊東鎮都有，單筆上限約 200–300 萬盾、每筆手續費 22,000–66,000 VND。</li>
+          <li>💡 <b>票券與餐食若旅行社確認「已含」，上表金額會再往下掉。</b>確認表回覆前，請先按高標準備。</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>💵 建議帶多少現金（每位大人）</h4>
+        <div class="cost wide">
+          <table>
+            <tr><th>情境</th><th>機場換</th><th>D3 補換</th><th style="text-align:right">合計</th></tr>
+            <tr><td><b>票券全部線上先買</b><span class="vnd">建議做法</span></td><td>US$120</td><td>US$100–150</td><td class="num">US$220–270</td></tr>
+            <tr><td>票券現場買</td><td>US$150</td><td>US$175–225</td><td class="num">US$325–375</td></tr>
+          </table>
+        </div>
+        <ul style="margin-top:10px">
+          <li>以上為<b>每位大人</b>的現金。小孩不需另外準備，併入家長預算即可（實際消費約大人的 60–70%）。</li>
+          <li>再加 <b>US$30–50</b> 若要做 SPA／按摩，或想多買伴手禮。</li>
+          <li>台灣先換<b>美金 100 元大面額新鈔</b>，越南換匯看面額與新舊，大鈔匯率明顯較好。</li>
+          <li>大額消費（飯店、樂園、大餐廳）可刷卡，<b>務必帶一張 VISA/Master</b>。</li>
+        </ul>
+      </div>
+
+      <div class="block warnblock">
+        <h4>🙏 小費慣例</h4>
+        <ul>
+          <li><b>導遊、司機服務費已含在團費</b>（五日合計 NT$1,500／人，DAY 5 無導遊）。</li>
+          <li><b>床頭小費</b>：每房每天 20,000–50,000 VND（約 NT$25–60），未含在團費，建議準備零鈔。</li>
+          <li><b>行李員</b>：每件 20,000 VND。<b>餐廳</b>：帳單多已含服務費，滿意可留零錢。</li>
+          <li><b>SPA / 按摩</b>：滿意約給消費金額 10%，或 50,000–100,000 VND。</li>
+          <li>建議<b>換匯時請對方多給一些 10k / 20k / 50k 小鈔</b>，小費與夜市付款都好用。</li>
+        </ul>
+      </div>
+
+    </div>
+</details>
+
+<!-- ============ 線上購票 ============ -->
+<div class="sec-title" id="tickets">購票：線上還是現場</div>
+<details class="card">
+  <summary class="card-head">
+    <div class="ch-row">
+      <div class="left">
+        <span class="toggle-icon">&#9654;</span>
+        <div><div class="card-title">🎫 線上買還是現場買？</div>
+        <div class="card-sub">出發前不用先買任何票 · 逐票建議</div></div>
+      </div>
+    </div>
+  </summary>
+    <div class="card-body">
+
+      <div class="block okblock" style="margin-top:0;background:var(--ok-soft);border-color:var(--ok)">
+        <h4 style="color:var(--ok)">✅ 一句話結論</h4>
+        <p style="margin:0 0 10px;font-size:13px"><b>出發前不需要線上先買任何一張票。</b>
+        該旅行社出票的旅行社出、飯店贈票的飯店給、其餘現場買更靈活。唯一的線上購票是 Day 3 晚上才決定的 <b>Dinner Show（選配）</b>。</p>
+        <div class="cost wide">
+          <table>
+            <tr><th>票券</th><th>買法</th><th>理由</th></tr>
+            <tr><td><b>D2</b> 珍珠二園套票</td><td>🚫 <b>別自己買</b></td><td>合約 A 表，旅行社出票。<b>現場核對是「二園聯票」不是單園</b></td></tr>
+            <tr><td><b>D2</b> VIP Zoo Tour</td><td>✅ 已訂</td><td>僅限線上，你已完成</td></tr>
+            <tr><td><b>D1</b> 越南精粹秀</td><td>🏪 <b>現場買</b></td><td>⚠️ <b>飛行日</b>。VinWonders 票綁定日期且不可改期不可退，班機一延誤票就報廢。<br>大世界<b>威尼斯河畔有 2 個售票口</b>，價格與線上相同</td></tr>
+            <tr><td><b>D3</b> 泰迪熊博物館</td><td>🏪 現場買</td><td>金額小（₫200,000），上午本來就在園區。線上買行程一變就損失</td></tr>
+            <tr><td><b>D3</b> 貢多拉</td><td>🏪 現場買</td><td>同上，而且要看當天天氣</td></tr>
+            <tr><td><b>D4</b> 蜂島纜車</td><td>🚫 別自己買</td><td>合約 A 表，旅行社出票</td></tr>
+            <tr><td><b>D4</b> Aquatopia</td><td>🚫 別自己買</td><td>官方無單獨售票品項，應含在纜車票內</td></tr>
+            <tr><td><b>D4</b> 島上自助午餐</td><td>🚫 別自己買</td><td>合約 A 表</td></tr>
+            <tr class="total"><td><b>D4</b> Kiss of the Sea</td><td>🚫 別自己買</td><td>✅ <b>New World 訂房已贈票</b>，入住時跟櫃檯領 9 張</td></tr>
+            <tr><td><b>D4</b> Symphony of the Sea</td><td>🚫 不買</td><td>本次不看（會卡到 19:00 RuNam 晚餐）</td></tr>
+            <tr><td><b>D4</b> Dinner Show（選配）</td><td>💻 線上買<span class="vnd">Day 3 再決定</span></td><td>唯一需要線上買的一張，但屬選配 —— 見 DAY 4 行程卡</td></tr>
+            <tr><td><b>D4</b> Exotica 設施</td><td>🏪 不用另買</td><td>含在纜車票內，現場直接玩</td></tr>
+            <tr><td><b>D6</b> Coi Nguon 博物館</td><td>🏪 現場買</td><td>小額，而且這站可能會砍掉</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="block okblock" style="background:var(--ok-soft);border-color:var(--ok)">
+        <h4 style="color:var(--ok)">✅ 好消息：原本最貴、最有時間壓力的那張票已經解決</h4>
+        <p style="margin:0 0 8px;font-size:12.5px">先前規劃時，<b>D4 的兩場秀（Symphony ＋ Kiss，Combo ₫1,165,000／人、9 人 NT$13,100）</b>是唯一有售完風險、建議線上先買的一筆。現在兩邊都不用出錢了：</p>
+        <ul>
+          <li><b>Kiss of the Sea → New World 訂房贈票</b>，9 張跟飯店櫃檯領即可，<b>不要再上官網買</b>。</li>
+          <li><b>Symphony of the Sea → 本次不看</b>（19:30 會卡到 19:00 的 RuNam 晚餐），<b>省下 ₫660,000／人、9 人約 NT$7,400</b>。</li>
+        </ul>
+        <p style="margin-top:8px;font-size:12.5px">👉 <b>所以現在沒有任何一張票需要趕在出發前線上買。</b>唯一的線上購票選項是 Day 3 晚上才決定的 <b>Dinner Show（選配）</b>。</p>
+      </div>
+
+      <div class="block">
+        <h4>💳 真的要線上買時，記住這幾點（Sun World）</h4>
+        <ul>
+          <li><b>一定先註冊登入再買。</b>沒登入的訂單<b>之後不能改期</b>。</li>
+          <li><b>可以改期一次，但不能真的退錢。</b>未使用、且在所選日期起 5 天內可改期一次 —— 這是真正有用的保障。<br>
+          ⚠️ <b>退款只退成 e-voucher</b>（進 Sun Paradise Land App），<b>只能折抵一張訂單、差額不退現金、不能與其他優惠併用，且須用在 2026/12/31 前</b>。你們九月底就回台灣，這張券實質上用不掉 —— <b>「退款」等於損失，別把它當保險。</b></li>
+          <li><b>用國際 Visa 卡付。</b>Sun World 官方訂票對境外發行的 Visa 卡有額外優惠（品項標示 10%，官方新聞稱最高近 15%）。</li>
+          <li><b>票是 email 電子 QR</b>，現場出示即可，不用換實體票。</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>📐 一個判斷原則</h4>
+        <p style="margin:0;font-size:13px"><b>VinWonders 的票現場買，Sun World 的票線上買。</b><br>
+        因為 VinWonders「付款完成即確認，一律不可退、不可改、不可換」，而 Sun World 給你改期一次的空間。<br>
+        👉 <b>能退改的才線上先買，不能退改的留到現場。</b></p>
+      </div>
+
+      <div class="block">
+        <h4>🏢 兩個賣票的集團，票不通用</h4>
+        <div class="cost cmp">
+          <table>
+            <tr><th></th><th>VinWonders（Vingroup）</th><th>Sun World（Sun Group）</th></tr>
+            <tr><td>位置</td><td>島的<b>北端</b>白黛海灘</td><td>島的<b>南端</b>安泰</td></tr>
+            <tr><td>你的景點</td><td>珍珠動物園、奇幻樂園、大世界、泰迪熊、貢多拉、精粹秀</td><td>蜂島纜車、Aquatopia、地中海小鎮、親吻橋、兩場秀</td></tr>
+            <tr><td>訂票網站</td><td>booking.vinwonders.com</td><td>booking.sunworld.vn</td></tr>
+            <tr><td>退改</td><td><b>❌ 完全不可退、不可改期</b></td><td>⭕ 未使用可<b>改期一次</b><br>❌ 退款只退 e-voucher（2026/12/31 前要用完，<b>你們用不到</b>）</td></tr>
+          </table>
+        </div>
+        <p style="font-size:11.5px;color:var(--muted);margin-top:8px">「珍珠」＝ Vinpearl 的中文譯名，所以珍珠動物園、珍珠樂園是同一家。</p>
+      </div>
+
+      <div class="block okblock" style="background:var(--ok-soft);border-color:var(--ok)">
+        <h4 style="color:var(--ok)">✅ 這些不用自己買 —— 合約已列入（A 表）</h4>
+        <p style="margin:0 0 8px;font-size:12.5px">以下票券在<b>行程的每日標題就寫明了</b>，理應包含在團費裡。
+        列出官方價，是為了<b>現場核對票種是否正確</b>（例如二園套票 vs 只給一園），不是要你買。</p>
+        <div class="cost wide">
+          <table>
+            <tr><th>票券</th><th>官方價／人</th><th>要核對什麼</th></tr>
+            <tr><td><b>D2</b> 珍珠二園套票<span class="vnd">VinWonders ＋ Vinpearl Safari</span></td><td class="num">₫1,500,000<span class="vnd">100–140cm ₫1,100,000</span></td><td>確認是<b>二園聯票</b>，不是只有一園。單買 Safari ₫850,000 ＋ VinWonders ₫950,000</td></tr>
+            <tr><td><b>D4</b> 蜂島纜車來回</td><td class="num">₫825,000<span class="vnd">定價 ₫850,000</span></td><td>官方票含<b>飲料券 1 杯 ＋ 親吻橋入場</b>，記得跟導遊要</td></tr>
+            <tr><td><b>D4</b> Aquatopia 水上樂園</td><td class="num">—</td><td>官方沒有獨立售票品項，<b>請旅行社出示訂票證明</b></td></tr>
+            <tr><td><b>D4</b> 島上自助午餐</td><td class="num">₫378,000<span class="vnd">Mango 餐廳</span></td><td>行程明寫「包含園內自助午餐」</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="block warnblock">
+        <h4>⚠️ 這些才要決定買不買 —— B、C 表待釐清</h4>
+        <p style="margin:0 0 8px;font-size:12.5px">合約包含清單<b>沒有</b>這幾項（只出現在景點介紹文字，或是 V2 才新增的）。
+        <b>等旅行社回覆「不含」，再上官網買。</b></p>
+        <div class="cost wide">
+          <table>
+            <tr><th>票券</th><th>通路</th><th style="text-align:right">官方價／人</th><th>退改</th></tr>
+            <tr><td><b>D1</b> 越南精粹秀</td><td>VinWonders</td><td class="num">₫300,000</td><td>❌</td></tr>
+            <tr><td><b>D3</b> 泰迪熊博物館</td><td>VinWonders</td><td class="num">₫200,000</td><td>❌</td></tr>
+            <tr><td><b>D3</b> 貢多拉（來回含拍照）</td><td>VinWonders</td><td class="num">₫300,000<span class="vnd">單程 ₫200,000</span></td><td>❌</td></tr>
+            <tr class="total"><td>全部不含的話，9 人合計</td><td></td><td class="num">約 NT$9,025</td><td></td></tr>
+          </table>
+        </div>
+        <p style="margin-top:8px;font-size:12px">✅ <b>原本列在這裡的「D4 Symphony ＋ Kiss Combo ₫1,165,000／人（9 人 NT$13,100）」已經拿掉</b> ——
+        Kiss of the Sea 由 <b>New World 訂房贈票</b>，Symphony <b>本次不看</b>。待釐清金額因此從 NT$22,100 降到 <b>NT$9,025</b>。</p>
+      </div>
+
+      <div class="block">
+        <h4>🎫 你已自行加購的</h4>
+        <p style="margin:0;font-size:12.5px"><b>D2 VIP Zoo Tour</b>　僅限線上訂購，已訂購完成。這不在團費裡，是額外加購。
+        No-Show 即失效、不可退不可改期。</p>
+      </div>
+
+      <div class="maps">
+        <h4>🔗 官方訂票連結</h4>
+        <div class="pins">
+          <a target="_blank" rel="noopener" href="https://booking.vinwonders.com/en-USD/search?code=PQ&amp;adultQuantity=1">🎡 VinWonders 官方訂票</a>
+          <a target="_blank" rel="noopener" href="https://booking.sunworld.vn/en">🚡 Sun World 官方訂票</a>
+          <a target="_blank" rel="noopener" href="https://sunworld.vn/en/refund-policy">📄 Sun World 退改政策</a>
+          <a target="_blank" rel="noopener" href="https://vinwonders.com/en/terms-and-conditions/">📄 VinWonders 服務條款</a>
+        </div>
+        <div class="legdist"><b>VinWonders 官方條款原文</b>：「VinWonders' services do not allow for refunds, cancellations, or exchanges under any circumstances once a transaction has been confirmed.」—— 且<b>付款完成即視為確認</b>，無論是否使用。<br>
+        <b>Sun World</b>：未使用且在所選日期起 5 日內可退可改期，<b>改期只能一次</b>，退款退成 e-voucher 進 App（不退現金），須於 2026/12/31 前用畢。</div>
+      </div>
+
+    </div>
+</details>
+
+<!-- ============ 總預算 ============ -->
+<div class="sec-title" id="budget">六日總預算估算</div>
+<details class="card">
+  <summary class="card-head">
+    <div class="ch-row">
+      <div class="left">
+        <span class="toggle-icon">&#9654;</span>
+        <div><div class="card-title">💰 團費包含項目 + 自理花費累計</div>
+        <div class="card-sub">9 人包團報價 · 每日自理費用總表</div></div>
+      </div>
+    </div>
+  </summary>
+    <div class="card-body">
+
+      <div class="cost" style="margin-top:0">
+        <table>
+          <tr><th>每日自理花費</th><th style="text-align:right">預估（每人）</th></tr>
+          <tr><td>DAY 1　富國大世界<span class="vnd">含越南精粹秀門票</span></td><td class="num">NT$595–825</td></tr>
+          <tr><td>DAY 2　動物園 + 奇幻樂園<span class="vnd">含 VIP NT$620；午餐用園區贈送餐券</span></td><td class="num">NT$1,040–2,530</td></tr>
+          <tr><td>DAY 3　大世界 + 楊東 + 夜市<span class="vnd">含泰迪熊、貢多拉；不含伴手禮</span></td><td class="num">NT$1,625–2,525</td></tr>
+          <tr><td>DAY 4　纜車 + 水樂園 + Kiss 秀<span class="vnd">Kiss 飯店贈票、Symphony 不看；纜車屬 A 表未計</span></td><td class="num">NT$540–1,000</td></tr>
+          <tr><td>DAY 5　度假村自由日（不含 SPA）<span class="vnd">晚餐改夜市攤販</span></td><td class="num">NT$750–1,420</td></tr>
+          <tr><td>DAY 6　楊東採買 + 返程<span class="vnd">含博物館門票；不含台灣接送</span></td><td class="num">NT$610–1,365</td></tr>
+          <tr><td>床頭小費（5 晚，每房分攤）</td><td class="num">NT$50–100</td></tr>
+          <tr class="total"><td>六日自理總計（每位大人）</td><td class="num">NT$5,210–9,765<span class="vnd">≈ 4.1M–7.8M VND</span></td></tr>
+        </table>
+      </div>
+      <p style="font-size:11.5px;color:var(--muted);margin-top:8px">＊兒童約為大人的 60–70%，但<b>纜車與秀票是大人小孩同價</b>（未滿 1 公尺免費）。伴手禮、SPA、選配 Dinner Show 等彈性項目另計。</p>
+
+      <div class="block warnblock">
+        <h4>💸 上表已把 3 張「可能沒含」的票算進去</h4>
+        <p style="margin:0 0 6px;font-size:12.5px">下列票券<b>未列入合約包含清單</b>（只出現在景點介紹文字，或是 V2 才新增）。若團費全都不含，9 人須另付：</p>
+        <div class="cost cmp" style="margin-top:8px">
+          <table>
+            <tr><th>票券</th><th>官方價／人</th><th>9 人約</th></tr>
+            <tr><td>D1 越南精粹秀<span class="vnd">B 表</span></td><td>₫300,000</td><td>NT$3,400</td></tr>
+            <tr><td>D3 泰迪熊博物館<span class="vnd">B 表</span></td><td>₫200,000</td><td>NT$2,250</td></tr>
+            <tr><td>D3 貢多拉（來回）<span class="vnd">B 表</span></td><td>₫300,000</td><td>NT$3,375</td></tr>
+            <tr class="total"><td>合計</td><td></td><td>約 NT$9,025</td></tr>
+          </table>
+        </div>
+        <p style="margin:8px 0 0;font-size:12px">👉 請用「<b>票券包含範圍確認表</b>」逐項向旅行社確認，能省下的都是實打實的錢。</p>
+
+        <p style="margin:10px 0 0;font-size:12px;padding-top:8px;border-top:1px dashed var(--line)">
+        ✅ <b>C 表的「D4 兩場秀」已經從這張表移除</b>（原本 ₫1,165,000／人、9 人 NT$13,100）——
+        <b>Kiss of the Sea 由 New World 訂房贈票、Symphony 本次不看</b>，所以待釐清金額從 NT$22,100 降到 <b>NT$9,025</b>。</p>
+
+        <p style="margin:10px 0 0;font-size:12px;padding-top:8px;border-top:1px dashed var(--line)">
+        ✅ <b>珍珠二園套票（₫1,500,000／人）與蜂島纜車（₫825,000／人）不在上表</b> —— 這兩項在<b>行程每日標題就明列</b>，屬合約 A 表，理應已含在團費，上方每日小計也沒有計入。<br>
+        萬一旅行社回覆「不含」，9 人要再加 <b>約 NT$25,200</b>，那就是完全不同的問題了，必須立刻反映。</p>
+      </div>
+
+      <div class="block">
+        <h4>✅ 團費已包含</h4>
+        <ul>
+          <li>雙人房住宿共 <b>5 晚</b>（床型僅能備註需求，無法保證）。</li>
+          <li>行程所列之<b>交通、餐食、景點門票</b>等各項費用。</li>
+          <li>旅行業責任保險：500 萬意外身故 ＋ 20 萬意外醫療（未滿 15 歲及滿 70 歲以上為 250 萬 ＋ 20 萬）。</li>
+          <li>1,500 萬履約責任險。</li>
+          <li>當地導遊及司機服務費五日合計 <b>NT$1,500／人</b>（DAY 5 無導遊）。</li>
+        </ul>
+        <p style="font-size:11.5px;color:var(--muted);margin:6px 0 0">⚠️ 報價表上「機場燃油稅險」欄位標示為 <b>X（不含）</b>；只有「五天導遊服務費」標示團費已包含。</p>
+      </div>
+
+      <div class="block warnblock">
+        <h4>❌ 團費未包含</h4>
+        <ul>
+          <li><b>來回經濟艙機票及兩地機場稅、燃油費（旅客機票自理）</b>。</li>
+          <li>中華民國護照新辦費用。</li>
+          <li>電話費、行李超重費、床頭小費及相關服務人員小費。</li>
+          <li>颱風、班機延誤或取消、交通延阻等不可抗力所導致的額外費用。</li>
+          <li>行程未列出之私人行為消費。</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>🧾 9 人包團報價（2026/09/23 台北出發．六天五夜）</h4>
+        <ul>
+          <li>大人 <b>NT$25,000／人 ×6</b></li>
+          <li>兒童（加床、含餐）<b>NT$20,000／人 ×1</b>　— 陳語希</li>
+          <li>兒童（前三晚加床、後兩晚不佔床、含餐）<b>NT$17,500／人 ×2</b>　— 洪郁翔、林昱橙</li>
+        </ul>
+      </div>
+
+    </div>
+</details>
+
+<!-- ============ 越南語 + 緊急聯絡 ============ -->
+<!-- ============ 按摩 SPA ============ -->
+<div class="sec-title" id="spa">按摩 SPA</div>
+<details class="card">
+  <summary class="card-head">
+    <div class="ch-row">
+      <div class="left">
+        <span class="toggle-icon">&#9654;</span>
+        <div><div class="card-title">💆 按摩 SPA · 只值得排兩次</div>
+        <div class="card-sub">D3 晚上 45 分 · D5 晚上 90 分 · 13 家完整比較</div></div>
+      </div>
+    </div>
+  </summary>
+    <div class="card-body">
+
+      <div class="block okblock" style="margin-top:0;background:var(--ok-soft);border-color:var(--ok)">
+        <h4 style="color:var(--ok)">✅ 直接給答案：逐日推薦</h4>
+        <div class="cost wide">
+          <table>
+            <tr><th>天</th><th>建議</th><th>時段／店家</th><th style="text-align:right">價格</th></tr>
+            <tr><td><b>D1</b><span class="vnd">09/23</span></td><td>❌ 不排</td><td>18:00–21:00 全是表演，一個空檔都沒有</td><td class="num">—</td></tr>
+            <tr><td><b>D2</b><span class="vnd">09/24</span></td><td>⚠️ 大人可選</td><td>19:30–21:30　Spa Nữ Hoàng 1 ／ J.CHIN<span class="vnd">大世界，離飯店 10 分</span></td><td class="num">—</td></tr>
+            <tr class="total"><td><b>D3</b><span class="vnd">09/25</span></td><td>✅ <b>排</b></td><td><b>18:45–19:30（45 分足部／肩頸）</b><br><b>The Bay Spa &amp; Nail</b>　Sonasea 夜市旁</td><td class="num">₫300–400k<span class="vnd">NT$375–500</span></td></tr>
+            <tr><td><b>D4</b><span class="vnd">09/26</span></td><td>❌ 不排</td><td>16:05–16:45 那 40 分鐘要洗澡休息，晚上 Kiss of the Sea 到 21:40</td><td class="num">—</td></tr>
+            <tr class="total"><td><b>D5</b><span class="vnd">09/27</span></td><td>✅ <b>主場</b></td><td><b>19:50–21:20（90 分全身）</b><br><b>SOLANA Spa</b>　日落小鎮<span class="vnd">另有方案 B 深夜 Hanz 60 分／方案 C 傍晚 Hanz 看日落</span></td><td class="num">₫500–600k<span class="vnd">NT$625–750</span></td></tr>
+            <tr><td><b>D6</b><span class="vnd">09/28</span></td><td>❌ 不排</td><td>要趕飛機，不值得冒險</td><td class="num">—</td></tr>
+          </table>
+        </div>
+
+        <p style="margin-top:10px;font-size:12.5px"><b>為什麼 D3 只做 45 分鐘？</b><br>
+        那晚 18:40 到夜市、<b>20:40 就要上車</b>（回飯店 50 分車程），總共只有 110 分鐘還要吃晚餐。
+        做 45 分 → 19:30 結束 → 還有一小時吃飯逛夜市；做 90 分會整晚都在趕。<br>
+        💡 The Bay Spa 加分項：<b>2 人以上同時預約按摩＋美甲，Sonasea 區飯店免費接送</b>。</p>
+
+        <p style="margin-top:8px;font-size:12.5px"><b>為什麼 D5 改成晚上 19:45？</b><br>
+        原本排 14:00–15:45，但那段已被「13:00 午餐 Cơm Thố ＋ 15:50 出發小鎮」佔滿。
+        改到<b>晚餐後 19:45–21:15</b>：不卡日落、不卡晚餐，按完直接搭 21:40 末班接駁車回房睡覺，隔天 10:00 才退房，可以晚點睡。<br>
+        <b>店家仍選 SOLANA</b> —— 1.5 小時 ₫500,000–600,000 是所有 90 分鐘療程裡<b>最便宜的</b>（其他家 ₫650,000–950,000），又被家庭客評為小鎮裡按得最好。
+        <b>週日 09:00–23:00</b>（Google 實查），19:45 進場完全沒問題。</p>
+      </div>
+
+      <div class="block">
+        <h4>🔀 D5 的三個方案</h4>
+        <ul>
+          <li><b>A 晚上（建議）→ SOLANA，19:50–21:20（90 分）</b>　₫500–600k。店就在夜市旁（走路 3 分），按完搭 21:40 末班車回房。<b>代價：19:40 就要離開夜市，只看得到 18:30 起街頭表演的前段。</b></li>
+          <li><b>B 深夜 → Hanz Sunset Spa，21:15–22:15（60 分）</b>　官網價 ₫580,000。夜市與表演全保留，<b>但 22:15 才結束、回程要自己叫 Grab，小孩不適合</b>。Hanz 每日 09:00–23:30。</li>
+          <li><b>C 傍晚 → Hanz Sunset Spa，17:00–18:30（90 分）</b>　官網價 ₫780,000。窗外直接看得到<b>親吻橋日落</b>，老闆夫妻會說中文。<b>代價：最貴，而且全家不能一起在親吻橋看日落。</b></li>
+          <li><b>想省錢 → Blackspa</b>　<b>10:00–14:00 Happy Hour 打 6–9 折</b>；Hanz 官網也有 <b>10:00–14:00 線上預約 8 折</b>。代價都是犧牲上午的泳池時間。</li>
+        </ul>
+      </div>
+
+      <div class="block warnblock">
+        <h4>😢 一個誠實的遺憾：J.CHIN 塞不進去</h4>
+        <p style="margin:0;font-size:12.5px"><b>J.CHIN SPA 的 CP 值是全場最高的</b>（2 小時全身熱石＋採耳＋洗頭洗臉，<b>兩人才 NT$1,200</b>），
+        但它在大世界 —— 而你們在那區的兩個時段（<b>D1 晚上排滿</b>、<b>D3 上午只有 30 分</b>）都塞不進 2 小時。<br>
+        唯一機會是 <b>D2 晚上 19:30 回飯店後再出門</b>：樂園、大世界、飯店三點都在白黛海灘區，來回車程各 10 分鐘。
+        但玩了 11 小時之後還要再撐 2 小時，<b>小孩肯定不行，大人想衝倒是可以</b>。</p>
+      </div>
+
+      <div class="block">
+        <h4>🏙 日落小鎮 6 家　<span class="badge badge-inc">D4–D6 住這區</span></h4>
+        <div class="cost wide">
+          <table>
+            <tr><th>店家</th><th>價位</th><th>特色</th></tr>
+            <tr class="total"><td><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=SOLANA+Spa+Sunset+Town+Phu+Quoc" style="color:var(--accent2);font-weight:800;text-decoration:none">📍 SOLANA Spa</a><span class="vnd">⭐4.8（106）· A103 Amafi<br><b>週日 09:00–23:00</b>（週一二同；週三–六 10:00–23:00）<br>+84 866 565 628</span></td><td>1.5 小時全身油壓<br><b>₫500,000–600,000</b><span class="vnd">≈ NT$625–750</span></td><td>👑 <b>D5 晚上 19:45 就去這家。</b>家庭客評為「小鎮裡按得最好、CP 值最高」。連足浴都躺著做，草藥浴桶香氣天然，手法細膩不偷時。<br>📍 離 VUI-Fest 夜市站走路 3–5 分。</td></tr>
+            <tr><td><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Hanz+Sunset+Spa+Phu+Quoc+Massage" style="color:var(--accent2);font-weight:800;text-decoration:none">📍 Hanz Sunset Spa</a><span class="vnd">⭐4.8（1,156）· <b>每日 09:00–23:30</b><br>04 Venice · +84 932 633 268<br>hanzsunsetspa.com</span></td><td><b>官網價目表</b><br>精油 60′ ₫580,000<br>精油 90′ ₫780,000<br>熱石 60′ ₫680,000<br>熱石 90′ ₫880,000<br>足部＋藥草浴 60′ ₫480,000</td><td>🗣 <b>老闆夫妻會說中文</b>。最大亮點是位置 —— 算好時間來，店門口／窗外就能看到<b>親吻橋日落與夜間煙火</b>。<br>💻 官網可線上預約，還能勾選<b>接送車</b>。<br>🏷 <b>官網 8 折只限 10:00–14:00 且須線上預約</b>，晚上沒折扣。<br>⚠️ 店家在 Google 公告<b>有人冒名假冒接單</b>，請只用官網或上面這支電話訂。</td></tr>
+            <tr><td><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Blackspa+Phu+Quoc+Sunset+Town" style="color:var(--accent2);font-weight:800;text-decoration:none">📍 Blackspa Phuquoc</a><span class="vnd">블랙스파</span></td><td>₫450,000–900,000</td><td>威尼斯街區精品 SPA，裝潢現代高級、隱私性佳。<b>附設桑拿烤箱</b>。<b>10:00–14:00 Happy Hour 常有 10–40% 折扣</b>。</td></tr>
+            <tr><td><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=OASIS+Spa+Massage+Nail+Sunset+Town+Phu+Quoc" style="color:var(--accent2);font-weight:800;text-decoration:none">📍 OASIS Spa &amp; Nail</a></td><td>按摩 ₫400,000–800,000<br>美甲 ₫250,000–600,000</td><td>複合式：按摩＋洗頭＋美甲一次解決。適合女生或帶小孩，邊吹冷氣做指甲邊腳底按摩。</td></tr>
+            <tr><td><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=LUMI+SPA+MASSAGE+Sunset+Town+Phu+Quoc" style="color:var(--accent2);font-weight:800;text-decoration:none">📍 LUMI SPA</a></td><td>₫400,000–850,000</td><td>韓系管理，服務輕聲細語。越式＋韓式融合，手法溫和、重穴位舒緩。</td></tr>
+            <tr><td><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=SPA+THE+L+Sunset+Town+Phu+Quoc" style="color:var(--accent2);font-weight:800;text-decoration:none">📍 SPA THE-L</a></td><td>₫450,000–950,000</td><td>竹筒按摩（部分季節）、客製化力道。毛巾備品清潔度受好評。</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>🎠 富國大世界 4 家　<span class="badge badge-inc">D1 晚上 · D3 上午</span></h4>
+        <div class="cost wide">
+          <table>
+            <tr><th>店家</th><th>價位</th><th>特色</th></tr>
+            <tr class="total"><td><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=J.CHIN+SPA+Massage+and+Shampoo+grand+World" style="color:var(--accent2);font-weight:800;text-decoration:none">📍 J.CHIN SPA</a><span class="vnd">⭐4.8（158）· 打烊 23:30<br>+84 858 861 993</span></td><td>2 小時套餐<br><b>兩人約 NT$1,200</b><span class="vnd">≈ 每人 NT$600</span></td><td>👑 <b>CP 值最高</b>。台灣自由行社群稱「神推店」。套餐＝全身熱石油壓＋採耳＋越式洗頭洗臉。現場常有 6–7 折攬客。附芒果與熱茶。</td></tr>
+            <tr><td><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Herbs+Spa+Grand+World+Phu+Quoc" style="color:var(--accent2);font-weight:800;text-decoration:none">📍 Herbs Spa Grand World</a><span class="vnd">10:00–23:00</span></td><td>₫350,000–900,000<span class="vnd">≈ NT$450–1,200</span></td><td>主打越南傳統草本與熱敷草本球。環境乾淨高雅，有<b>雙人隱私包廂</b>。結束附熱茶、點心、新鮮芒果。<br>📍 D3 上午行程就經過這裡。</td></tr>
+            <tr><td><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Lion+Spa+Phu+Quoc+Grand+World" style="color:var(--accent2);font-weight:800;text-decoration:none">📍 Lion Spa Phú Quốc</a></td><td>90 分鐘 ₫650,000–800,000<span class="vnd">≈ NT$850–1,050</span></td><td>台灣遊客評「在富國島按到最棒的店，甚至連去兩天」。環境五星級，手法嫻熟力道均勻。</td></tr>
+            <tr><td><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Spa+Nu+Hoang+1+Grand+World+Phu+Quoc" style="color:var(--accent2);font-weight:800;text-decoration:none">📍 Spa Nữ Hoàng 1</a></td><td>90 分精油＋30 分洗髮<br>₫700,000–900,000</td><td>當地司機推薦的隱藏版。越式洗髮套餐好評，洗完可直接吹整 —— <b>看完夜間表演順路去</b>。</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>🌃 南部 Sonasea 1 家　<span class="badge badge-inc">D3 晚上順路</span></h4>
+        <div class="cost wide">
+          <table>
+            <tr><th>店家</th><th>價位</th><th>特色</th></tr>
+            <tr class="total"><td><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=The+Bay+Spa+Nail+Phu+Quoc" style="color:var(--accent2);font-weight:800;text-decoration:none">📍 The Bay Spa &amp; Nail</a><span class="vnd">⭐4.8（3,016）· 打烊 22:00<br>Sonasea 夜市旁 · +84 705 526 633</span></td><td>60 分排毒精油 ₫590,000<br>90 分熱石 ₫800,000</td><td>👑 <b>D3 晚上逛夜市時最順的一家。</b>3,000 多則評論仍維持 4.8 分，是全部 13 家裡評論數最多的。芳療師五星級飯店背景，用天然米糠萃取油。<br>💡 <b>2 人以上同時預約按摩＋美甲，可享 Sonasea 區飯店免費接送。</b></td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>🛒 中部楊東鎮 2 家　<span class="badge badge-neu">D3 下午 · D6 中午（時間較緊）</span></h4>
+        <div class="cost wide">
+          <table>
+            <tr><th>店家</th><th>價位</th><th>特色</th></tr>
+            <tr><td><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=FIONA+SPA+Phu+Quoc" style="color:var(--accent2);font-weight:800;text-decoration:none">📍 FIONA SPA</a><span class="vnd">小龍王廟附近</span></td><td>₫350,000–950,000<span class="vnd">雙人精油約 ₫1,000,000</span></td><td>楊東鎮中心 Trần Hưng Đạo 街。<b>明碼標價已含小費</b>，付費透明。多種精油可試聞挑選，房內附淋浴間。</td></tr>
+            <tr><td><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Glow+Day+Spa+Massage+Phu+Quoc" style="color:var(--accent2);font-weight:800;text-decoration:none">📍 Glow Day Spa</a><span class="vnd">金剛超市附近</span></td><td>₫300,000–750,000</td><td>溫馨小巧的越式在地風格，手法偏經絡穴位疏通。不定期有打卡／評論優惠。</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="block warnblock">
+        <h4>💡 避坑與預約技巧</h4>
+        <ul>
+          <li><b>洗頭要說「用指腹」。</b>越南傳統洗頭習慣用<b>指甲</b>抓頭皮。不習慣的話入座就先講：<br>
+          <span style="display:inline-block;margin-top:4px;padding:5px 9px;background:var(--panel);border:1px solid var(--line);border-radius:8px;font-size:12.5px">"Please use finger pulp, no nails"</span></li>
+          <li><b>一定要點 Combo，不要單點。</b>單純洗頭約 NT$200–300，但「身體按摩 60 分 ＋ 洗頭 30 分」的套餐<b>價差非常小</b>，體驗卻豐富很多。</li>
+          <li><b>Happy Hour 折扣</b>：Blackspa 的 10:00–14:00 時段常有 10–40% 折扣；FIONA 也有 Happy Hour。<b>白天按比晚上便宜</b>。</li>
+          <li><b>9 人要先訂位，而且分兩批比較實際。</b>多數店只有 4–6 張床。<b>D5 的 SOLANA（19:45）請 D4 晚上就請 New World 櫃檯代訂</b>；D3 的 The Bay Spa 可請導遊在車上先打電話。</li>
+          <li><b>小心假冒接單。</b>Hanz Sunset Spa 在 Google 商家頁公告有人冒用店名接單詐騙 —— <b>只透過官網或店家公開電話預約</b>，別透過來路不明的通訊軟體帳號。</li>
+          <li><b>小費</b>：多數店價格未含小費，滿意約給 <b>₫50,000–100,000</b>／人。FIONA 是少數明講「已含小費」的。</li>
+          <li><b>孩童按摩</b>：The Bay Spa（兒童成長按摩）、FIONA（兒童按摩）、Blackspa（兒童療程）有專門項目。其他店不一定收小孩，<b>訂位時先問</b>。</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>💰 價格速查（每人．換算 NT$）</h4>
+        <div class="cost wide">
+          <table>
+            <tr><th>項目</th><th>越南盾</th><th style="text-align:right">台幣</th></tr>
+            <tr><td>單純洗頭 30 分</td><td>₫160,000–240,000</td><td class="num">NT$200–300</td></tr>
+            <tr><td>足部／局部 60 分</td><td>₫300,000–450,000</td><td class="num">NT$375–560</td></tr>
+            <tr><td>全身精油 60 分</td><td>₫400,000–590,000</td><td class="num">NT$500–740</td></tr>
+            <tr><td>全身精油／熱石 90 分</td><td>₫650,000–900,000</td><td class="num">NT$810–1,125</td></tr>
+            <tr class="total"><td><b>Combo 套餐 2 小時</b><span class="vnd">按摩＋採耳＋洗頭</span></td><td>₫480,000–800,000</td><td class="num">NT$600–1,000</td></tr>
+          </table>
+        </div>
+        <p style="font-size:11.5px;color:var(--muted);margin-top:8px">＊以 1 TWD ≈ 800 VND 換算。<b>店名可直接點開 Google 地圖導航。</b><br>
+        ＊<b>Hanz Sunset Spa 的價目表為官網 hanzsunsetspa.com 實查</b>（2026/09）；其餘店家價格來自旅遊整理資料（非官網），<b>評分／營業時間／電話</b>為 Google Maps 實查（僅 SOLANA、The Bay Spa、Hanz、J.CHIN 四家已逐一核對）。<b>其餘店家請點連結確認後再前往</b>，價格一律以現場為準。</p>
+      </div>
+
+    </div>
+</details>
+
+<div class="sec-title" id="lang">實用越南語 · 緊急聯絡</div>
+<details class="card">
+  <summary class="card-head">
+    <div class="ch-row">
+      <div class="left">
+        <span class="toggle-icon">&#9654;</span>
+        <div><div class="card-title">🗣 常用短句與緊急電話</div>
+        <div class="card-sub">現場直接翻出來給店家看</div></div>
+      </div>
+    </div>
+  </summary>
+    <div class="card-body">
+
+        <div id="voicestat" class="vnote">點 🔊 會開啟 Google 翻譯發音（需網路）。若手機已安裝越南語語音，則直接在本頁朗讀、免網路。</div>
+
+      <div class="block" style="margin-top:0">
+        <h4>💬 日常</h4>
+        <table class="phrase">
+          <tr><td>你好</td><td><span class="vi">Xin chào</span><span class="hint">（辛　照）</span></td><td class="sayc"><a class="say" data-vi="Xin chào" target="_blank" rel="noopener" href="https://translate.google.com/?sl=vi&amp;tl=zh-TW&amp;text=Xin%20ch%C3%A0o&amp;op=translate" aria-label="播放發音">🔊</a></td></tr>
+          <tr><td>謝謝</td><td><span class="vi">Cảm ơn</span><span class="hint">（甘　恩）</span></td><td class="sayc"><a class="say" data-vi="Cảm ơn" target="_blank" rel="noopener" href="https://translate.google.com/?sl=vi&amp;tl=zh-TW&amp;text=C%E1%BA%A3m%20%C6%A1n&amp;op=translate" aria-label="播放發音">🔊</a></td></tr>
+          <tr><td>對不起 / 不好意思</td><td><span class="vi">Xin lỗi</span></td><td class="sayc"><a class="say" data-vi="Xin lỗi" target="_blank" rel="noopener" href="https://translate.google.com/?sl=vi&amp;tl=zh-TW&amp;text=Xin%20l%E1%BB%97i&amp;op=translate" aria-label="播放發音">🔊</a></td></tr>
+          <tr><td>是 / 不是</td><td><span class="vi">Vâng / Không</span></td><td class="sayc"><a class="say" data-vi="Vâng, Không" target="_blank" rel="noopener" href="https://translate.google.com/?sl=vi&amp;tl=zh-TW&amp;text=V%C3%A2ng%20/%20Kh%C3%B4ng&amp;op=translate" aria-label="播放發音">🔊</a></td></tr>
+          <tr><td>我不要，謝謝</td><td><span class="vi">Không, cảm ơn</span></td><td class="sayc"><a class="say" data-vi="Không, cảm ơn" target="_blank" rel="noopener" href="https://translate.google.com/?sl=vi&amp;tl=zh-TW&amp;text=Kh%C3%B4ng%2C%20c%E1%BA%A3m%20%C6%A1n&amp;op=translate" aria-label="播放發音">🔊</a></td></tr>
+          <tr><td>廁所在哪裡？</td><td><span class="vi">Nhà vệ sinh ở đâu?</span></td><td class="sayc"><a class="say" data-vi="Nhà vệ sinh ở đâu?" target="_blank" rel="noopener" href="https://translate.google.com/?sl=vi&amp;tl=zh-TW&amp;text=Nh%C3%A0%20v%E1%BB%87%20sinh%20%E1%BB%9F%20%C4%91%C3%A2u%3F&amp;op=translate" aria-label="播放發音">🔊</a></td></tr>
+        </table>
+      </div>
+
+      <div class="block">
+        <h4>🛍 購物與吃飯</h4>
+        <table class="phrase">
+          <tr><td>多少錢？</td><td><span class="vi">Bao nhiêu tiền?</span></td><td class="sayc"><a class="say" data-vi="Bao nhiêu tiền?" target="_blank" rel="noopener" href="https://translate.google.com/?sl=vi&amp;tl=zh-TW&amp;text=Bao%20nhi%C3%AAu%20ti%E1%BB%81n%3F&amp;op=translate" aria-label="播放發音">🔊</a></td></tr>
+          <tr><td>太貴了，可以便宜點嗎？</td><td><span class="vi">Đắt quá! Giảm giá được không?</span></td><td class="sayc"><a class="say" data-vi="Đắt quá! Giảm giá được không?" target="_blank" rel="noopener" href="https://translate.google.com/?sl=vi&amp;tl=zh-TW&amp;text=%C4%90%E1%BA%AFt%20qu%C3%A1%21%20Gi%E1%BA%A3m%20gi%C3%A1%20%C4%91%C6%B0%E1%BB%A3c%20kh%C3%B4ng%3F&amp;op=translate" aria-label="播放發音">🔊</a></td></tr>
+          <tr><td>我要買這個</td><td><span class="vi">Tôi muốn mua cái này</span></td><td class="sayc"><a class="say" data-vi="Tôi muốn mua cái này" target="_blank" rel="noopener" href="https://translate.google.com/?sl=vi&amp;tl=zh-TW&amp;text=T%C3%B4i%20mu%E1%BB%91n%20mua%20c%C3%A1i%20n%C3%A0y&amp;op=translate" aria-label="播放發音">🔊</a></td></tr>
+          <tr><td>不要辣 / 不要香菜</td><td><span class="vi">Không cay / Không rau mùi</span></td><td class="sayc"><a class="say" data-vi="Không cay, Không rau mùi" target="_blank" rel="noopener" href="https://translate.google.com/?sl=vi&amp;tl=zh-TW&amp;text=Kh%C3%B4ng%20cay%20/%20Kh%C3%B4ng%20rau%20m%C3%B9i&amp;op=translate" aria-label="播放發音">🔊</a></td></tr>
+          <tr><td>結帳</td><td><span class="vi">Tính tiền</span></td><td class="sayc"><a class="say" data-vi="Tính tiền" target="_blank" rel="noopener" href="https://translate.google.com/?sl=vi&amp;tl=zh-TW&amp;text=T%C3%ADnh%20ti%E1%BB%81n&amp;op=translate" aria-label="播放發音">🔊</a></td></tr>
+          <tr><td>可以刷卡嗎？</td><td><span class="vi">Có thể thanh toán bằng thẻ không?</span></td><td class="sayc"><a class="say" data-vi="Có thể thanh toán bằng thẻ không?" target="_blank" rel="noopener" href="https://translate.google.com/?sl=vi&amp;tl=zh-TW&amp;text=C%C3%B3%20th%E1%BB%83%20thanh%20to%C3%A1n%20b%E1%BA%B1ng%20th%E1%BA%BB%20kh%C3%B4ng%3F&amp;op=translate" aria-label="播放發音">🔊</a></td></tr>
+          <tr><td>好吃！</td><td><span class="vi">Ngon quá!</span></td><td class="sayc"><a class="say" data-vi="Ngon quá!" target="_blank" rel="noopener" href="https://translate.google.com/?sl=vi&amp;tl=zh-TW&amp;text=Ngon%20qu%C3%A1%21&amp;op=translate" aria-label="播放發音">🔊</a></td></tr>
+        </table>
+      </div>
+
+      <div class="block">
+        <h4>🆘 求助</h4>
+        <table class="phrase">
+          <tr><td>救命！</td><td><span class="vi">Cứu tôi với!</span></td><td class="sayc"><a class="say" data-vi="Cứu tôi với!" target="_blank" rel="noopener" href="https://translate.google.com/?sl=vi&amp;tl=zh-TW&amp;text=C%E1%BB%A9u%20t%C3%B4i%20v%E1%BB%9Bi%21&amp;op=translate" aria-label="播放發音">🔊</a></td></tr>
+          <tr><td>我需要醫生</td><td><span class="vi">Tôi cần bác sĩ</span></td><td class="sayc"><a class="say" data-vi="Tôi cần bác sĩ" target="_blank" rel="noopener" href="https://translate.google.com/?sl=vi&amp;tl=zh-TW&amp;text=T%C3%B4i%20c%E1%BA%A7n%20b%C3%A1c%20s%C4%A9&amp;op=translate" aria-label="播放發音">🔊</a></td></tr>
+          <tr><td>我迷路了</td><td><span class="vi">Tôi bị lạc đường</span></td><td class="sayc"><a class="say" data-vi="Tôi bị lạc đường" target="_blank" rel="noopener" href="https://translate.google.com/?sl=vi&amp;tl=zh-TW&amp;text=T%C3%B4i%20b%E1%BB%8B%20l%E1%BA%A1c%20%C4%91%C6%B0%E1%BB%9Dng&amp;op=translate" aria-label="播放發音">🔊</a></td></tr>
+          <tr><td>請帶我去這個地址</td><td><span class="vi">Cho tôi đến địa chỉ này</span><span class="hint">（＋出示飯店卡片）</span></td><td class="sayc"><a class="say" data-vi="Cho tôi đến địa chỉ này" target="_blank" rel="noopener" href="https://translate.google.com/?sl=vi&amp;tl=zh-TW&amp;text=Cho%20t%C3%B4i%20%C4%91%E1%BA%BFn%20%C4%91%E1%BB%8Ba%20ch%E1%BB%89%20n%C3%A0y&amp;op=translate" aria-label="播放發音">🔊</a></td></tr>
+        </table>
+      </div>
+
+      <div class="block warnblock">
+        <h4>📞 緊急聯絡</h4>
+        <ul>
+          <li><b>越南報警　113</b>　|　<b>火警　114</b>　|　<b>救護車　115</b></li>
+          <li><b>駐胡志明市台北經濟文化辦事處</b>（管轄富國島）<br>
+              急難救助專線：<b>+84-90-382-9019</b><br>
+              辦公室：+84-28-3834-9160</li>
+          <li><b>外交部旅外國人急難救助全球專線</b>（台灣）：<b>+886-800-085-095</b></li>
+          <li>出發前務必：<b>存好導遊電話、兩間飯店的電話與越南文地址</b>，並拍下護照資料頁存手機。</li>
+          <li>建議申辦<b>越南上網卡或 eSIM</b>（島上 Wi-Fi 不穩），並開啟 Google 翻譯離線越南語。</li>
+        </ul>
+      </div>
+
+    </div>
+</details>
+
+<!-- ============ 打包清單 ============ -->
+<div class="sec-title" id="pack">親子行李打包清單</div>
+<details class="card">
+  <summary class="card-head">
+    <div class="ch-row">
+      <div class="left">
+        <span class="toggle-icon">&#9654;</span>
+        <div><div class="card-title">🎒 出發前 Checklist</div>
+        <div class="card-sub">點一下打勾（紀錄存在本機瀏覽器）</div></div>
+      </div>
+    </div>
+  </summary>
+    <div class="card-body">
+
+      <div class="block" style="margin-top:0">
+        <h4>📄 證件與錢（隨身，絕不托運）</h4>
+        <ul class="chk" data-g="doc">
+          <li><label><input type="checkbox"><span>護照（效期滿 6 個月）＋ 影本／手機備份</span></label></li>
+          <li><label><input type="checkbox"><span>電子機票、飯店訂房確認單</span></label></li>
+          <li><label><input type="checkbox"><span>美金 100 元大面額新鈔（換匯用）</span></label></li>
+          <li><label><input type="checkbox"><span>信用卡（VISA / Master）</span></label></li>
+          <li><label><input type="checkbox"><span>兒童健保卡、旅平險保單資訊</span></label></li>
+          <li><label><input type="checkbox"><span>越南上網卡 / eSIM</span></label></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>🏖 樂園與海邊（4 天樂園行程必備）</h4>
+        <ul class="chk" data-g="beach">
+          <li><label><input type="checkbox"><span>泳衣 ×2 套（每人，濕的要換）＋ 泳帽</span></label></li>
+          <li><label><input type="checkbox"><span>兒童救生衣／浮具（水樂園部分不外借）</span></label></li>
+          <li><label><input type="checkbox"><span>大浴巾 / 快乾毛巾</span></label></li>
+          <li><label><input type="checkbox"><span>防水袋、防水手機套</span></label></li>
+          <li><label><input type="checkbox"><span>防曬乳 SPF50+（兒童專用一瓶）</span></label></li>
+          <li><label><input type="checkbox"><span>帽子、太陽眼鏡、涼感巾</span></label></li>
+          <li><label><input type="checkbox"><span>防水涼鞋 / 拖鞋 ＋ 好走的球鞋</span></label></li>
+          <li><label><input type="checkbox"><span>小型隨身電風扇</span></label></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>💊 藥品與清潔</h4>
+        <ul class="chk" data-g="med">
+          <li><label><input type="checkbox"><span>兒童退燒藥、腸胃藥、止瀉藥</span></label></li>
+          <li><label><input type="checkbox"><span>暈車／暈機藥</span></label></li>
+          <li><label><input type="checkbox"><span>防蚊液、蚊蟲叮咬藥膏</span></label></li>
+          <li><label><input type="checkbox"><span>OK 繃、優碘、曬後修護</span></label></li>
+          <li><label><input type="checkbox"><span>個人慢性病用藥（含英文處方箋）</span></label></li>
+          <li><label><input type="checkbox"><span>濕紙巾、乾洗手、口罩</span></label></li>
+          <li><label><input type="checkbox"><span>衛生紙（越南廁所常無紙）</span></label></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>🔌 3C 與雜項</h4>
+        <ul class="chk" data-g="tech">
+          <li><label><input type="checkbox"><span>行動電源（隨身不可托運）</span></label></li>
+          <li><label><input type="checkbox"><span>充電線 ×2、多孔充電頭</span></label></li>
+          <li><label><input type="checkbox"><span>轉接頭（越南多為兩腳圓／扁孔，220V，台灣插頭多可直插）</span></label></li>
+          <li><label><input type="checkbox"><span>環保水壺（出海行程禁帶寶特瓶）</span></label></li>
+          <li><label><input type="checkbox"><span>輕便雨衣 / 折傘（9 月雨季尾）</span></label></li>
+          <li><label><input type="checkbox"><span>夾鏈袋、洗衣袋（裝濕泳衣）</span></label></li>
+          <li><label><input type="checkbox"><span>小孩零食、飛機上打發時間的玩具</span></label></li>
+          <li><label><input type="checkbox"><span>薄外套（飯店與機上冷氣強）</span></label></li>
+        </ul>
+      </div>
+
+      <p style="font-size:11.5px;color:var(--muted);margin-top:10px">＊9 月富國島平均 26–32°C，濕熱多陣雨。以夏季輕便衣物為主，另備 1 件薄外套。</p>
+
+    </div>
+</details>
+
+<!-- ============ 注意事項 ============ -->
+<div class="sec-title" id="notice">重要注意事項</div>
+<details class="card">
+  <summary class="card-head">
+    <div class="ch-row">
+      <div class="left">
+        <span class="toggle-icon">&#9654;</span>
+        <div><div class="card-title">⚠️ 旅行社聲明與旅客名單</div>
+        <div class="card-sub">行程變更權利 · 特殊狀況告知 · 房型分配</div></div>
+      </div>
+    </div>
+  </summary>
+    <div class="card-body">
+
+      <div class="block warnblock" style="margin-top:0">
+        <h4>📋 旅行社聲明</h4>
+        <ul>
+          <li>旅遊行程住宿及旅遊點儘量忠於原行程，若遇特殊情況或不可抗拒因素（船班、交通阻塞、觀光點休假），本公司保有<b>變更班機、行程及同等飯店</b>之權利與義務。</li>
+          <li><b>行程順序會因當地天候、海象、交通等因素而調整</b>，請依當地導遊安排。</li>
+          <li>旅客如有特殊狀況（兒童、孕婦、年長者）或特殊疾病（身心方面疾病）、不適合劇烈運動者，<b>請主動告知業務專員及當地導遊</b>。</li>
+          <li>若有懷孕或重大疾病等特殊健康狀況，<b>務必於報名時主動告知</b>；未事先說明而影響行程或產生問題，需自行承擔相關責任。</li>
+          <li>孕婦搭機規定依各航空公司而異：懷孕 <b>28–36 週</b>須產檢醫生填寫航空公司專用診斷書；<b>36 週後</b>須醫護人員同行或禁止搭乘。</li>
+          <li>酒店一大床或兩張床的床型，旅行社<b>僅能於訂房時備註需求，無法保證</b>。</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>🌏 越南在地小提醒</h4>
+        <ul>
+          <li><b>電壓 220V</b>，台灣兩腳扁插多可直接使用；三腳插需轉接頭。</li>
+          <li><b>自來水不可生飲</b>，請喝瓶裝水；腸胃敏感者避免生冷食物與路邊冰塊。</li>
+          <li>過馬路要有耐心，機車多，<b>穩定速度走、不要突然停下</b>；牽好小孩。</li>
+          <li>富國島治安尚可，但夜市人多，<b>後背包請背前面</b>，勿露財。</li>
+          <li>計程車建議搭 <b>Mai Linh（綠白）或 Vinasun（白）</b>，或使用 Grab App 叫車以免被繞路。</li>
+          <li>越南人習慣先報高價，<b>市場、夜市可議價</b>；超市、樂園、餐廳則為定價。</li>
+          <li>出海行程<b>禁止攜帶寶特瓶</b>上島，請自備水壺。</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>👨‍👩‍👧 旅客名單與房型分配</h4>
+        <div class="rooms">
+          <div class="room"><div class="r-t">ROOM 1</div>
+            葉又寧 YEH, YU-NING MS.<br>
+            陳柏源 CHEN, BO-YUAN MR.<br>
+            陳語希 CHEN, YU-XI MISS.（2018/04/27）<span class="badge badge-inc">加床</span></div>
+          <div class="room"><div class="r-t">ROOM 2</div>
+            林瑜璟 LIN, YU-CHING MS.<br>
+            洪慶銘 HUNG, CHING-MING MR.<br>
+            洪郁翔 HUNG, YU-HSIANG MSTR.（2019/09/30）<span class="badge badge-free">前3晚加床</span></div>
+          <div class="room"><div class="r-t">ROOM 3</div>
+            曾曉君 TSENG, HSIAO-CHUN MS.<br>
+            林家鴻 LIN, CHIA-HUNG MR.<br>
+            林昱橙 LIN, YU-CHENG MSTR.（2016/12/27）<span class="badge badge-free">前3晚加床</span></div>
+        </div>
+        <p style="font-size:11.5px;color:var(--muted);margin-top:8px">＊D1–D3 星灣皇冠：1 King Standard Ocean View ×3 ＋ Extrabed ×3<br>＊D4–D5 新世界：Premium Pool Villa ×1 ＋ Extrabed ×1</p>
+      </div>
+
+    </div>
+</details>
+
+<!-- ============ YouTube 攻略整理 ============ -->
+<div class="sec-title" id="ytguide">YouTube 攻略整理</div>
+<details class="card" open>
+  <summary class="card-head">
+    <div class="ch-row">
+      <div class="left">
+        <span class="toggle-icon">&#9654;</span>
+        <div><div class="card-title">🎬 富國島自由行攻略（Kimmy World Words So）</div>
+        <div class="card-sub">17:44 · 點時間碼直接跳到該段 · 紅標＝對應本團哪一天</div></div>
+      </div>
+    </div>
+  </summary>
+    <div class="card-body">
+
+      <div class="pins" style="margin-bottom:4px">
+        <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=KnQa1olK7fY">▶ 看完整影片</a>
+      </div>
+
+      <div class="block">
+        <h4>🧳 行前準備</h4>
+        <ul class="yt">
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=0">▶ 00:00</a> <b>本集預告</b><br><span class="yd">煙火、動物園、美人魚秀精華片段</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=68">▶ 01:08</a> <b>簽證</b><br><span class="yd">台灣護照直飛且只待富國島，符合條件可免簽最多 30 天；<b>免簽不等於全越南</b>，轉去胡志明、峴港等地需另辦越南簽證。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=138">▶ 02:18</a> <b>季節</b> <span class="badge badge-day">9 月＝雨季</span><br><span class="yd">乾季 11–4 月最穩；雨季 5–10 月常是陣雨、雨停就放晴，行程要排鬆、準備室內備案（海生館、咖啡廳、超市）。全年防曬防蚊。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=229">▶ 03:49</a> <b>機票（太陽富國航空）</b><br><span class="yd">影片是台北直飛太陽富國航空：4 天 3 夜來回最低約 NT$6,000 多，含手提 7kg＋託運 23kg。本團搭星宇，此段僅供參考。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=342">▶ 05:42</a> <b>北中南分區</b><br><span class="yd">北部＝親子樂園（Safari、VinWonders、Grand World）；中部＝機場、市區、夜市；南部＝度假感（纜車、日落小鎮、煙火）。先決定主玩哪區再選住宿。</span></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>🌅 南部玩法</h4>
+        <ul class="yt">
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=385">▶ 06:25</a> <b>跨海纜車 · 香島水陸樂園</b> <span class="badge badge-day">D4</span><br><span class="yd">纜車單程約 15–20 分；只拍照不必久留，要玩水排半天以上。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=421">▶ 07:01</a> <b>玩水提醒</b> <span class="badge badge-day">D4</span><br><span class="yd">部分滑水道<b>禁止泳衣有拉鍊、金屬扣</b>；有置物櫃，毛巾＋洗髮潤髮約 50,000 VND（≈NT$60）。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=438">▶ 07:18</a> <b>Mango 餐廳</b> <span class="badge badge-day">D4</span><br><span class="yd">香島自助吃到飽，越／韓／泰／中／義／美式都有；隔壁芒果冰淇淋推薦。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=458">▶ 07:38</a> <b>日落小鎮 Sunset Town</b><br><span class="yd">歐式彩色拱門、仿羅馬競技場，適合長洋裝度假風拍照；下午光線好、不太曬。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=480">▶ 08:00</a> <b>日落小鎮美食</b><br><span class="yd">麵包約 NT$30–80；蛋咖啡（像甜點）、椰子咖啡推薦。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=504">▶ 08:24</a> <b>親吻橋 Kiss Bridge</b><br><span class="yd">兩段橋身不相連，可拍「快親到」畫面；人潮多要抓角度，現場有收費攝影師。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=526">▶ 08:46</a> <b>Sun Bavaria GastroPub</b><br><span class="yd">啤酒吃到飽餐廳，緊鄰 Symphony of the Sea 煙火；訂位選<b>戶外、面向橋</b>。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=556">▶ 09:16</a> <b>Kiss of the Sea 海洋之吻</b> <span class="badge badge-day">D4</span><br><span class="yd">水幕、火焰、雷射、演員＋頭頂煙火的大型海上劇場秀，強推。</span></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>🦒 北部玩法（親子樂園）</h4>
+        <ul class="yt">
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=581">▶ 09:41</a> <b>北部一日排法</b><br><span class="yd">早上動物園 → 下午珍珠樂園 → 晚上富國大世界。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=593">▶ 09:53</a> <b>Vinpearl Safari</b> <span class="badge badge-day">D2</span><br><span class="yd">先走<b>紅線猛獸區巴士</b>（黑熊、老虎、獅子），建議<b>坐左側（司機側）</b>；再到黃線步行區看長頸鹿（餵食要先買飼料）、環尾狐猴。帶小孩可加購代步車。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=667">▶ 11:07</a> <b>VinWonders 珍珠樂園</b> <span class="badge badge-day">D2</span><br><span class="yd">進園先去海生館看<b>美人魚秀</b>；餵企鵝約 400,000 VND。先抓表演時間再排設施，看完晚間表演再離開。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=741">▶ 12:21</a> <b>Grand World 富國大世界</b> <span class="badge badge-day">D1</span><br><span class="yd">免費入園；運河、竹編建築、免費水舞秀；付費有越南精華秀、貢多拉船。推薦法棍配咖哩、海鮮餐廳的炸春捲與清蒸小卷。</span></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>🚕 交通 · 住宿 · 購物</h4>
+        <ul class="yt">
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=799">▶ 13:19</a> <b>中部</b> <span class="badge badge-day">D3</span><br><span class="yd">靠近機場與楊東夜市。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=815">▶ 13:35</a> <b>Grab</b><br><span class="yd">在台灣先用手機號碼註冊；上車前核對車牌、司機與目的地。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=839">▶ 13:59</a> <b>Xanh SM</b><br><span class="yd">越南電動計程車，用法同 Grab，可當備案。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=854">▶ 14:14</a> <b>VinBus</b><br><span class="yd"><b>2026/1/1 起依距離收費</b>。App 地區選富國島、語言改英文；常用 17 號，可看 Direction、下一班、Timetable。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=918">▶ 15:18</a> <b>私人包車</b><br><span class="yd">帶長輩小孩、多人出遊較省事，分攤划算。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=946">▶ 15:46</a> <b>住宿：Premier Residences</b><br><span class="yd">離機場約 25 分，適合主攻南部；<b>南↔北車程約 1 小時</b>，天天跑北部不建議住南部。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=996">▶ 16:36</a> <b>伴手禮：Vietnam Select</b> <span class="badge badge-day">D4–D5</span><br><span class="yd">日落小鎮大型超市，住南部不必特地跑中部金剛超市。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=1014">▶ 16:54</a> <b>機場提醒</b> <span class="badge badge-day">D6</span><br><span class="yd">機場物價高、多用美金標價（法棍 US$8），伴手禮別留到機場買。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/KnQa1olK7fY?t=1033">▶ 17:13</a> <b>總結</b><br><span class="yd">樂園、表演、度假飯店集中一島，適合第一次輕鬆玩越南海島。</span></li>
+        </ul>
+      </div>
+
+      <p style="font-size:11.5px;color:var(--muted);margin-top:10px">＊影片內容為拍攝當下經驗；簽證、票價、表演場次與 VinBus 收費請以官網／官方訂票系統為準。</p>
+
+    </div>
+</details>
+
+<!-- ============ YouTube 伴手禮整理 ============ -->
+<div class="sec-title" id="ytgift">YouTube 伴手禮清單</div>
+<details class="card" open>
+  <summary class="card-head">
+    <div class="ch-row">
+      <div class="left">
+        <span class="toggle-icon">&#9654;</span>
+        <div><div class="card-title">🛍 越南必買伴手禮 15 選（Kimmy World Words So）</div>
+        <div class="card-sub">15:48 · 點時間碼跳到該段 · 超市零食為主</div></div>
+      </div>
+    </div>
+  </summary>
+    <div class="card-body">
+
+      <div class="pins" style="margin-bottom:4px">
+        <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=TUcRqttKD8k">▶ 看完整影片</a>
+      </div>
+
+      <div class="vnote" style="margin-top:10px">🛒 在哪買：大多是一般超市就有 —— <b>D3 楊東鎮</b>、<b>D4–D5 日落小鎮 Vietnam Select</b> 都可以找，別留到機場（貴又少）。</div>
+
+      <div class="block">
+        <h4>🏆 Kimmy 前 5 名（必買）</h4>
+        <ul class="yt">
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/TUcRqttKD8k?t=892">▶ 14:52</a> <b>① 綠豆糕</b> <span class="badge badge-free">推</span><br><span class="yd">一盒 30 小包、已切小塊，綿密入口即化，甜度剛好，配茶最搭。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/TUcRqttKD8k?t=885">▶ 14:45</a> <b>② Pillows 椰子夾心餅乾</b> <span class="badge badge-free">推</span><br><span class="yd">綠色包裝，椰香＋奶香，外層酥脆。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/TUcRqttKD8k?t=876">▶ 14:36</a> <b>③ 樂事 河粉口味</b> <span class="badge badge-free">推</span><br><span class="yd">香菜、羅勒味超還原；很搶手，看到就先買。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/TUcRqttKD8k?t=869">▶ 14:29</a> <b>④ 越南版旺旺仙貝（肉鬆）</b> <span class="badge badge-day">含肉・不能帶回</span><br><span class="yd">好吃但含豬肉鬆 → 只能在越南吃。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/TUcRqttKD8k?t=861">▶ 14:21</a> <b>⑤ Karo 鬆餅脆餅</b> <span class="badge badge-free">推</span><br><span class="yd">楓糖鬆餅味、很脆，大人小孩都愛。</span></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>🍪 餅乾・洋芋片</h4>
+        <ul class="yt">
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/TUcRqttKD8k?t=61">▶ 01:01</a> <b>雞絲雞蛋糕</b> <span class="badge badge-day">含肉・不能帶回</span><br><span class="yd">雞蛋糕口感＋雞肉絲，奶油香濃。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/TUcRqttKD8k?t=103">▶ 01:43</a> <b>肉鬆仙貝</b> <span class="badge badge-day">含肉・不能帶回</span><br><span class="yd">一大包 15 小包，適合分享。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/TUcRqttKD8k?t=179">▶ 02:59</a> <b>樂事 河粉口味</b> <span class="badge badge-free">推</span><br><span class="yd">跑了好幾家超商，最後在大賣場才找到。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/TUcRqttKD8k?t=340">▶ 05:40</a> <b>Pillows 椰子夾心</b> <span class="badge badge-free">推</span><br><span class="yd">椰子＋奶香平衡，停不下來。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/TUcRqttKD8k?t=375">▶ 06:15</a> <b>旺旺 玉米夾心</b> <span class="badge badge-free">推</span><br><span class="yd">包裝寫台灣；玉米＋奶油內餡，外層微鹹。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/TUcRqttKD8k?t=414">▶ 06:54</a> <b>One One 玉米起司米果</b> <span class="badge badge-free">推</span><br><span class="yd">像寶寶米餅，獨立包裝，適合辦公室分送。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/TUcRqttKD8k?t=595">▶ 09:55</a> <b>Tipo 煉乳厚片吐司餅</b> <span class="badge badge-self">普通</span><br><span class="yd">像奶油酥條，但奶味不夠，不會回購。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/TUcRqttKD8k?t=703">▶ 11:43</a> <b>Tipo 奶油榴槤吐司餅</b> <span class="badge badge-self">普通</span><br><span class="yd">榴槤味偏香精。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/TUcRqttKD8k?t=819">▶ 13:39</a> <b>Karo 鬆餅脆餅</b> <span class="badge badge-free">推</span><br><span class="yd">比一般 waffle 更脆，有蜂蜜楓糖香。</span></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>🍫 巧克力・甜點・飲料</h4>
+        <ul class="yt">
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/TUcRqttKD8k?t=251">▶ 04:11</a> <b>Marou 精品巧克力</b><br><span class="yd">全用越南可可豆，44% 白巧不太甜、常溫不融；小包約 75 萬 VND，偏貴，送禮有面子。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/TUcRqttKD8k?t=478">▶ 07:58</a> <b>Oreo 巧克力蛋糕派（皮卡丘包裝）</b> <span class="badge badge-self">失望</span><br><span class="yd">吃不到 Oreo 味，但包裝可愛適合送人。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/TUcRqttKD8k?t=772">▶ 12:52</a> <b>綠豆糕（阿姨圖案包裝）</b> <span class="badge badge-free">推</span><br><span class="yd">第一名，絕對回購。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/TUcRqttKD8k?t=145">▶ 02:25</a> <b>豆奶</b> <span class="badge badge-free">推</span><br><span class="yd">全糖／減糖 30% 兩種，豆香濃、順口。</span></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>🎁 趣味小物</h4>
+        <ul class="yt">
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/TUcRqttKD8k?t=564">▶ 09:24</a> <b>皮卡丘・哆啦 A 夢小公仔</b><br><span class="yd">Kimmy 私心購買，非在地人推薦。</span></li>
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/TUcRqttKD8k?t=642">▶ 10:42</a> <b>整人糖果</b><br><span class="yd">有些小包是空的；糖本身是魚露＋辣椒＋芒果的甜鹹酸辣味，適合整同事。</span></li>
+        </ul>
+      </div>
+
+      <div class="block warnblock">
+        <h4>⚠️ 含肉製品不能帶回台灣</h4>
+        <ul class="yt">
+          <li><a class="tc" target="_blank" rel="noopener" href="https://youtu.be/TUcRqttKD8k?t=29">▶ 00:29</a> <b>影片提醒</b><br><span class="yd">含雞、豬、牛肉的食品不能帶進台灣：火腿美乃滋夾心麵包（<a href="https://youtu.be/TUcRqttKD8k?t=37" target="_blank" rel="noopener" style="color:var(--accent2)">00:37</a>）、雞絲雞蛋糕、肉鬆仙貝都只能在當地吃。豬肉製品是防非洲豬瘟重點，<b>罰款很重，別放進行李</b>。</span></li>
+        </ul>
+      </div>
+
+      <p style="font-size:11.5px;color:var(--muted);margin-top:10px">＊影片在北越（河內、沙壩）購買，富國島超市品項可能略有不同；價格以現場為準。</p>
+
+    </div>
+</details>
+
+<div class="foot">
+  富國島六日親子包團 · 旅遊攻略<br>
+  資料來源：獨立包團富國島六日行程（旅行社）＋ 星宇航空電子機票<br>
+  園區營業時間、表演場次、加購方案內容與票價<b>均以 Vinpearl／VinWonders 官網與官方訂票系統查證</b>（2026/08）<br>
+  匯率與價格為估算值，實際以現場為準
+</div>
+
+</div><!-- /container -->
+
+<script>
+/* 以下皆為選配增強：即使瀏覽器停用 JavaScript，展開／收合與打勾仍可正常使用 */
+
+/* 打包清單：記住勾選狀態 */
+(function () {
+  var KEY = 'pq2026_pack';
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { return; }
+  var lists = document.querySelectorAll('.chk');
+  for (var a = 0; a < lists.length; a++) {
+    (function (ul) {
+      var g = ul.getAttribute('data-g');
+      var boxes = ul.querySelectorAll('input[type=checkbox]');
+      for (var b = 0; b < boxes.length; b++) {
+        (function (box, i) {
+          var k = g + '-' + i;
+          if (saved[k]) box.checked = true;
+          box.addEventListener('change', function () {
+            saved[k] = box.checked;
+            try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+          });
+        })(boxes[b], b);
+      }
+    })(lists[a]);
+  }
+})();
+
+/* 越南語發音：有內建越南語語音就本頁朗讀，沒有就照常開 Google 翻譯（無 JS 也能用連結） */
+(function () {
+  var note = document.getElementById('voicestat');
+  if (!('speechSynthesis' in window)) return;
+  var voice = null;
+  function pick() {
+    var vs = [];
+    try { vs = window.speechSynthesis.getVoices() || []; } catch (e) { return; }
+    for (var i = 0; i < vs.length; i++) {
+      if ((vs[i].lang || '').toLowerCase().indexOf('vi') === 0) { voice = vs[i]; break; }
+    }
+    if (note) {
+      if (voice) {
+        note.className = 'vnote ok';
+        note.innerHTML = '✅ 已偵測到越南語語音，點 🔊 直接在本頁朗讀（免網路）。';
+      } else {
+        note.className = 'vnote warn';
+        note.innerHTML = '⚠️ 這支手機沒有越南語語音，點 🔊 會開啟 Google 翻譯發音（<b>需網路</b>）。<br>' +
+          '想離線發音：iPhone 設定 → 輔助使用 → 朗讀內容 → 語音 → 新增「Tiếng Việt」；' +
+          'Android 設定 → 系統 → 語言與輸入 → 文字轉語音 → 安裝越南語語音資料。';
+      }
+    }
+  }
+  pick();
+  try { window.speechSynthesis.onvoiceschanged = pick; } catch (e) {}
+
+  var btns = document.querySelectorAll('.say');
+  for (var i = 0; i < btns.length; i++) {
+    (function (a) {
+      a.addEventListener('click', function (e) {
+        var txt = a.getAttribute('data-vi');
+        if (!txt) return;
+        pick();
+        if (!voice) return;            /* 沒語音 → 不攔截，照常開 Google 翻譯 */
+        e.preventDefault();
+        try {
+          window.speechSynthesis.cancel();
+          var u = new SpeechSynthesisUtterance(txt);
+          u.voice = voice;
+          u.lang = voice.lang || 'vi-VN';
+          u.rate = 0.85;
+          a.classList.add('on');
+          u.onend = function () { a.classList.remove('on'); };
+          u.onerror = function () { a.classList.remove('on'); };
+          window.speechSynthesis.speak(u);
+        } catch (err) { a.classList.remove('on'); }
+      });
+    })(btns[i]);
+  }
+})();
+
+/* 導覽列高亮 */
+(function () {
+  var links = document.querySelectorAll('.daynav a');
+  for (var i = 0; i < links.length; i++) {
+    (function (a) {
+      a.addEventListener('click', function () {
+        for (var j = 0; j < links.length; j++) links[j].classList.remove('hi');
+        a.classList.add('hi');
+        var t = document.querySelector(a.getAttribute('href'));
+        if (!t) return;
+        var d = t.tagName === 'DETAILS' ? t : t.nextElementSibling;
+        if (d && d.tagName === 'DETAILS') d.open = true;
+      });
+    })(links[i]);
+  }
+})();
+</script>
+
+</body>
+</html>
