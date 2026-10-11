@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>韓國釜山首爾 7 日遊</title>
+<style>
+:root {
+  --bg:#f5efe7; --panel:#fffdf9; --panel-soft:#f8f3eb; --line:#ddd2c3; --ink:#1f2531; --muted:#5c6574;
+  --accent:#b24c2f; --accent-soft:#f7ddd3; --accent2:#1f6f78; --accent2-soft:#d9ecee; --chip:#efe4d4;
+  --shadow:0 12px 30px rgba(38,33,28,0.08); --warn:#c0632a; --warn-soft:#fbe4cf; --ok:#3f7a52; --ok-soft:#dceadf;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:radial-gradient(circle at top right,rgba(178,76,47,0.08),transparent 24%),radial-gradient(circle at left 20%,rgba(31,111,120,0.08),transparent 22%),var(--bg);
+  color:var(--ink); font-family:"Segoe UI","Helvetica Neue",Arial,"Noto Sans TC",sans-serif; line-height:1.6; padding:16px 12px 60px; }
+.container { max-width:960px; margin:0 auto; }
+a { color:var(--accent2); }
+.header, .card { background:rgba(255,253,249,0.97); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow); margin-bottom:16px; overflow:hidden; }
+.header { padding:20px; }
+.header h1 { font-size:22px; }
+.meta { font-size:13px; color:var(--muted); margin-top:4px; }
+.chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+.chip { background:var(--chip); border-radius:999px; padding:3px 10px; font-size:12px; font-weight:600; }
+.daynav { position:sticky; top:0; z-index:10; display:flex; gap:6px; overflow-x:auto; padding:8px 2px; margin-bottom:12px; background:var(--bg); }
+.daynav a { flex:0 0 auto; text-align:center; text-decoration:none; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:4px 12px; font-size:13px; font-weight:700; color:var(--ink); line-height:1.3; }
+.daynav a small { font-weight:500; color:var(--muted); }
+.card-head { padding:16px 18px; display:flex; justify-content:space-between; align-items:center; gap:10px; cursor:pointer; user-select:none; }
+.card-head:hover { background:var(--panel-soft); }
+.card-title { font-size:16px; font-weight:700; }
+.day-no { font-weight:800; color:var(--accent); }
+.day-date { font-size:13px; color:var(--muted); font-weight:600; }
+.day-title { font-size:16px; font-weight:700; margin-left:18px; }
+.body { padding:0 16px 16px; }
+.collapsible { display:none; padding:0 16px 16px; }
+.collapsible.open { display:block; }
+.toggle-icon { font-size:12px; color:var(--muted); transition:transform .2s; display:inline-block; margin-right:6px; }
+.toggle-icon.open { transform:rotate(90deg); }
+.badge { display:inline-block; font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px; white-space:nowrap; }
+.badge-ok { background:var(--ok-soft); color:var(--ok); }
+.badge-todo { background:var(--chip); color:var(--muted); }
+.badge-busan { background:var(--accent2-soft); color:var(--accent2); }
+.badge-seoul { background:var(--accent-soft); color:var(--accent); }
+.sub { font-size:13px; background:var(--accent2-soft); color:var(--accent2); font-weight:700; padding:6px 10px; border-radius:8px; }
+.section-title { font-size:13px; font-weight:700; margin:14px 0 6px; padding:3px 10px; border-radius:6px; display:inline-block; background:var(--warn-soft); color:var(--warn); }
+.timeline { list-style:none; }
+.stop { display:flex; gap:10px; padding:8px 10px; margin-bottom:6px; background:var(--panel-soft); border-left:3px solid var(--accent2); border-radius:0 8px 8px 0; }
+.time { font-weight:800; font-size:13px; min-width:46px; color:var(--accent2); }
+.stop-name { font-weight:700; font-size:14px; }
+.stop-desc { font-size:13px; color:var(--muted); }
+.maplink { font-size:12px; font-weight:600; text-decoration:none; }
+.map-wrap { border:1px solid var(--line); border-radius:12px; overflow:hidden; aspect-ratio:4/3; background:var(--chip); }
+.map-wrap iframe { width:100%; height:100%; border:0; }
+.btn { display:block; text-align:center; margin-top:8px; padding:10px; border-radius:10px; background:var(--accent2); color:#fff; font-weight:700; text-decoration:none; font-size:14px; }
+table.cost { width:100%; border-collapse:collapse; font-size:13px; }
+table.cost td { padding:6px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+table.cost .num { text-align:right; white-space:nowrap; font-weight:700; }
+table.cost tr.total td { background:var(--ok-soft); color:var(--ok); font-weight:800; }
+.muted { color:var(--muted); font-weight:500; font-size:12px; }
+.notes { padding-left:18px; font-size:13px; }
+.notes li { margin-bottom:4px; }
+.flight { border:1px solid var(--line); border-radius:12px; padding:10px 12px; margin-bottom:8px; background:var(--panel-soft); }
+.flight.rec { border-left:4px solid var(--ok); background:#f4faf5; }
+.f-top { display:flex; justify-content:space-between; align-items:center; }
+.f-date { font-size:12px; color:var(--muted); font-weight:600; }
+.f-no { font-weight:800; font-size:15px; margin-top:4px; }
+.f-route { font-size:14px; }
+.f-meta { font-size:12px; color:var(--muted); }
+.hotel { border:1px solid var(--line); border-radius:12px; padding:10px 12px; margin-bottom:8px; background:var(--panel-soft); }
+.h-n { font-size:12px; color:var(--accent); font-weight:700; }
+.h-name { font-weight:800; font-size:15px; }
+.h-desc, .h-alt { font-size:13px; color:var(--muted); }
+.note { font-size:12px; color:var(--muted); font-style:italic; margin-top:8px; }
+.links { padding-left:18px; font-size:13px; }
+@media (min-width:700px) { body { padding:30px 22px 60px; } .flights-grid { display:grid; grid-template-columns:1fr 1fr; gap:0 10px; } }
+.stop.move { border-left-color:var(--accent); }
+.room { font-size:13px; margin-top:4px; }
+.maps { margin-top:12px; border:1px solid #bcdadd; border-radius:14px; background:var(--accent2-soft); padding:12px 14px; }
+.maps h4 { font-size:13px; font-weight:800; color:var(--accent2); margin-bottom:9px; }
+.mapbtn { display:block; text-align:center; background:var(--accent2); color:#fff; text-decoration:none; font-weight:800; font-size:13.5px; padding:12px 10px; border-radius:11px; margin-bottom:10px; }
+.mapbtn small { display:block; font-weight:600; font-size:11px; opacity:.85; margin-top:2px; }
+.pins { display:flex; flex-wrap:wrap; gap:6px; }
+.pins a { font-size:12px; text-decoration:none; background:var(--panel); border:1px solid var(--line); color:var(--accent2); padding:5px 10px; border-radius:999px; font-weight:600; }
+.legs { list-style:none; margin:4px 0 10px; }
+.leg a { display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--ink); background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:8px 10px; margin-bottom:6px; }
+.leg-no { flex:0 0 auto; width:24px; height:24px; border-radius:7px; background:var(--accent); color:#fff; font-weight:800; font-size:12px; display:flex; align-items:center; justify-content:center; }
+.leg-body { flex:1; min-width:0; font-size:13px; font-weight:700; line-height:1.4; }
+.leg-body small { display:block; font-size:11.5px; color:var(--muted); font-weight:600; }
+.leg-go { color:var(--accent2); font-weight:800; font-size:18px; }
+.legdist { font-size:11.5px; color:var(--muted); margin-top:9px; line-height:1.7; }
+.daylink { display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink); background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:11px 12px; margin-bottom:8px; }
+.dl-day { flex:0 0 auto; width:36px; height:36px; border-radius:10px; background:var(--accent2); color:#fff; font-weight:800; font-size:13px; display:flex; align-items:center; justify-content:center; }
+.dl-body { flex:1; min-width:0; }
+.dl-body b { display:block; font-size:13px; font-weight:700; line-height:1.45; }
+.dl-body small { display:block; font-size:11.5px; color:var(--muted); margin-top:2px; }
+.dl-go { flex:0 0 auto; color:var(--accent2); font-weight:800; font-size:18px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>🌸 韓國釜山・首爾 7 日遊</h1>
+  <div class="meta">2027/4/3（六）～4/9（五）｜4 大 1 小｜釜山 4 晚（海雲台 2＋西面 2）＋首爾 2 晚（明洞）</div>
+  <div class="chips"><span class="chip">海雲台</span><span class="chip">賞櫻</span><span class="chip">斜坡滑車</span><span class="chip">汗蒸幕</span><span class="chip">文化村</span><span class="chip">市場美食</span><span class="chip">首爾逛街</span></div>
+  <div class="note">資料整理：2026/10/11。標「官網」的票價為官網查詢結果，其餘營業時間、票價出發前請再到官網確認；標「估」的金額為估算。1 TWD ≈ 43 KRW。</div>
+</div>
+
+<nav class="daynav"><a href="#flights">✈️<br><small>航班</small></a><a href="#hotels">🏨<br><small>住宿</small></a><a href="#routemap">🗺<br><small>路線</small></a><a href="#d1" onclick="openDay('d1')">D1<br><small>4/3</small></a><a href="#d2" onclick="openDay('d2')">D2<br><small>4/4</small></a><a href="#d3" onclick="openDay('d3')">D3<br><small>4/5</small></a><a href="#d4" onclick="openDay('d4')">D4<br><small>4/6</small></a><a href="#d5" onclick="openDay('d5')">D5<br><small>4/7</small></a><a href="#d6" onclick="openDay('d6')">D6<br><small>4/8</small></a><a href="#d7" onclick="openDay('d7')">D7<br><small>4/9</small></a><a href="#budget">💰<br><small>預算</small></a><a href="#prep">📋<br><small>準備</small></a></nav>
+
+<div class="card" id="flights">
+  <div class="card-head" onclick="toggle('flights-b')"><div><span class="toggle-icon" id="icon-flights-b">&#9654;</span><span class="card-title">✈️ 航班資訊</span></div><span class="badge badge-ok">已訂・華航</span></div>
+  <div class="collapsible" id="flights-b">
+    <div class="flights-grid"><div class="flight rec">
+<div class="f-top"><span class="badge badge-ok">去程</span><span class="f-date">2027/4/3（六）</span></div>
+<div class="f-no">華航 CI188</div><div class="f-route">台北 桃園 TPE 07:55 → 釜山 金海 PUS 11:15</div>
+<div class="f-meta">🛩 Airbus A321neo ・ 經濟艙 靈活（Y）</div></div><div class="flight rec">
+<div class="f-top"><span class="badge badge-ok">回程</span><span class="f-date">2027/4/9（五）</span></div>
+<div class="f-no">華航 CI163</div><div class="f-route">首爾 仁川 ICN 20:05 → 台北 桃園 TPE 21:50</div>
+<div class="f-meta">🛩 Airbus A321neo ・ 經濟艙 基本（N）</div></div></div>
+    <div class="note">去程建議 05:55 前到桃園 T1 報到；回程出發前請到仁川機場官網確認華航航廈。</div>
+  </div>
+</div>
+
+<div class="card" id="hotels">
+  <div class="card-head" onclick="toggle('hotels-b')"><div><span class="toggle-icon" id="icon-hotels-b">&#9654;</span><span class="card-title">🏨 住宿</span></div><span class="badge badge-todo">每晚 2 間房</span></div>
+  <div class="collapsible" id="hotels-b"><div class="hotel"><div class="h-n">4/3–4/5（2 晚）・海雲台</div><div class="h-name">L7 HAEUNDAE by LOTTE HOTELS（L7 海雲台）</div>
+<div class="h-desc">四星・2024 年開幕・到海灘約 160m、海雲台站約 460m・頂樓溫水泳池（另收費）</div><div class="room">🛏 2 大 1 小：Family Twin（Ondol）36㎡ 或 Superior Family Twin 30㎡／2 大：Standard Twin 23㎡</div><div class="h-alt">入住 15:00／退房 11:00・可寄放行李・12 歲以下與大人同床不加價</div>
+<a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=L7+Haeundae+by+LOTTE+Hotels+Busan" target="_blank" rel="noopener">📍 地圖</a></div><div class="hotel"><div class="h-n">4/5–4/7（2 晚）・西面</div><div class="h-name">登巴斯塔中央飯店（Denbasta Central Hotel Seomyeon）</div>
+<div class="h-desc">到西面站約 530m・24 小時櫃檯・可寄放行李</div><div class="room">🛏 2 大 1 小：Premium Double Twin（2 Queen）／2 大：雙人房或雙床房</div><div class="h-alt">入住 16:00／退房 11:00・請指定有窗戶的房間（有住客反映部分房型無窗）</div>
+<a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Denbasta+Central+Hotel+Seomyeon+Busan" target="_blank" rel="noopener">📍 地圖</a></div><div class="hotel"><div class="h-n">4/7–4/9（2 晚）・明洞</div><div class="h-name">弘姆斯長住飯店（HOMES Stay Myeongdong）</div>
+<div class="h-desc">四星公寓式・房內有小廚房</div><div class="room">🛏 2 大 1 小：Premier Family Twin 32㎡／2 大：Standard Double 20–21㎡</div><div class="h-alt">入住／退房時間、兒童政策請於訂房時確認</div>
+<a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=HOMES+Stay+Myeongdong+Seoul" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="note">房間分配：一間 2 大 1 小、一間 2 大。訂房時備註「相鄰房間／同一樓層」。房型與評分取自訂房網站，價格以實際訂房為準。</div>
+  </div>
+</div>
+<div class="card" id="routemap">
+  <div class="card-head" onclick="toggle('routemap-b')"><div><span class="toggle-icon" id="icon-routemap-b">&#9654;</span><span class="card-title">🗺 每日路線一鍵導航</span></div><span class="badge badge-todo">含起訖飯店</span></div>
+  <div class="collapsible" id="routemap-b"><a class="daylink" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/Gimhae+International+Airport/L7+Haeundae+by+LOTTE+Hotels+Busan/Haeundae+Traditional+Market+Busan/Haeundae+Blueline+Park+Mipo+Station/Haeundae+Blueline+Park+Cheongsapo+Station/Dalmaji-gil+Road+Busan/L7+Haeundae+by+LOTTE+Hotels+Busan/"><span class="dl-day">D1</span><span class="dl-body"><b>金海機場 → L7 海雲台 → 海雲台市場 → Blueline 尾浦站 → Blueline 青沙浦站 → 迎月路 → L7 海雲台</b><small>4/3（六）　抵達釜山・海雲台・天空膠囊・迎月路</small></span><span class="dl-go">›</span></a><a class="daylink" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/L7+Haeundae+by+LOTTE+Hotels+Busan/Haedong+Yonggungsa+Temple/Skyline+Luge+Busan/Gijang+Market+Busan/Lotte+Premium+Outlets+Dongbusan/L7+Haeundae+by+LOTTE+Hotels+Busan/The+Bay+101+Busan/L7+Haeundae+by+LOTTE+Hotels+Busan/"><span class="dl-day">D2</span><span class="dl-body"><b>L7 海雲台 → 海東龍宮寺 → 斜坡滑車 → 機張市場 → 樂天東釜山 Outlet → L7 海雲台 → The Bay 101 → L7 海雲台</b><small>4/4（日）　海東龍宮寺・斜坡滑車・機張帝王蟹・The Bay 101</small></span><span class="dl-go">›</span></a><a class="daylink" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/L7+Haeundae+by+LOTTE+Hotels+Busan/Dongbaekseom+Island+Busan/Shinsegae+Centum+City+Spa+Land/L7+Haeundae+by+LOTTE+Hotels+Busan/Denbasta+Central+Hotel+Seomyeon+Busan/Gwangalli+Beach+Busan/Denbasta+Central+Hotel+Seomyeon+Busan/"><span class="dl-day">D3</span><span class="dl-body"><b>L7 海雲台 → 冬柏島 → 新世界 Spa Land → L7 海雲台 → 登巴斯塔（西面） → 廣安里海灘 → 登巴斯塔（西面）</b><small>4/5（一）　冬柏島・Spa Land 汗蒸幕・換飯店・廣安里夜景</small></span><span class="dl-go">›</span></a><a class="daylink" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/Denbasta+Central+Hotel+Seomyeon+Busan/Gamcheon+Culture+Village/Jagalchi+Market+Busan/BIFF+Square+Busan/Gukje+Market+Busan/Huinnyeoul+Culture+Village+Busan/Denbasta+Central+Hotel+Seomyeon+Busan/"><span class="dl-day">D4</span><span class="dl-body"><b>登巴斯塔（西面） → 甘川文化村 → 札嘎其市場 → BIFF 廣場 → 國際市場 → 白淺灘文化村 → 登巴斯塔（西面）</b><small>4/6（二）　甘川文化村・南浦洞市場・白淺灘夕陽</small></span><span class="dl-go">›</span></a><a class="daylink" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/Denbasta+Central+Hotel+Seomyeon+Busan/Songdo+Marine+Cable+Car+Busan/Denbasta+Central+Hotel+Seomyeon+Busan/Busan+Station/Seoul+Station/HOMES+Stay+Myeongdong+Seoul/Myeongdong+Shopping+Street+Seoul/"><span class="dl-day">D5</span><span class="dl-body"><b>登巴斯塔（西面） → 松島海上纜車 → 登巴斯塔（西面） → 釜山站 → 首爾站 → 弘姆斯（明洞） → 明洞商圈</b><small>4/7（三）　松島海上纜車・KTX 前往首爾</small></span><span class="dl-go">›</span></a><a class="daylink" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/HOMES+Stay+Myeongdong+Seoul/Seongsu+Station+Seoul/The+Hyundai+Seoul/Yeouiseo-ro+Cherry+Blossom+Road+Seoul/Hongik+University+Station+Seoul/HOMES+Stay+Myeongdong+Seoul/"><span class="dl-day">D6</span><span class="dl-body"><b>弘姆斯（明洞） → 聖水洞 → The Hyundai Seoul → 汝矣島輪中路 → 弘大 → 弘姆斯（明洞）</b><small>4/8（四）　首爾逛街：聖水洞・The Hyundai・汝矣島櫻花・弘大</small></span><span class="dl-go">›</span></a><a class="daylink" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/HOMES+Stay+Myeongdong+Seoul/Lotte+Duty+Free+Main+Store+Seoul/Namdaemun+Market+Seoul/HOMES+Stay+Myeongdong+Seoul/Seoul+Station/Incheon+International+Airport/"><span class="dl-day">D7</span><span class="dl-body"><b>弘姆斯（明洞） → 樂天免稅店 → 南大門市場 → 弘姆斯（明洞） → 首爾站 → 仁川機場</b><small>4/9（五）　明洞・南大門購物・返台</small></span><span class="dl-go">›</span></a>
+    <div class="note">點擊直接開啟 Google Maps。各日的分段路線在每天的行程卡片裡。</div>
+  </div>
+</div>
+
+<div class="card day" id="d1">
+  <div class="card-head" onclick="toggle('d1-b')">
+    <div><span class="toggle-icon" id="icon-d1-b">&#9654;</span>
+      <span class="day-no">Day 1</span> <span class="day-date">4/3（六）</span>
+      <div class="day-title">抵達釜山・海雲台・天空膠囊・迎月路</div></div>
+    <span class="badge badge-busan">釜山</span>
+  </div>
+  <div class="collapsible" id="d1-b">
+    <div class="sub">🏨 住宿：L7 海雲台（L7 HAEUNDAE by LOTTE HOTELS）</div>
+    <div class="section-title">行程</div>
+    <ul class="timeline"><li class="stop"><div class="time">07:55</div><div class="stop-body"><div class="stop-name">✈️ 華航 CI188 桃園 T1 → 釜山金海 11:15</div><div class="stop-desc">Airbus A321neo。建議 05:55 前到機場報到。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Taiwan+Taoyuan+International+Airport+Terminal+1" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop move"><div class="time">11:15</div><div class="stop-body"><div class="stop-name">抵達金海機場・入境</div><div class="stop-desc">換錢、買 T-money 卡。5 人＋行李叫 Kakao T 大型計程車或預約機場接送，到海雲台約 40–50 分鐘。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Gimhae+International+Airport" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">12:30</div><div class="stop-body"><div class="stop-name">L7 海雲台 寄放行李</div><div class="stop-desc">入住 15:00 後，先寄行李。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=L7+Haeundae+by+LOTTE+Hotels+Busan" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">13:00</div><div class="stop-body"><div class="stop-name">午餐：海雲台市場</div><div class="stop-desc">炸物、魚糕、辣炒年糕，從飯店步行約 5 分鐘。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Haeundae+Traditional+Market+Busan" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">14:30</div><div class="stop-body"><div class="stop-name">Blueline 天空膠囊列車（尾浦 → 青沙浦）</div><div class="stop-desc">沿海岸線的膠囊小車，一車最多 4 人，5 人要分 2 車。建議先上官網預約時段。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Haeundae+Blueline+Park+Mipo+Station" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">16:00</div><div class="stop-body"><div class="stop-name">迎月路（달맞이길）櫻花步道</div><div class="stop-desc">4 月初櫻花季，可眺望海雲台海景。走累了叫車回飯店。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Dalmaji-gil+Road+Busan" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">18:30</div><div class="stop-body"><div class="stop-name">晚餐：海雲台一帶，回飯店入住</div><div class="stop-desc">第一天清晨出門，不排太滿。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=L7+Haeundae+by+LOTTE+Hotels+Busan" target="_blank" rel="noopener">📍 地圖</a></div></li></ul>
+    <div class="maps">
+      <h4>🗺 DAY 1 Google Map 路線</h4>
+      <a class="mapbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/Gimhae+International+Airport/L7+Haeundae+by+LOTTE+Hotels+Busan/Haeundae+Traditional+Market+Busan/Haeundae+Blueline+Park+Mipo+Station/Haeundae+Blueline+Park+Cheongsapo+Station/Dalmaji-gil+Road+Busan/L7+Haeundae+by+LOTTE+Hotels+Busan/">一鍵開啟本日完整路線<small>金海機場 → L7 海雲台 → 海雲台市場 → Blueline 尾浦站 → Blueline 青沙浦站 → 迎月路 → L7 海雲台</small></a>
+      <h4>🧭 分段路線（點擊開啟兩點間路線）</h4>
+      <ul class="legs"><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Gimhae+International+Airport&amp;destination=L7+Haeundae+by+LOTTE+Hotels+Busan&amp;travelmode=transit"><span class="leg-no">1</span><span class="leg-body">✈️ 金海機場 → 🏨 L7 海雲台<small>大型計程車 約 40–50 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=L7+Haeundae+by+LOTTE+Hotels+Busan&amp;destination=Haeundae+Traditional+Market+Busan&amp;travelmode=transit"><span class="leg-no">2</span><span class="leg-body">🏨 L7 海雲台 → 🍢 海雲台市場<small>步行 約 5 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Haeundae+Traditional+Market+Busan&amp;destination=Haeundae+Blueline+Park+Mipo+Station&amp;travelmode=transit"><span class="leg-no">3</span><span class="leg-body">🍢 海雲台市場 → 🚃 Blueline 尾浦站<small>步行 約 10 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Haeundae+Blueline+Park+Mipo+Station&amp;destination=Haeundae+Blueline+Park+Cheongsapo+Station&amp;travelmode=transit"><span class="leg-no">4</span><span class="leg-body">🚃 Blueline 尾浦站 → 🚃 Blueline 青沙浦站<small>天空膠囊列車 約 30 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Haeundae+Blueline+Park+Cheongsapo+Station&amp;destination=Dalmaji-gil+Road+Busan&amp;travelmode=transit"><span class="leg-no">5</span><span class="leg-body">🚃 Blueline 青沙浦站 → 🌸 迎月路<small>計程車 約 10 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Dalmaji-gil+Road+Busan&amp;destination=L7+Haeundae+by+LOTTE+Hotels+Busan&amp;travelmode=transit"><span class="leg-no">6</span><span class="leg-body">🌸 迎月路 → 🏨 L7 海雲台<small>計程車 約 10 分</small></span><span class="leg-go">›</span></a></li></ul>
+      <h4>📍 本日景點位置</h4>
+      <div class="pins"><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Gimhae+International+Airport">✈️ 金海機場</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=L7+Haeundae+by+LOTTE+Hotels+Busan">🏨 L7 海雲台</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Haeundae+Traditional+Market+Busan">🍢 海雲台市場</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Haeundae+Blueline+Park+Mipo+Station">🚃 Blueline 尾浦站</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Haeundae+Blueline+Park+Cheongsapo+Station">🚃 Blueline 青沙浦站</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Dalmaji-gil+Road+Busan">🌸 迎月路</a></div>
+      <div class="legdist">＊交通時間為一般路況估計。Google Maps 在韓國不提供開車／步行導航，分段連結預設「大眾運輸」；搭計程車或走路的段落請改用 Naver Map／KakaoMap。</div>
+    </div>
+    <div class="section-title">預估花費（5 人，不含住宿、購物）</div>
+    <table class="cost"><tr><td>機場 → 海雲台 大型計程車（估）</td><td class="num">₩60,000</td></tr><tr><td>三餐＋點心 5 人（估）</td><td class="num">₩200,000</td></tr><tr><td>天空膠囊列車</td><td class="num"><span class="muted">見官網</span></td></tr>
+      <tr class="total"><td>小計（不含「見官網」項目）</td><td class="num">₩260,000<br><span class="muted">≈ NT$6,000</span></td></tr>
+    </table>
+    <div class="section-title">注意事項</div>
+    <ul class="notes"><li>天空膠囊時段常額滿，出發前先在官網預約，5 人要訂 2 車。</li><li>入境前 3 天內可在官網填寫 e-Arrival 電子入境卡（K-ETA 暫免者適用）。</li><li>韓國的 Google Maps 不支援開車／步行導航，請另外下載 Naver Map 或 KakaoMap。</li><li>櫻花花期每年不同，出發前 2 週查看開花預報。</li></ul>
+  </div>
+</div>
+<div class="card day" id="d2">
+  <div class="card-head" onclick="toggle('d2-b')">
+    <div><span class="toggle-icon" id="icon-d2-b">&#9654;</span>
+      <span class="day-no">Day 2</span> <span class="day-date">4/4（日）</span>
+      <div class="day-title">海東龍宮寺・斜坡滑車・機張帝王蟹・The Bay 101</div></div>
+    <span class="badge badge-busan">釜山</span>
+  </div>
+  <div class="collapsible" id="d2-b">
+    <div class="sub">🏨 住宿：L7 海雲台（L7 HAEUNDAE by LOTTE HOTELS）</div>
+    <div class="section-title">行程</div>
+    <ul class="timeline"><li class="stop"><div class="time">08:30</div><div class="stop-body"><div class="stop-name">海東龍宮寺</div><div class="stop-desc">建在海邊岩石上的寺廟，早上人少。從飯店搭計程車約 25 分鐘。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Haedong+Yonggungsa+Temple" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">10:00</div><div class="stop-body"><div class="stop-name">Skyline Luge 斜坡滑車</div><div class="stop-desc">官網：10:00–19:00。官網線上票：3 次 ₩28,500、4 次 ₩31,350、5 次 ₩34,200（現場價較高）。週日越晚越多人，開門就進場。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Skyline+Luge+Busan" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">12:30</div><div class="stop-body"><div class="stop-name">午餐：機張市場 帝王蟹</div><div class="stop-desc">機張是帝王蟹、松葉蟹集散地。車程約 15 分鐘。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Gijang+Market+Busan" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">14:30</div><div class="stop-body"><div class="stop-name">樂天東釜山 Outlet 或 Ananti Cove</div><div class="stop-desc">Outlet 就在滑車旁邊；想放鬆就去 Ananti Cove 海邊散步、喝咖啡。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Lotte+Premium+Outlets+Dongbusan" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">16:30</div><div class="stop-body"><div class="stop-name">回 L7：頂樓泳池或海灘放風</div><div class="stop-desc">泳池需另外付費、分時段入場，4 月是否開放請向飯店確認。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=L7+Haeundae+by+LOTTE+Hotels+Busan" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">18:30</div><div class="stop-body"><div class="stop-name">晚餐：The Bay 101</div><div class="stop-desc">冬柏島入口，看 Marine City 高樓夜景。從飯店步行約 15 分鐘。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=The+Bay+101+Busan" target="_blank" rel="noopener">📍 地圖</a></div></li></ul>
+    <div class="maps">
+      <h4>🗺 DAY 2 Google Map 路線</h4>
+      <a class="mapbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/L7+Haeundae+by+LOTTE+Hotels+Busan/Haedong+Yonggungsa+Temple/Skyline+Luge+Busan/Gijang+Market+Busan/Lotte+Premium+Outlets+Dongbusan/L7+Haeundae+by+LOTTE+Hotels+Busan/The+Bay+101+Busan/L7+Haeundae+by+LOTTE+Hotels+Busan/">一鍵開啟本日完整路線<small>L7 海雲台 → 海東龍宮寺 → 斜坡滑車 → 機張市場 → 樂天東釜山 Outlet → L7 海雲台 → The Bay 101 → L7 海雲台</small></a>
+      <h4>🧭 分段路線（點擊開啟兩點間路線）</h4>
+      <ul class="legs"><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=L7+Haeundae+by+LOTTE+Hotels+Busan&amp;destination=Haedong+Yonggungsa+Temple&amp;travelmode=transit"><span class="leg-no">1</span><span class="leg-body">🏨 L7 海雲台 → 🛕 海東龍宮寺<small>包車／計程車 約 25 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Haedong+Yonggungsa+Temple&amp;destination=Skyline+Luge+Busan&amp;travelmode=transit"><span class="leg-no">2</span><span class="leg-body">🛕 海東龍宮寺 → 🛷 斜坡滑車<small>包車 約 10 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Skyline+Luge+Busan&amp;destination=Gijang+Market+Busan&amp;travelmode=transit"><span class="leg-no">3</span><span class="leg-body">🛷 斜坡滑車 → 🦀 機張市場<small>包車 約 15 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Gijang+Market+Busan&amp;destination=Lotte+Premium+Outlets+Dongbusan&amp;travelmode=transit"><span class="leg-no">4</span><span class="leg-body">🦀 機張市場 → 🛍 樂天東釜山 Outlet<small>包車 約 15 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Lotte+Premium+Outlets+Dongbusan&amp;destination=L7+Haeundae+by+LOTTE+Hotels+Busan&amp;travelmode=transit"><span class="leg-no">5</span><span class="leg-body">🛍 樂天東釜山 Outlet → 🏨 L7 海雲台<small>包車 約 25 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=L7+Haeundae+by+LOTTE+Hotels+Busan&amp;destination=The+Bay+101+Busan&amp;travelmode=transit"><span class="leg-no">6</span><span class="leg-body">🏨 L7 海雲台 → 🌃 The Bay 101<small>步行 約 15 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+Bay+101+Busan&amp;destination=L7+Haeundae+by+LOTTE+Hotels+Busan&amp;travelmode=transit"><span class="leg-no">7</span><span class="leg-body">🌃 The Bay 101 → 🏨 L7 海雲台<small>步行 約 15 分</small></span><span class="leg-go">›</span></a></li></ul>
+      <h4>📍 本日景點位置</h4>
+      <div class="pins"><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=L7+Haeundae+by+LOTTE+Hotels+Busan">🏨 L7 海雲台</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Haedong+Yonggungsa+Temple">🛕 海東龍宮寺</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Skyline+Luge+Busan">🛷 斜坡滑車</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Gijang+Market+Busan">🦀 機張市場</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Lotte+Premium+Outlets+Dongbusan">🛍 樂天東釜山 Outlet</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=The+Bay+101+Busan">🌃 The Bay 101</a></div>
+      <div class="legdist">＊交通時間為一般路況估計。Google Maps 在韓國不提供開車／步行導航，分段連結預設「大眾運輸」；搭計程車或走路的段落請改用 Naver Map／KakaoMap。</div>
+    </div>
+    <div class="section-title">預估花費（5 人，不含住宿、購物）</div>
+    <table class="cost"><tr><td>包車半天～一天或計程車 2 台（估）</td><td class="num">₩150,000</td></tr><tr><td>斜坡滑車 4 次 × 5 人（官網線上價 ₩31,350）</td><td class="num">₩156,750</td></tr><tr><td>帝王蟹午餐 5 人（估）</td><td class="num">₩350,000</td></tr><tr><td>The Bay 101 晚餐＋早餐點心（估）</td><td class="num">₩180,000</td></tr><tr><td>L7 泳池</td><td class="num"><span class="muted">見官網</span></td></tr>
+      <tr class="total"><td>小計（不含「見官網」項目）</td><td class="num">₩836,750<br><span class="muted">≈ NT$19,500</span></td></tr>
+    </table>
+    <div class="section-title">注意事項</div>
+    <ul class="notes"><li>斜坡滑車：單獨騎乘須滿 6 歲且 110cm 以上；未達標準要與大人共乘（至少 2 歲、85cm，兒童共乘票 ₩12,000）。纜椅單獨搭乘須滿 7 歲、120cm。</li><li>滑車票只限當天使用，所有次數要在同一天用完。</li><li>龍宮寺階梯多，推嬰兒車不方便。</li><li>這天景點都不在地鐵線上，週日叫大型車不容易，建議在 Klook／KKday 預訂包車。</li></ul>
+  </div>
+</div>
+<div class="card day" id="d3">
+  <div class="card-head" onclick="toggle('d3-b')">
+    <div><span class="toggle-icon" id="icon-d3-b">&#9654;</span>
+      <span class="day-no">Day 3</span> <span class="day-date">4/5（一）</span>
+      <div class="day-title">冬柏島・Spa Land 汗蒸幕・換飯店・廣安里夜景</div></div>
+    <span class="badge badge-busan">釜山</span>
+  </div>
+  <div class="collapsible" id="d3-b">
+    <div class="sub">🏨 住宿：西面 登巴斯塔中央飯店（Denbasta Central Hotel Seomyeon）</div>
+    <div class="section-title">行程</div>
+    <ul class="timeline"><li class="stop"><div class="time">09:00</div><div class="stop-body"><div class="stop-name">冬柏島散步</div><div class="stop-desc">海雲台海灘西端的環島步道，可省略改在飯店休息。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Dongbaekseom+Island+Busan" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">11:00</div><div class="stop-body"><div class="stop-name">L7 退房，行李寄放飯店</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=L7+Haeundae+by+LOTTE+Hotels+Busan" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">11:30</div><div class="stop-body"><div class="stop-name">新世界 Centum City：Spa Land 汗蒸幕＋午餐逛街</div><div class="stop-desc">地鐵 2 號線 海雲台站 → Centum City 站。全球最大百貨之一，汗蒸幕在館內。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Shinsegae+Centum+City+Spa+Land" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop move"><div class="time">16:00</div><div class="stop-body"><div class="stop-name">回 L7 拿行李 → 搬到西面</div><div class="stop-desc">叫大型計程車，約 30 分鐘。登巴斯塔 16:00 後入住。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Denbasta+Central+Hotel+Seomyeon+Busan" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">18:00</div><div class="stop-body"><div class="stop-name">廣安里晚餐・廣安大橋夜景</div><div class="stop-desc">地鐵 2 號線 西面站 → 廣安站，或搭計程車。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Gwangalli+Beach+Busan" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">21:00</div><div class="stop-body"><div class="stop-name">回西面飯店</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Denbasta+Central+Hotel+Seomyeon+Busan" target="_blank" rel="noopener">📍 地圖</a></div></li></ul>
+    <div class="maps">
+      <h4>🗺 DAY 3 Google Map 路線</h4>
+      <a class="mapbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/L7+Haeundae+by+LOTTE+Hotels+Busan/Dongbaekseom+Island+Busan/Shinsegae+Centum+City+Spa+Land/L7+Haeundae+by+LOTTE+Hotels+Busan/Denbasta+Central+Hotel+Seomyeon+Busan/Gwangalli+Beach+Busan/Denbasta+Central+Hotel+Seomyeon+Busan/">一鍵開啟本日完整路線<small>L7 海雲台 → 冬柏島 → 新世界 Spa Land → L7 海雲台 → 登巴斯塔（西面） → 廣安里海灘 → 登巴斯塔（西面）</small></a>
+      <h4>🧭 分段路線（點擊開啟兩點間路線）</h4>
+      <ul class="legs"><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=L7+Haeundae+by+LOTTE+Hotels+Busan&amp;destination=Dongbaekseom+Island+Busan&amp;travelmode=transit"><span class="leg-no">1</span><span class="leg-body">🏨 L7 海雲台 → 🌲 冬柏島<small>步行 約 15 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Dongbaekseom+Island+Busan&amp;destination=Shinsegae+Centum+City+Spa+Land&amp;travelmode=transit"><span class="leg-no">2</span><span class="leg-body">🌲 冬柏島 → ♨️ 新世界 Spa Land<small>地鐵 2 號線 約 15 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Shinsegae+Centum+City+Spa+Land&amp;destination=L7+Haeundae+by+LOTTE+Hotels+Busan&amp;travelmode=transit"><span class="leg-no">3</span><span class="leg-body">♨️ 新世界 Spa Land → 🏨 L7 海雲台<small>地鐵 2 號線 約 15 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=L7+Haeundae+by+LOTTE+Hotels+Busan&amp;destination=Denbasta+Central+Hotel+Seomyeon+Busan&amp;travelmode=transit"><span class="leg-no">4</span><span class="leg-body">🏨 L7 海雲台 → 🏨 登巴斯塔（西面）<small>大型計程車 約 30 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Denbasta+Central+Hotel+Seomyeon+Busan&amp;destination=Gwangalli+Beach+Busan&amp;travelmode=transit"><span class="leg-no">5</span><span class="leg-body">🏨 登巴斯塔（西面） → 🌉 廣安里海灘<small>地鐵 2 號線 約 20 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Gwangalli+Beach+Busan&amp;destination=Denbasta+Central+Hotel+Seomyeon+Busan&amp;travelmode=transit"><span class="leg-no">6</span><span class="leg-body">🌉 廣安里海灘 → 🏨 登巴斯塔（西面）<small>地鐵 2 號線 約 20 分</small></span><span class="leg-go">›</span></a></li></ul>
+      <h4>📍 本日景點位置</h4>
+      <div class="pins"><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=L7+Haeundae+by+LOTTE+Hotels+Busan">🏨 L7 海雲台</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Dongbaekseom+Island+Busan">🌲 冬柏島</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Shinsegae+Centum+City+Spa+Land">♨️ 新世界 Spa Land</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Denbasta+Central+Hotel+Seomyeon+Busan">🏨 登巴斯塔（西面）</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Gwangalli+Beach+Busan">🌉 廣安里海灘</a></div>
+      <div class="legdist">＊交通時間為一般路況估計。Google Maps 在韓國不提供開車／步行導航，分段連結預設「大眾運輸」；搭計程車或走路的段落請改用 Naver Map／KakaoMap。</div>
+    </div>
+    <div class="section-title">預估花費（5 人，不含住宿、購物）</div>
+    <table class="cost"><tr><td>地鐵（估）</td><td class="num">₩15,000</td></tr><tr><td>海雲台 → 西面 大型計程車（估）</td><td class="num">₩35,000</td></tr><tr><td>三餐 5 人（估）</td><td class="num">₩220,000</td></tr><tr><td>Spa Land 門票</td><td class="num"><span class="muted">見官網</span></td></tr>
+      <tr class="total"><td>小計（不含「見官網」項目）</td><td class="num">₩270,000<br><span class="muted">≈ NT$6,300</span></td></tr>
+    </table>
+    <div class="section-title">注意事項</div>
+    <ul class="notes"><li>⚠️ Spa Land 可能不收學齡前兒童，出發前請向新世界官網或現場確認兒童入場規定與票價。</li><li>Spa Land 每次入場有時間限制，超時加收費用（以官網為準）。</li><li>換飯店日：行李先寄 L7，傍晚一次搬到西面，不用拖著行李逛街。</li></ul>
+  </div>
+</div>
+<div class="card day" id="d4">
+  <div class="card-head" onclick="toggle('d4-b')">
+    <div><span class="toggle-icon" id="icon-d4-b">&#9654;</span>
+      <span class="day-no">Day 4</span> <span class="day-date">4/6（二）</span>
+      <div class="day-title">甘川文化村・南浦洞市場・白淺灘夕陽</div></div>
+    <span class="badge badge-busan">釜山</span>
+  </div>
+  <div class="collapsible" id="d4-b">
+    <div class="sub">🏨 住宿：西面 登巴斯塔中央飯店（Denbasta Central Hotel Seomyeon）</div>
+    <div class="section-title">行程</div>
+    <ul class="timeline"><li class="stop"><div class="time">09:30</div><div class="stop-body"><div class="stop-name">甘川文化村</div><div class="stop-desc">地鐵 1 號線 西面 → 土城站，再轉小巴或計程車上山。是居民住宅區，請降低音量。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Gamcheon+Culture+Village" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">12:00</div><div class="stop-body"><div class="stop-name">午餐：札嘎其市場</div><div class="stop-desc">一樓挑海鮮，二樓代客料理，點餐前先確認價格與重量。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Jagalchi+Market+Busan" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">13:30</div><div class="stop-body"><div class="stop-name">BIFF 廣場・國際市場</div><div class="stop-desc">糖餅（씨앗호떡）、魚糕等小吃，步行可達。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Gukje+Market+Busan" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">16:00</div><div class="stop-body"><div class="stop-name">白淺灘文化村</div><div class="stop-desc">從國際市場搭計程車約 10–15 分鐘。沿海步道整排海景咖啡廳，4 月初日落約 18:50（估）。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Huinnyeoul+Culture+Village+Busan" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">19:00</div><div class="stop-body"><div class="stop-name">回西面晚餐</div><div class="stop-desc">計程車約 30 分鐘，或回南浦站轉地鐵 1 號線。田浦咖啡街就在西面附近，有體力可以順道逛。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Denbasta+Central+Hotel+Seomyeon+Busan" target="_blank" rel="noopener">📍 地圖</a></div></li></ul>
+    <div class="maps">
+      <h4>🗺 DAY 4 Google Map 路線</h4>
+      <a class="mapbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/Denbasta+Central+Hotel+Seomyeon+Busan/Gamcheon+Culture+Village/Jagalchi+Market+Busan/BIFF+Square+Busan/Gukje+Market+Busan/Huinnyeoul+Culture+Village+Busan/Denbasta+Central+Hotel+Seomyeon+Busan/">一鍵開啟本日完整路線<small>登巴斯塔（西面） → 甘川文化村 → 札嘎其市場 → BIFF 廣場 → 國際市場 → 白淺灘文化村 → 登巴斯塔（西面）</small></a>
+      <h4>🧭 分段路線（點擊開啟兩點間路線）</h4>
+      <ul class="legs"><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Denbasta+Central+Hotel+Seomyeon+Busan&amp;destination=Gamcheon+Culture+Village&amp;travelmode=transit"><span class="leg-no">1</span><span class="leg-body">🏨 登巴斯塔（西面） → 🎨 甘川文化村<small>地鐵 1 號線＋小巴 約 40 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Gamcheon+Culture+Village&amp;destination=Jagalchi+Market+Busan&amp;travelmode=transit"><span class="leg-no">2</span><span class="leg-body">🎨 甘川文化村 → 🐟 札嘎其市場<small>計程車 約 15 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Jagalchi+Market+Busan&amp;destination=BIFF+Square+Busan&amp;travelmode=transit"><span class="leg-no">3</span><span class="leg-body">🐟 札嘎其市場 → 🎬 BIFF 廣場<small>步行 約 5 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=BIFF+Square+Busan&amp;destination=Gukje+Market+Busan&amp;travelmode=transit"><span class="leg-no">4</span><span class="leg-body">🎬 BIFF 廣場 → 🏮 國際市場<small>步行 約 5 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Gukje+Market+Busan&amp;destination=Huinnyeoul+Culture+Village+Busan&amp;travelmode=transit"><span class="leg-no">5</span><span class="leg-body">🏮 國際市場 → 🌅 白淺灘文化村<small>計程車 約 10–15 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Huinnyeoul+Culture+Village+Busan&amp;destination=Denbasta+Central+Hotel+Seomyeon+Busan&amp;travelmode=transit"><span class="leg-no">6</span><span class="leg-body">🌅 白淺灘文化村 → 🏨 登巴斯塔（西面）<small>計程車 約 30 分</small></span><span class="leg-go">›</span></a></li></ul>
+      <h4>📍 本日景點位置</h4>
+      <div class="pins"><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Denbasta+Central+Hotel+Seomyeon+Busan">🏨 登巴斯塔（西面）</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Gamcheon+Culture+Village">🎨 甘川文化村</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Jagalchi+Market+Busan">🐟 札嘎其市場</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=BIFF+Square+Busan">🎬 BIFF 廣場</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Gukje+Market+Busan">🏮 國際市場</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Huinnyeoul+Culture+Village+Busan">🌅 白淺灘文化村</a></div>
+      <div class="legdist">＊交通時間為一般路況估計。Google Maps 在韓國不提供開車／步行導航，分段連結預設「大眾運輸」；搭計程車或走路的段落請改用 Naver Map／KakaoMap。</div>
+    </div>
+    <div class="section-title">預估花費（5 人，不含住宿、購物）</div>
+    <table class="cost"><tr><td>計程車＋地鐵（估）</td><td class="num">₩70,000</td></tr><tr><td>三餐＋市場小吃 5 人（估）</td><td class="num">₩230,000</td></tr>
+      <tr class="total"><td>小計（不含「見官網」項目）</td><td class="num">₩300,000<br><span class="muted">≈ NT$7,000</span></td></tr>
+    </table>
+    <div class="section-title">注意事項</div>
+    <ul class="notes"><li>甘川和白淺灘都是山坡聚落，階梯多，每處抓 1.5 小時內，小朋友比較撐得住。</li><li>甘川、白淺灘都是住宅區，不要進入私人住家。</li><li>白淺灘海邊風大，傍晚帶件外套。</li></ul>
+  </div>
+</div>
+<div class="card day" id="d5">
+  <div class="card-head" onclick="toggle('d5-b')">
+    <div><span class="toggle-icon" id="icon-d5-b">&#9654;</span>
+      <span class="day-no">Day 5</span> <span class="day-date">4/7（三）</span>
+      <div class="day-title">松島海上纜車・KTX 前往首爾</div></div>
+    <span class="badge badge-seoul">釜山 → 首爾</span>
+  </div>
+  <div class="collapsible" id="d5-b">
+    <div class="sub">🏨 住宿：明洞 弘姆斯長住飯店（HOMES Stay Myeongdong）</div>
+    <div class="section-title">行程</div>
+    <ul class="timeline"><li class="stop"><div class="time">09:00</div><div class="stop-body"><div class="stop-name">退房，行李寄放飯店</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Denbasta+Central+Hotel+Seomyeon+Busan" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">09:30</div><div class="stop-body"><div class="stop-name">松島海上纜車</div><div class="stop-desc">不靠地鐵站，從西面搭計程車約 25–30 分鐘（估）。有透明地板車廂可選。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Songdo+Marine+Cable+Car+Busan" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">12:00</div><div class="stop-body"><div class="stop-name">回西面午餐、拿行李</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Denbasta+Central+Hotel+Seomyeon+Busan" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop move"><div class="time">14:00</div><div class="stop-body"><div class="stop-name">前往釜山站</div><div class="stop-desc">叫車較輕鬆；或搭地鐵 1 號線 西面 → 釜山站。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Busan+Station" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop move"><div class="time">15:00</div><div class="stop-body"><div class="stop-name">🚄 KTX 釜山 → 首爾站（約 2 小時 15 分～3 小時）</div><div class="stop-desc">班次和到站時間以訂票時為準。大件行李放車廂前後的行李區。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Seoul+Station" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">18:30</div><div class="stop-body"><div class="stop-name">弘姆斯長住飯店 入住・明洞晚餐逛街</div><div class="stop-desc">首爾站搭計程車約 10 分鐘，或地鐵 4 號線到明洞站。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=HOMES+Stay+Myeongdong+Seoul" target="_blank" rel="noopener">📍 地圖</a></div></li></ul>
+    <div class="maps">
+      <h4>🗺 DAY 5 Google Map 路線</h4>
+      <a class="mapbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/Denbasta+Central+Hotel+Seomyeon+Busan/Songdo+Marine+Cable+Car+Busan/Denbasta+Central+Hotel+Seomyeon+Busan/Busan+Station/Seoul+Station/HOMES+Stay+Myeongdong+Seoul/Myeongdong+Shopping+Street+Seoul/">一鍵開啟本日完整路線<small>登巴斯塔（西面） → 松島海上纜車 → 登巴斯塔（西面） → 釜山站 → 首爾站 → 弘姆斯（明洞） → 明洞商圈</small></a>
+      <h4>🧭 分段路線（點擊開啟兩點間路線）</h4>
+      <ul class="legs"><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Denbasta+Central+Hotel+Seomyeon+Busan&amp;destination=Songdo+Marine+Cable+Car+Busan&amp;travelmode=transit"><span class="leg-no">1</span><span class="leg-body">🏨 登巴斯塔（西面） → 🚡 松島海上纜車<small>計程車 約 25–30 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Songdo+Marine+Cable+Car+Busan&amp;destination=Denbasta+Central+Hotel+Seomyeon+Busan&amp;travelmode=transit"><span class="leg-no">2</span><span class="leg-body">🚡 松島海上纜車 → 🏨 登巴斯塔（西面）<small>計程車 約 25–30 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Denbasta+Central+Hotel+Seomyeon+Busan&amp;destination=Busan+Station&amp;travelmode=transit"><span class="leg-no">3</span><span class="leg-body">🏨 登巴斯塔（西面） → 🚉 釜山站<small>計程車 約 15 分／地鐵 1 號線</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Busan+Station&amp;destination=Seoul+Station&amp;travelmode=transit"><span class="leg-no">4</span><span class="leg-body">🚉 釜山站 → 🚉 首爾站<small>KTX 約 2 小時 15 分～3 小時</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Seoul+Station&amp;destination=HOMES+Stay+Myeongdong+Seoul&amp;travelmode=transit"><span class="leg-no">5</span><span class="leg-body">🚉 首爾站 → 🏨 弘姆斯（明洞）<small>計程車 約 10 分／地鐵 4 號線</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=HOMES+Stay+Myeongdong+Seoul&amp;destination=Myeongdong+Shopping+Street+Seoul&amp;travelmode=transit"><span class="leg-no">6</span><span class="leg-body">🏨 弘姆斯（明洞） → 🛍 明洞商圈<small>步行 約 5–10 分</small></span><span class="leg-go">›</span></a></li></ul>
+      <h4>📍 本日景點位置</h4>
+      <div class="pins"><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Denbasta+Central+Hotel+Seomyeon+Busan">🏨 登巴斯塔（西面）</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Songdo+Marine+Cable+Car+Busan">🚡 松島海上纜車</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Busan+Station">🚉 釜山站</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Seoul+Station">🚉 首爾站</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=HOMES+Stay+Myeongdong+Seoul">🏨 弘姆斯（明洞）</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Myeongdong+Shopping+Street+Seoul">🛍 明洞商圈</a></div>
+      <div class="legdist">＊交通時間為一般路況估計。Google Maps 在韓國不提供開車／步行導航，分段連結預設「大眾運輸」；搭計程車或走路的段落請改用 Naver Map／KakaoMap。</div>
+    </div>
+    <div class="section-title">預估花費（5 人，不含住宿、購物）</div>
+    <table class="cost"><tr><td>計程車（估）</td><td class="num">₩50,000</td></tr><tr><td>KTX 4 大 1 小（估，大人約 ₩5–6 萬／人）</td><td class="num">₩250,000</td></tr><tr><td>三餐 5 人（估）</td><td class="num">₩200,000</td></tr><tr><td>松島海上纜車</td><td class="num"><span class="muted">見官網</span></td></tr>
+      <tr class="total"><td>小計（不含「見官網」項目）</td><td class="num">₩500,000<br><span class="muted">≈ NT$11,600</span></td></tr>
+    </table>
+    <div class="section-title">注意事項</div>
+    <ul class="notes"><li>KTX 開放出發前 1 個月訂票，4/7 的車票約 3/7 開放，請以 Korail 官網／Korail App 為準。</li><li>KTX 票價與時刻表出發前到 Korail 官網確認。</li><li>弘姆斯的入住時間與行李寄放規定，訂房時請確認。</li></ul>
+  </div>
+</div>
+<div class="card day" id="d6">
+  <div class="card-head" onclick="toggle('d6-b')">
+    <div><span class="toggle-icon" id="icon-d6-b">&#9654;</span>
+      <span class="day-no">Day 6</span> <span class="day-date">4/8（四）</span>
+      <div class="day-title">首爾逛街：聖水洞・The Hyundai・汝矣島櫻花・弘大</div></div>
+    <span class="badge badge-seoul">首爾</span>
+  </div>
+  <div class="collapsible" id="d6-b">
+    <div class="sub">🏨 住宿：明洞 弘姆斯長住飯店（HOMES Stay Myeongdong）</div>
+    <div class="section-title">行程</div>
+    <ul class="timeline"><li class="stop"><div class="time">10:00</div><div class="stop-body"><div class="stop-name">聖水洞</div><div class="stop-desc">韓國版布魯克林，品牌快閃店、咖啡廳、選物店。地鐵 2 號線聖水站。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Seongsu+Station+Seoul" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">13:00</div><div class="stop-body"><div class="stop-name">The Hyundai Seoul 午餐逛街</div><div class="stop-desc">室內花園造型的百貨公司，地下美食街選擇多。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=The+Hyundai+Seoul" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">15:30</div><div class="stop-body"><div class="stop-name">汝矣島輪中路櫻花</div><div class="stop-desc">從 The Hyundai 走過去即可，4 月初通常是首爾櫻花季。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Yeouiseo-ro+Cherry+Blossom+Road+Seoul" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">17:30</div><div class="stop-body"><div class="stop-name">弘大・延南洞 晚餐逛街</div><div class="stop-desc">服飾、美妝、文創小店。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Hongik+University+Station+Seoul" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">21:00</div><div class="stop-body"><div class="stop-name">回飯店</div><div class="stop-desc">地鐵 2 號線到乙支路入口站或 4 號線到明洞站。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=HOMES+Stay+Myeongdong+Seoul" target="_blank" rel="noopener">📍 地圖</a></div></li></ul>
+    <div class="maps">
+      <h4>🗺 DAY 6 Google Map 路線</h4>
+      <a class="mapbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/HOMES+Stay+Myeongdong+Seoul/Seongsu+Station+Seoul/The+Hyundai+Seoul/Yeouiseo-ro+Cherry+Blossom+Road+Seoul/Hongik+University+Station+Seoul/HOMES+Stay+Myeongdong+Seoul/">一鍵開啟本日完整路線<small>弘姆斯（明洞） → 聖水洞 → The Hyundai Seoul → 汝矣島輪中路 → 弘大 → 弘姆斯（明洞）</small></a>
+      <h4>🧭 分段路線（點擊開啟兩點間路線）</h4>
+      <ul class="legs"><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=HOMES+Stay+Myeongdong+Seoul&amp;destination=Seongsu+Station+Seoul&amp;travelmode=transit"><span class="leg-no">1</span><span class="leg-body">🏨 弘姆斯（明洞） → ☕ 聖水洞<small>地鐵 約 25 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Seongsu+Station+Seoul&amp;destination=The+Hyundai+Seoul&amp;travelmode=transit"><span class="leg-no">2</span><span class="leg-body">☕ 聖水洞 → 🏬 The Hyundai Seoul<small>地鐵 約 35 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+Hyundai+Seoul&amp;destination=Yeouiseo-ro+Cherry+Blossom+Road+Seoul&amp;travelmode=transit"><span class="leg-no">3</span><span class="leg-body">🏬 The Hyundai Seoul → 🌸 汝矣島輪中路<small>步行 約 10 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Yeouiseo-ro+Cherry+Blossom+Road+Seoul&amp;destination=Hongik+University+Station+Seoul&amp;travelmode=transit"><span class="leg-no">4</span><span class="leg-body">🌸 汝矣島輪中路 → 🎸 弘大<small>地鐵／計程車 約 25 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Hongik+University+Station+Seoul&amp;destination=HOMES+Stay+Myeongdong+Seoul&amp;travelmode=transit"><span class="leg-no">5</span><span class="leg-body">🎸 弘大 → 🏨 弘姆斯（明洞）<small>地鐵 2 號線 約 25 分</small></span><span class="leg-go">›</span></a></li></ul>
+      <h4>📍 本日景點位置</h4>
+      <div class="pins"><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=HOMES+Stay+Myeongdong+Seoul">🏨 弘姆斯（明洞）</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Seongsu+Station+Seoul">☕ 聖水洞</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=The+Hyundai+Seoul">🏬 The Hyundai Seoul</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Yeouiseo-ro+Cherry+Blossom+Road+Seoul">🌸 汝矣島輪中路</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Hongik+University+Station+Seoul">🎸 弘大</a></div>
+      <div class="legdist">＊交通時間為一般路況估計。Google Maps 在韓國不提供開車／步行導航，分段連結預設「大眾運輸」；搭計程車或走路的段落請改用 Naver Map／KakaoMap。</div>
+    </div>
+    <div class="section-title">預估花費（5 人，不含住宿、購物）</div>
+    <table class="cost"><tr><td>地鐵／計程車（估）</td><td class="num">₩40,000</td></tr><tr><td>三餐＋咖啡 5 人（估）</td><td class="num">₩250,000</td></tr>
+      <tr class="total"><td>小計（不含「見官網」項目）</td><td class="num">₩290,000<br><span class="muted">≈ NT$6,700</span></td></tr>
+    </table>
+    <div class="section-title">注意事項</div>
+    <ul class="notes"><li>購物預算另計。同一家店單日消費滿額可辦退稅，記得帶護照。</li><li>汝矣島櫻花季人很多，小朋友要牽好，先約好走散時的集合點。</li><li>首爾市區塞車，搭地鐵通常比計程車快。</li></ul>
+  </div>
+</div>
+<div class="card day" id="d7">
+  <div class="card-head" onclick="toggle('d7-b')">
+    <div><span class="toggle-icon" id="icon-d7-b">&#9654;</span>
+      <span class="day-no">Day 7</span> <span class="day-date">4/9（五）</span>
+      <div class="day-title">明洞・南大門購物・返台</div></div>
+    <span class="badge badge-seoul">首爾</span>
+  </div>
+  <div class="collapsible" id="d7-b">
+    <div class="sub">🏨 住宿：—（返台）</div>
+    <div class="section-title">行程</div>
+    <ul class="timeline"><li class="stop"><div class="time">10:00</div><div class="stop-body"><div class="stop-name">退房寄行李 → 樂天免稅店・明洞</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Lotte+Duty+Free+Main+Store+Seoul" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">12:30</div><div class="stop-body"><div class="stop-name">午餐：南大門市場</div><div class="stop-desc">刀削麵、帶魚巷；童裝、廚具也便宜。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Namdaemun+Market+Seoul" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">15:30</div><div class="stop-body"><div class="stop-name">回飯店拿行李</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=HOMES+Stay+Myeongdong+Seoul" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop move"><div class="time">16:00</div><div class="stop-body"><div class="stop-name">首爾站 → 機場快線 AREX 直達車 → 仁川機場</div><div class="stop-desc">東西多的話可改預約大型車從飯店直達機場。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Seoul+Station" target="_blank" rel="noopener">📍 地圖</a></div></li><li class="stop"><div class="time">20:05</div><div class="stop-body"><div class="stop-name">✈️ 華航 CI163 仁川 → 桃園 21:50</div><div class="stop-desc">Airbus A321neo。出發前到仁川機場官網確認華航航廈。</div><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Incheon+International+Airport" target="_blank" rel="noopener">📍 地圖</a></div></li></ul>
+    <div class="maps">
+      <h4>🗺 DAY 7 Google Map 路線</h4>
+      <a class="mapbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/HOMES+Stay+Myeongdong+Seoul/Lotte+Duty+Free+Main+Store+Seoul/Namdaemun+Market+Seoul/HOMES+Stay+Myeongdong+Seoul/Seoul+Station/Incheon+International+Airport/">一鍵開啟本日完整路線<small>弘姆斯（明洞） → 樂天免稅店 → 南大門市場 → 弘姆斯（明洞） → 首爾站 → 仁川機場</small></a>
+      <h4>🧭 分段路線（點擊開啟兩點間路線）</h4>
+      <ul class="legs"><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=HOMES+Stay+Myeongdong+Seoul&amp;destination=Lotte+Duty+Free+Main+Store+Seoul&amp;travelmode=transit"><span class="leg-no">1</span><span class="leg-body">🏨 弘姆斯（明洞） → 🛍 樂天免稅店<small>步行 約 10 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Lotte+Duty+Free+Main+Store+Seoul&amp;destination=Namdaemun+Market+Seoul&amp;travelmode=transit"><span class="leg-no">2</span><span class="leg-body">🛍 樂天免稅店 → 🏮 南大門市場<small>步行 約 10 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Namdaemun+Market+Seoul&amp;destination=HOMES+Stay+Myeongdong+Seoul&amp;travelmode=transit"><span class="leg-no">3</span><span class="leg-body">🏮 南大門市場 → 🏨 弘姆斯（明洞）<small>步行／計程車 約 10 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=HOMES+Stay+Myeongdong+Seoul&amp;destination=Seoul+Station&amp;travelmode=transit"><span class="leg-no">4</span><span class="leg-body">🏨 弘姆斯（明洞） → 🚉 首爾站<small>計程車 約 10 分</small></span><span class="leg-go">›</span></a></li><li class="leg"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Seoul+Station&amp;destination=Incheon+International+Airport&amp;travelmode=transit"><span class="leg-no">5</span><span class="leg-body">🚉 首爾站 → ✈️ 仁川機場<small>AREX 直達車 約 45 分</small></span><span class="leg-go">›</span></a></li></ul>
+      <h4>📍 本日景點位置</h4>
+      <div class="pins"><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=HOMES+Stay+Myeongdong+Seoul">🏨 弘姆斯（明洞）</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Lotte+Duty+Free+Main+Store+Seoul">🛍 樂天免稅店</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Namdaemun+Market+Seoul">🏮 南大門市場</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Seoul+Station">🚉 首爾站</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Incheon+International+Airport">✈️ 仁川機場</a></div>
+      <div class="legdist">＊交通時間為一般路況估計。Google Maps 在韓國不提供開車／步行導航，分段連結預設「大眾運輸」；搭計程車或走路的段落請改用 Naver Map／KakaoMap。</div>
+    </div>
+    <div class="section-title">預估花費（5 人，不含住宿、購物）</div>
+    <table class="cost"><tr><td>午餐＋晚餐 5 人（估）</td><td class="num">₩150,000</td></tr><tr><td>計程車（估）</td><td class="num">₩15,000</td></tr><tr><td>AREX 直達車</td><td class="num"><span class="muted">見官網</span></td></tr>
+      <tr class="total"><td>小計（不含「見官網」項目）</td><td class="num">₩165,000<br><span class="muted">≈ NT$3,800</span></td></tr>
+    </table>
+    <div class="section-title">注意事項</div>
+    <ul class="notes"><li>退稅在機場辦理，行李託運前先處理。</li><li>液體、化妝品類伴手禮放託運行李。</li><li>Google 航班顯示 CI163 經常延誤 30 分鐘以上。</li></ul>
+  </div>
+</div>
+
+<div class="card" id="budget">
+  <div class="card-head" onclick="toggle('budget-b')"><div><span class="toggle-icon" id="icon-budget-b">&#9654;</span><span class="card-title">💰 預算總覽（5 人）</span></div></div>
+  <div class="collapsible" id="budget-b">
+    <table class="cost"><tr><td>Day 1　4/3（六）</td><td class="num">₩260,000</td></tr><tr><td>Day 2　4/4（日）</td><td class="num">₩836,750</td></tr><tr><td>Day 3　4/5（一）</td><td class="num">₩270,000</td></tr><tr><td>Day 4　4/6（二）</td><td class="num">₩300,000</td></tr><tr><td>Day 5　4/7（三）</td><td class="num">₩500,000</td></tr><tr><td>Day 6　4/8（四）</td><td class="num">₩290,000</td></tr><tr><td>Day 7　4/9（五）</td><td class="num">₩165,000</td></tr>
+      <tr class="total"><td>7 天當地花費小計（餐飲、交通、已查到的門票）</td><td class="num">₩2,621,750<br><span class="muted">≈ NT$61,000</span></td></tr>
+      <tr><td>機票（已訂）</td><td class="num"><span class="muted">已付款</span></td></tr>
+      <tr><td>住宿 6 晚 × 2 間</td><td class="num"><span class="muted">依訂房結果</span></td></tr>
+      <tr><td>標示「見官網」的門票、購物</td><td class="num"><span class="muted">另計</span></td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="card" id="prep">
+  <div class="card-head" onclick="toggle('prep-b')"><div><span class="toggle-icon" id="icon-prep-b">&#9654;</span><span class="card-title">📋 出發前準備</span></div></div>
+  <div class="collapsible" id="prep-b">
+    <ul class="notes">
+      <li><b>K-ETA：</b>台灣旅客的暫免措施目前適用到 2026/12/31 入境者，2027/4 是否延長，請出發前查駐台北韓國代表部公告。</li>
+      <li><b>e-Arrival 電子入境卡：</b>K-ETA 暫免者需填寫，抵達前 3 天內可上官網填。</li>
+      <li><b>KTX：</b>出發前 1 個月開放訂票（4/7 約 3/7），用 Korail 官網或 App 訂。</li>
+      <li><b>天空膠囊列車：</b>出發前上官網預約 4/3 下午時段（2 車）。</li>
+      <li><b>4/4 包車：</b>Klook／KKday 預訂釜山包車，或下載 Kakao T（外國人版 k.ride）叫大型車。</li>
+      <li><b>交通卡：</b>每人一張 T-money，兒童卡請店員設定兒童票價。</li>
+      <li><b>地圖：</b>下載 Naver Map 或 KakaoMap。</li>
+      <li><b>網路：</b>eSIM 或 Wi-Fi 分享器，5 人可共用 1–2 台。</li>
+      <li><b>小朋友：</b>確認身高（斜坡滑車 110cm 門檻）與 Spa Land 兒童入場規定。</li>
+    </ul>
+    <div class="section-title">官方連結</div>
+    <ul class="links">
+      <li><a href="https://www.skylineluge.kr/busan/" target="_blank" rel="noopener">Skyline Luge 釜山（票價、營業時間）</a></li>
+      <li><a href="https://busan.skylineluge.kr/en/terms-conditions/" target="_blank" rel="noopener">Skyline Luge 釜山（身高年齡限制）</a></li>
+      <li><a href="https://www.bluelinepark.com/" target="_blank" rel="noopener">海雲台 Blueline Park（天空膠囊）</a></li>
+      <li><a href="https://www.busanaircruise.co.kr/" target="_blank" rel="noopener">松島海上纜車</a></li>
+      <li><a href="https://www.shinsegae.com/" target="_blank" rel="noopener">新世界百貨（Spa Land）</a></li>
+      <li><a href="https://www.lottehotel.com/haeundae-l7/en" target="_blank" rel="noopener">L7 海雲台</a></li>
+      <li><a href="https://homesstaymyeongdong.com/" target="_blank" rel="noopener">HOMES Stay 明洞</a></li>
+      <li><a href="https://www.letskorail.com/" target="_blank" rel="noopener">Korail KTX 訂票</a></li>
+      <li><a href="https://overseas.mofa.go.kr/tw-zh/brd/m_24335/view.do?seq=38" target="_blank" rel="noopener">K-ETA 暫免公告（駐台北韓國代表部）</a></li>
+      <li><a href="https://www.china-airlines.com/" target="_blank" rel="noopener">華航</a></li>
+    </ul>
+  </div>
+</div>
+
+</div>
+<script>
+function toggle(id) {
+  var el=document.getElementById(id), ic=document.getElementById('icon-'+id);
+  if(el){ el.classList.toggle('open'); if(ic) ic.classList.toggle('open'); }
+}
+function openDay(id) {
+  var el=document.getElementById(id+'-b'), ic=document.getElementById('icon-'+id+'-b');
+  if(el && !el.classList.contains('open')){ el.classList.add('open'); if(ic) ic.classList.add('open'); }
+}
+document.addEventListener('DOMContentLoaded', function(){ toggle('flights-b'); toggle('routemap-b'); toggle('d1-b'); });
+</script>
+</body>
+</html>
